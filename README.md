@@ -2,7 +2,7 @@
 > Simple App for sorting things to do in your life.
 
 [![Swift Version][swift-image]][swift-url]
-[![Platform](https://github.com/Tinkachen/ThingsToDo/)
+[![Platform](https://github.com/Tinkachen/ThingsToDo/)]
 
 The idea is not new. There are so much apps to organize the life. 
 I found a great design by [Jae-seong, Jeong] (https://dribbble.com/shots/3812962-iPhone-X-Todo-Concept/) on dribbble that I want to realize. 

@@ -6,4 +6,9 @@
 //  Copyright © 2018 Catharina Herchert. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+struct PasscodeViewModel {
+    
+    
+}

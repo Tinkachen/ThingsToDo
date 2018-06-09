@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+/// Foctory for creating view models
+struct ViewModelFactory {
+    
+    /// Makes a passcode view model
+    ///
+    /// - Returns: The instance of the view model
+    static func makePasscodeViewModel () -> PasscodeViewModel {
+        return PasscodeViewModel()
+    }
+}

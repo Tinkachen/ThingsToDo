@@ -6,4 +6,9 @@
   Copyright © 2018 Catharina Herchert. All rights reserved.
 */
 
-"PCVC_cancel_btn" = "Cancel"
+/* Personalize View Controller */
+
+/* Main View Controller */
+
+/* Passcode View Controller */
+"PCVC_cancel_btn" = "Abbrechen";

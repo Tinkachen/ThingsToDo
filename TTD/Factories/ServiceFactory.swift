@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+/// Factory for creating services
+struct ServiceFactory {
+    
+    // Example code
+//    static func makeService () -> Service {
+//        return Service()
+//    }
+    
+}

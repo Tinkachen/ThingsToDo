@@ -11,9 +11,23 @@ import Foundation
 /// Foctory for creating view models
 struct ViewModelFactory {
     
-    /// Makes a passcode view model
+    /// Makes an instance of the 'NewTodoListViewModel'
     ///
-    /// - Returns: The instance of the view model
+    /// - Returns: The instance
+    static func makeNewTodoListViewModel () -> NewTodoListViewModel {
+        return NewTodoListViewModel()
+    }
+    
+    /// Makes an instance of the 'NewTodoTaskViewModel'
+    ///
+    /// - Returns: The instance
+    static func makeNewTodoTaskViewModel () -> NewTodoTaskViewModel {
+        return NewTodoTaskViewModel()
+    }
+    
+    /// Makes an instance of the 'PasscodeViewModel'
+    ///
+    /// - Returns: The instance
     static func makePasscodeViewModel () -> PasscodeViewModel {
         return PasscodeViewModel()
     }

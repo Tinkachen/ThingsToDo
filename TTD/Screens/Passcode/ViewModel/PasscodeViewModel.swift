@@ -8,6 +8,7 @@
 
 import UIKit
 
+// The view model for setting or entering a passcode
 struct PasscodeViewModel {
     
     

@@ -11,17 +11,51 @@ import UIKit
 /// Factory for creating view controllers
 class ViewControllerFactory {
     
-    /// Makes the main view controller
+    /// Makes an instance of the first screen for the application
     ///
+    /// - Parameter firstStart: Says if it is the very first start of the application
     /// - Returns: The instance
-    static func makeMainViewController () -> UIViewController {
-        let mainViewController: MainViewController = makeViewController()
-        let navigationViewController = UINavigationController(rootViewController: mainViewController)
-        navigationViewController.isNavigationBarHidden = true
-        return navigationViewController
+    static func startWithViewController (ForFirstStart firstStart: Bool) -> UIViewController {
+        let navigationController = UINavigationController(rootViewController: firstStart ? makePersonalizeViewController() : makeMainViewController())
+        navigationController.isNavigationBarHidden = true
+        return navigationController
     }
     
-    /// Makes the passcode view controller
+    /// Makes an instance of the 'PersonalizeViewController'
+    ///
+    /// - Returns: The instance
+    private static func makePersonalizeViewController () -> UIViewController {
+        let personalizeViewController: PersonalizeViewController = makeViewController()
+        return personalizeViewController
+    }
+    
+    /// Makes an instance of the 'MainViewController'
+    ///
+    /// - Returns: The instance
+    private static func makeMainViewController () -> UIViewController {
+        let mainViewController: MainViewController = makeViewController()
+        return mainViewController
+    }
+    
+    /// Makes an instance of the 'NewTodoListViewController'
+    ///
+    /// - Returns: The instance
+    static func makeNewTodoListViewController () -> UIViewController {
+        let newTodoListViewController: NewTodoListViewController = makeViewController()
+        newTodoListViewController.viewModel = ViewModelFactory.makeNewTodoListViewModel()
+        return newTodoListViewController
+    }
+    
+    /// Makes an instance of the 'NewTodoTaskViewController'
+    ///
+    /// - Returns: The instance
+    static func makeNewTodoTaskViewController () -> UIViewController {
+        let newTodoTaskViewController: NewTodoTaskViewController = makeViewController()
+        newTodoTaskViewController.viewModel = ViewModelFactory.makeNewTodoTaskViewModel()
+        return newTodoTaskViewController
+    }
+    
+    /// Makes an instance of the 'PasscodeViewController'
     ///
     /// - Returns: The instance
     static func makePasscodeViewController () -> UIViewController {

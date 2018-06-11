@@ -8,6 +8,15 @@
 
 import UIKit
 
+/// Private Constants of the class
+private enum Constants {
+    
+    /// Strings for the outlets
+    enum Strings {
+        static let namePlaceholer = NSLocalizedString("PVC_name_placeholder", comment: "The placeholder for the user name text field")
+    }
+}
+
 /// Registration screen for setting user name (only shown if there is no name in userdefaults)
 class PersonalizeViewController: UIViewController {
     

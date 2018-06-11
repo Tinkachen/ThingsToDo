@@ -13,6 +13,11 @@ private enum Constants {
     
     /// The collection view cell id
     static let collectionViewCellId = "CollectionViewCell"
+    
+    /// Strings for the outlets
+    enum Strings {
+        static let welcomeUser = NSLocalizedString("MVC_welcome_user", comment: "The welcome text")
+    }
 }
 
 /// The main view controller of the application
@@ -69,8 +74,9 @@ class MainViewController: UIViewController {
     /// Adds a new to do list card
     ///
     /// - Parameter sender: The sender of the event
-    @IBAction fileprivate func addNewCard (_ sender: UIButton) {
-        
+    @IBAction fileprivate func addNewTodoListButtonPressed (_ sender: UIButton) {
+        let newTodoListViewController = ViewControllerFactory.makeNewTodoListViewController()
+        self.navigationController?.pushViewController(newTodoListViewController, animated: true)
     }
 }
 
@@ -93,6 +99,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         collectionViewCell.setupView("String")
         
         return collectionViewCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let newTodoTaskViewController = ViewControllerFactory.makeNewTodoTaskViewController()
+        self.navigationController?.present(newTodoTaskViewController, animated: true, completion: nil)
     }
 
     private var collectionViewFlowLayout: UICollectionViewFlowLayout {

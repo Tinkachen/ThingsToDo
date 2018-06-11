@@ -31,7 +31,7 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="AddIcon"/>
                                         <connections>
-                                            <action selector="addNewCard:" destination="Qkn-kO-bb6" eventType="touchUpInside" id="2Aj-KW-qF5"/>
+                                            <action selector="addNewTodoListButtonPressed:" destination="Qkn-kO-bb6" eventType="touchUpInside" id="2Aj-KW-qF5"/>
                                         </connections>
                                     </button>
                                 </subviews>

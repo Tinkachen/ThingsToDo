@@ -57,6 +57,11 @@
                 <constraint firstItem="F5e-6t-jVE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="scf-da-Lb8"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="collectionView" destination="qpg-8P-6ED" id="q2A-NP-1XG"/>
+                <outlet property="doneButton" destination="wPJ-rD-LAb" id="sBc-vq-ruT"/>
+                <outlet property="titleLabel" destination="F5e-6t-jVE" id="bwk-3J-SZD"/>
+            </connections>
         </view>
     </objects>
 </document>

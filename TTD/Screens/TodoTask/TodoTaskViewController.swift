@@ -1,5 +1,5 @@
 //
-//  NewTodoTaskViewController.swift
+//  TodoTaskViewController.swift
 //  TTD
 //
 //  Created by Catharina Herchert on 11.06.18.
@@ -20,7 +20,7 @@ private enum Constants {
 }
 
 /// Interface for creating a new task for a todo list
-class NewTodoTaskViewController: UIViewController {
+class TodoTaskViewController: UIViewController {
     
     // MARK: - Outlets
     
@@ -40,7 +40,7 @@ class NewTodoTaskViewController: UIViewController {
     // MARK: - Variables
     
     /// The service
-    var service: NewTodoTaskService!
+    var service: TodoTaskService!
     
     /// The view model
     var viewModel: TodoTaskViewModel!

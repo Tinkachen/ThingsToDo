@@ -25,6 +25,11 @@ struct Theme {
 /// The color themes for the app
 struct Themes {
     
+    static let allThemes: [Gradient : Theme] = [.yellow: yellow,
+                                                .lightBlue: lightBlue,
+                                                .pink: pink,
+                                                .purple: purple]
+    
     /// Gives the theme informations
     ///
     /// - Parameter theme: The theme enum

@@ -41,20 +41,24 @@ class ViewControllerFactory {
     ///
     /// - Returns: The instance
     static func makeTodoListViewController (WithViewModel viewModel: TodoListViewModel?) -> UIViewController {
-        let newTodoListViewController: NewTodoListViewController = makeViewController()
-        newTodoListViewController.service = ServiceFactory.makeNewTodoListService()
-        newTodoListViewController.viewModel = viewModel ?? ViewModelFactory.makeTodoListViewModel()
-        return newTodoListViewController
+        let todoListViewController: TodoListViewController = makeViewController()
+        todoListViewController.service = ServiceFactory.makeTodoListService()
+        todoListViewController.viewModel = viewModel ?? ViewModelFactory.makeTodoListViewModel()
+        let navigationController = UINavigationController(rootViewController: todoListViewController)
+        navigationController.isNavigationBarHidden = false
+        navigationController.navigationBar.isTranslucent = false
+        navigationController.navigationBar.backgroundColor = .white
+        return navigationController
     }
     
     /// Makes an instance of the 'NewTodoTaskViewController'
     ///
     /// - Returns: The instance
     static func makeTodoTaskViewController (WithViewModel viewModel: TodoTaskViewModel?) -> UIViewController {
-        let newTodoTaskViewController: NewTodoTaskViewController = makeViewController()
-        newTodoTaskViewController.service = ServiceFactory.makeNewTodoTaskService()
-        newTodoTaskViewController.viewModel = viewModel ?? ViewModelFactory.makeTodoTaskVieModel()
-        return newTodoTaskViewController
+        let todoTaskViewController: TodoTaskViewController = makeViewController()
+        todoTaskViewController.service = ServiceFactory.makeTodoTaskService()
+        todoTaskViewController.viewModel = viewModel ?? ViewModelFactory.makeTodoTaskVieModel()
+        return todoTaskViewController
     }
     
     /// Makes an instance of the 'PasscodeViewController'

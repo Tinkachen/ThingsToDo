@@ -1,5 +1,5 @@
 //
-//  NewTodoListViewModel.swift
+//  TodoListViewModel.swift
 //  TTD
 //
 //  Created by Catharina Herchert on 11.06.18.
@@ -9,6 +9,6 @@
 import Foundation
 
 /// The service for a new todo list
-struct NewTodoListService {
+struct TodoListService {
     
 }

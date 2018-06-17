@@ -25,15 +25,15 @@ enum Icon {
 struct Icons {
     
     /// An arry of all available images
-    static let Images = [
+    static let allIcons: [Icon : UIImage?] = [
         // Essential
-        audio, buildings, coding, communication, device, finance, gaming, image, logistik, money, places, shopping, statistic, time, office, video,
+        .audio : audio, .buildings : buildings, .coding : coding, .communication : communication, .device : device, .finance : finance, .gaming : gaming, .image : image, .logistik : logistik, .money : money, .places : places, .shopping : shopping, .statistic : statistic, .time : time, .office : office, .video : video,
         
         // Extra
-        christmas, clothe, construction, crime, ecology, food, furniture, health, holidays, hotel, learning, leisure, object, party, romance, spa, space, sport, symbols, tools, transportation, weather,
+        .christmas : christmas, .clothe : clothe, .construction : construction, .crime : crime, .ecology : ecology, .food : food, .furniture : furniture, .health : health, .holidays : holidays, .hotel : hotel, .learning : learning, .leisure : leisure, .object : object, .party : party, .romance : romance, .spa : spa, .space : space, .sport : sport, .symbols : symbols, .tools : tools, .transportation : transportation, .weather : weather,
         
         // Others
-        file, woman, man, children, family
+        .file : file, .woman : woman, .man : man, .children : children, .family : family
     ]
     
     /// Gives the icon sa an image

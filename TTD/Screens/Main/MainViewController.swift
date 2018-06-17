@@ -77,7 +77,7 @@ class MainViewController: UIViewController {
     /// - Parameter sender: The sender of the event
     @IBAction fileprivate func addNewTodoListButtonPressed (_ sender: UIButton) {
         let newTodoListViewController = ViewControllerFactory.makeTodoListViewController(WithViewModel: nil)
-        self.navigationController?.pushViewController(newTodoListViewController, animated: true)
+        self.navigationController?.present(newTodoListViewController, animated: true)
     }
 }
 

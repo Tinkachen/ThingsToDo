@@ -66,10 +66,14 @@ struct TodoTaskViewModel {
     var taskDescription: String!
     
     /// The end date
-    var taskEndDate: Date?
+    var taskEndDate: Date!
+    
+    var isTimerSet: Bool = false
     
     /// The priority level
     var priority: PriorityLevel!
+    
+    var isDone: Bool = false
     
     /// The date formatter
     private var dateFormatter: DateFormatter {
@@ -83,8 +87,6 @@ struct TodoTaskViewModel {
     ///
     /// - Returns: The formatted date
     func formattedDate () -> String {
-        guard let date = taskEndDate else { return "" }
-        
-        return "\(dateFormatter.string(from: date)) Uhr"
+        return "\(dateFormatter.string(from: taskEndDate)) Uhr"
     }
 }

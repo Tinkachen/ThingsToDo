@@ -11,18 +11,18 @@ import Foundation
 /// Foctory for creating view models
 struct ViewModelFactory {
     
-    /// Makes an instance of the 'NewTodoListViewModel'
+    /// Makes an instance of 'TodoListViewModel'
     ///
     /// - Returns: The instance
-    static func makeNewTodoListViewModel () -> NewTodoListViewModel {
-        return NewTodoListViewModel()
+    static func makeTodoListViewModel () -> TodoListViewModel {
+        return TodoListViewModel ()
     }
     
-    /// Makes an instance of the 'NewTodoTaskViewModel'
+    /// Makes an instance of 'TodoTaskViewModel'
     ///
     /// - Returns: The instance
-    static func makeNewTodoTaskViewModel () -> NewTodoTaskViewModel {
-        return NewTodoTaskViewModel()
+    static func makeTodoTaskVieModel () -> TodoTaskViewModel {
+        return TodoTaskViewModel()
     }
     
     /// Makes an instance of the 'PasscodeViewModel'

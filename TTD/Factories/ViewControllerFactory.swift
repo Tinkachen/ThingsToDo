@@ -40,18 +40,20 @@ class ViewControllerFactory {
     /// Makes an instance of the 'NewTodoListViewController'
     ///
     /// - Returns: The instance
-    static func makeNewTodoListViewController () -> UIViewController {
+    static func makeTodoListViewController (WithViewModel viewModel: TodoListViewModel?) -> UIViewController {
         let newTodoListViewController: NewTodoListViewController = makeViewController()
-        newTodoListViewController.viewModel = ViewModelFactory.makeNewTodoListViewModel()
+        newTodoListViewController.service = ServiceFactory.makeNewTodoListService()
+        newTodoListViewController.viewModel = viewModel ?? ViewModelFactory.makeTodoListViewModel()
         return newTodoListViewController
     }
     
     /// Makes an instance of the 'NewTodoTaskViewController'
     ///
     /// - Returns: The instance
-    static func makeNewTodoTaskViewController () -> UIViewController {
+    static func makeTodoTaskViewController (WithViewModel viewModel: TodoTaskViewModel?) -> UIViewController {
         let newTodoTaskViewController: NewTodoTaskViewController = makeViewController()
-        newTodoTaskViewController.viewModel = ViewModelFactory.makeNewTodoTaskViewModel()
+        newTodoTaskViewController.service = ServiceFactory.makeNewTodoTaskService()
+        newTodoTaskViewController.viewModel = viewModel ?? ViewModelFactory.makeTodoTaskVieModel()
         return newTodoTaskViewController
     }
     

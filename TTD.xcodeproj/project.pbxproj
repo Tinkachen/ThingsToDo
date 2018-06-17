@@ -36,12 +36,14 @@
 		23CC53D620B2E61D004F40E3 /* MainViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23CC53D520B2E61D004F40E3 /* MainViewController.storyboard */; };
 		23CC53D920B2E73D004F40E3 /* PersonalizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC53D820B2E73D004F40E3 /* PersonalizeViewController.swift */; };
 		23CC53DB20B2E746004F40E3 /* PersonalizeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23CC53DA20B2E746004F40E3 /* PersonalizeViewController.storyboard */; };
+		23D9D27E20D6B0C90050E8E9 /* TodoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D9D27D20D6B0C90050E8E9 /* TodoListViewModel.swift */; };
+		23D9D28120D6B3760050E8E9 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D9D28020D6B3760050E8E9 /* Icons.swift */; };
 		23F12B7920CEFA2200D6BA39 /* NewTodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B7820CEFA2200D6BA39 /* NewTodoListViewController.swift */; };
 		23F12B7B20CEFA2A00D6BA39 /* NewTodoListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23F12B7A20CEFA2A00D6BA39 /* NewTodoListViewController.storyboard */; };
 		23F12B7D20CEFA3D00D6BA39 /* NewTodoTaskViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23F12B7C20CEFA3D00D6BA39 /* NewTodoTaskViewController.storyboard */; };
 		23F12B7F20CEFA4500D6BA39 /* NewTodoTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B7E20CEFA4500D6BA39 /* NewTodoTaskViewController.swift */; };
-		23F12B8120CEFA5200D6BA39 /* NewTodoTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B8020CEFA5200D6BA39 /* NewTodoTaskViewModel.swift */; };
-		23F12B8520CEFC5100D6BA39 /* NewTodoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B8420CEFC5100D6BA39 /* NewTodoListViewModel.swift */; };
+		23F12B8120CEFA5200D6BA39 /* NewTodoTaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B8020CEFA5200D6BA39 /* NewTodoTaskService.swift */; };
+		23F12B8520CEFC5100D6BA39 /* NewTodoListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B8420CEFC5100D6BA39 /* NewTodoListService.swift */; };
 		23F12B8820CF037B00D6BA39 /* ChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B8720CF037B00D6BA39 /* ChoiceView.swift */; };
 		23F12B8A20CF08DD00D6BA39 /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B8920CF08DD00D6BA39 /* MainService.swift */; };
 /* End PBXBuildFile section */
@@ -92,12 +94,14 @@
 		23CC53D520B2E61D004F40E3 /* MainViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainViewController.storyboard; sourceTree = "<group>"; };
 		23CC53D820B2E73D004F40E3 /* PersonalizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalizeViewController.swift; sourceTree = "<group>"; };
 		23CC53DA20B2E746004F40E3 /* PersonalizeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PersonalizeViewController.storyboard; sourceTree = "<group>"; };
+		23D9D27D20D6B0C90050E8E9 /* TodoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewModel.swift; sourceTree = "<group>"; };
+		23D9D28020D6B3760050E8E9 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		23F12B7820CEFA2200D6BA39 /* NewTodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoListViewController.swift; sourceTree = "<group>"; };
 		23F12B7A20CEFA2A00D6BA39 /* NewTodoListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewTodoListViewController.storyboard; sourceTree = "<group>"; };
 		23F12B7C20CEFA3D00D6BA39 /* NewTodoTaskViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewTodoTaskViewController.storyboard; sourceTree = "<group>"; };
 		23F12B7E20CEFA4500D6BA39 /* NewTodoTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoTaskViewController.swift; sourceTree = "<group>"; };
-		23F12B8020CEFA5200D6BA39 /* NewTodoTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoTaskViewModel.swift; sourceTree = "<group>"; };
-		23F12B8420CEFC5100D6BA39 /* NewTodoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoListViewModel.swift; sourceTree = "<group>"; };
+		23F12B8020CEFA5200D6BA39 /* NewTodoTaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoTaskService.swift; sourceTree = "<group>"; };
+		23F12B8420CEFC5100D6BA39 /* NewTodoListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoListService.swift; sourceTree = "<group>"; };
 		23F12B8720CF037B00D6BA39 /* ChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceView.swift; sourceTree = "<group>"; };
 		23F12B8920CF08DD00D6BA39 /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,6 +184,7 @@
 				231535CA20CC008300883266 /* Extensions */,
 				2357805620A213C4001DBFC4 /* Shared Views */,
 				2357806E20A8C4A3001DBFC4 /* Themes.swift */,
+				23D9D28020D6B3760050E8E9 /* Icons.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -247,6 +252,7 @@
 		23CC53D220B2E5F1004F40E3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				23D9D27F20D6B0CD0050E8E9 /* ViewModel */,
 				23F12B8B20CF08E100D6BA39 /* Service */,
 				23CC53DC20B2E845004F40E3 /* Collection View */,
 				23CC53D320B2E600004F40E3 /* MainViewController.swift */,
@@ -275,10 +281,18 @@
 			path = "Collection View";
 			sourceTree = "<group>";
 		};
+		23D9D27F20D6B0CD0050E8E9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				23D9D27D20D6B0C90050E8E9 /* TodoListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		23F12B7620CEF97B00D6BA39 /* NewTodoList */ = {
 			isa = PBXGroup;
 			children = (
-				23F12B8320CEFC4500D6BA39 /* ViewModels */,
+				23F12B8320CEFC4500D6BA39 /* Service */,
 				23F12B8620CF036B00D6BA39 /* ChoiceView */,
 				23F12B7820CEFA2200D6BA39 /* NewTodoListViewController.swift */,
 				23F12B7A20CEFA2A00D6BA39 /* NewTodoListViewController.storyboard */,
@@ -289,27 +303,27 @@
 		23F12B7720CEF9A800D6BA39 /* NewTodoTask */ = {
 			isa = PBXGroup;
 			children = (
-				23F12B8220CEFA5900D6BA39 /* ViewModel */,
+				23F12B8220CEFA5900D6BA39 /* Service */,
 				23F12B7E20CEFA4500D6BA39 /* NewTodoTaskViewController.swift */,
 				23F12B7C20CEFA3D00D6BA39 /* NewTodoTaskViewController.storyboard */,
 			);
 			path = NewTodoTask;
 			sourceTree = "<group>";
 		};
-		23F12B8220CEFA5900D6BA39 /* ViewModel */ = {
+		23F12B8220CEFA5900D6BA39 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				23F12B8020CEFA5200D6BA39 /* NewTodoTaskViewModel.swift */,
+				23F12B8020CEFA5200D6BA39 /* NewTodoTaskService.swift */,
 			);
-			path = ViewModel;
+			path = Service;
 			sourceTree = "<group>";
 		};
-		23F12B8320CEFC4500D6BA39 /* ViewModels */ = {
+		23F12B8320CEFC4500D6BA39 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				23F12B8420CEFC5100D6BA39 /* NewTodoListViewModel.swift */,
+				23F12B8420CEFC5100D6BA39 /* NewTodoListService.swift */,
 			);
-			path = ViewModels;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		23F12B8620CF036B00D6BA39 /* ChoiceView */ = {
@@ -440,6 +454,7 @@
 			files = (
 				2357806620A89100001DBFC4 /* PasscodeViewModel.swift in Sources */,
 				23F12B8820CF037B00D6BA39 /* ChoiceView.swift in Sources */,
+				23D9D27E20D6B0C90050E8E9 /* TodoListViewModel.swift in Sources */,
 				2357805A20A88C34001DBFC4 /* ServiceFactory.swift in Sources */,
 				2357804A20A2068E001DBFC4 /* ColorExtension.swift in Sources */,
 				23CC53D920B2E73D004F40E3 /* PersonalizeViewController.swift in Sources */,
@@ -448,9 +463,10 @@
 				23502BD120B2F14600DA00A9 /* CollectionViewCell.swift in Sources */,
 				23F12B7F20CEFA4500D6BA39 /* NewTodoTaskViewController.swift in Sources */,
 				2357805820A213DE001DBFC4 /* PasscodeButton.swift in Sources */,
-				23F12B8120CEFA5200D6BA39 /* NewTodoTaskViewModel.swift in Sources */,
+				23F12B8120CEFA5200D6BA39 /* NewTodoTaskService.swift in Sources */,
 				2357804D20A20E0A001DBFC4 /* ViewControllerFactory.swift in Sources */,
 				231535CC20CC00BC00883266 /* CollectionViewExtension.swift in Sources */,
+				23D9D28120D6B3760050E8E9 /* Icons.swift in Sources */,
 				23F12B7920CEFA2200D6BA39 /* NewTodoListViewController.swift in Sources */,
 				2357804F20A20EB0001DBFC4 /* ViewExtension.swift in Sources */,
 				23CC53D420B2E600004F40E3 /* MainViewController.swift in Sources */,
@@ -460,7 +476,7 @@
 				2357806D20A89B01001DBFC4 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
 				2357805520A212B5001DBFC4 /* PasscodeViewController.swift in Sources */,
 				231535CE20CC013900883266 /* EmptyCollectionView.swift in Sources */,
-				23F12B8520CEFC5100D6BA39 /* NewTodoListViewModel.swift in Sources */,
+				23F12B8520CEFC5100D6BA39 /* NewTodoListService.swift in Sources */,
 				2357802920A20663001DBFC4 /* AppDelegate.swift in Sources */,
 				2357806920A899B3001DBFC4 /* CAGradientLayerExtension.swift in Sources */,
 			);

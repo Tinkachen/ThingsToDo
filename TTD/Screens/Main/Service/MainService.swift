@@ -11,4 +11,14 @@ import Foundation
 /// The service for getting data from the local storage
 struct MainService {
     
+    /// Creates dummy data of todo lists
+    ///
+    /// - Returns: The created dummy data
+    func createDummyData () -> [TodoListViewModel] {
+        var todoLists = [TodoListViewModel]()
+        
+        todoLists.append(TodoListViewModel(id: "1", gradient: .yellow, iconName: "", title: "Test", passcode: nil, tasks: nil))
+        
+        return todoLists
+    }
 }

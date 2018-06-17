@@ -39,8 +39,11 @@ class NewTodoTaskViewController: UIViewController {
     
     // MARK: - Variables
     
+    /// The service
+    var service: NewTodoTaskService!
+    
     /// The view model
-    var viewModel: NewTodoTaskViewModel!
+    var viewModel: TodoTaskViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

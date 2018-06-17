@@ -11,9 +11,18 @@ import Foundation
 /// Factory for creating services
 struct ServiceFactory {
     
-    // Example code
-//    static func makeService () -> Service {
-//        return Service()
-//    }
     
+    /// Makes an instance of 'NewTodoListService'
+    ///
+    /// - Returns: The instance
+    static func makeNewTodoListService () -> NewTodoListService {
+        return NewTodoListService()
+    }
+    
+    /// Makes an instance of 'NewTodoTaskService'
+    ///
+    /// - Returns: The instance
+    static func makeNewTodoTaskService () -> NewTodoTaskService {
+        return NewTodoTaskService ()
+    }
 }

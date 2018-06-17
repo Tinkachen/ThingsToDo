@@ -68,7 +68,7 @@ class CollectionViewCell: UICollectionViewCell {
         progressBackgroundView.addSubview(progressIndicatorView)
         
         progressPercentLabel.text = String(Int(Constants.testValue * 100))
-        progressIndicatorView.applyGradient(colors: Themes.purpleTheme.gradient)
+        progressIndicatorView.applyGradient(colors: Themes.purple.gradient)
         progressIndicatorView.frame = CGRect(x: 0, y: 0,
                                               width: progressBackgroundView.bounds.width * Constants.testValue,
                                               height: progressIndicatorView.bounds.height)

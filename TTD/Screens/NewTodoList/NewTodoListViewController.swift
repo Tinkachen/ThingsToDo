@@ -31,8 +31,11 @@ class NewTodoListViewController: UIViewController {
     
     // MARK: - Variables
     
-    /// The view model
-    var viewModel: NewTodoListViewModel!
+    /// The service
+    var service: NewTodoListService!
+    
+    // The view model
+    var viewModel: TodoListViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,11 +59,11 @@ class NewTodoListViewController: UIViewController {
         
     }
     
-    /// Presents the 'NewTodoTaskViewController', to add a new task to the todo list
+    /// Presents the 'TodoTaskViewController', to add a new task to the todo list
     ///
     /// - Parameter sender: The sender of the event
     @IBAction fileprivate func addTasksButtonPressed (_ sender: UIButton) {
-        let newTodoTaskViewController = ViewControllerFactory.makeNewTodoTaskViewController()
+        let newTodoTaskViewController = ViewControllerFactory.makeTodoTaskViewController(WithViewModel: nil)
         self.navigationController?.pushViewController(newTodoTaskViewController, animated: true)
     }
     

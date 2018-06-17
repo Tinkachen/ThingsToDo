@@ -38,6 +38,7 @@ class MainViewController: UIViewController {
     @IBOutlet fileprivate weak var todayLabel: UILabel!
     
     // MARK: - Variables
+    var todoListViewModels = [TodoListViewModel]()
     
     /// The collection view cell size
     fileprivate var collectionViewCellSize = CGSize(width: 0, height: 0)
@@ -56,7 +57,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.applyGradient(colors: Themes.purpleTheme.gradient)
+        self.view.applyGradient(colors: Themes.purple.gradient)
         
         // Setup Collection View
         collectionView.delegate = self
@@ -75,7 +76,7 @@ class MainViewController: UIViewController {
     ///
     /// - Parameter sender: The sender of the event
     @IBAction fileprivate func addNewTodoListButtonPressed (_ sender: UIButton) {
-        let newTodoListViewController = ViewControllerFactory.makeNewTodoListViewController()
+        let newTodoListViewController = ViewControllerFactory.makeTodoListViewController(WithViewModel: nil)
         self.navigationController?.pushViewController(newTodoListViewController, animated: true)
     }
 }
@@ -102,8 +103,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let newTodoTaskViewController = ViewControllerFactory.makeNewTodoTaskViewController()
-        self.navigationController?.present(newTodoTaskViewController, animated: true, completion: nil)
+        let todoListViewController = ViewControllerFactory.makeTodoListViewController(WithViewModel: todoListViewModels[indexPath.row])
+        self.navigationController?.present(todoListViewController, animated: true, completion: nil)
     }
 
     private var collectionViewFlowLayout: UICollectionViewFlowLayout {

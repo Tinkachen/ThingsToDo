@@ -64,11 +64,13 @@ class ViewControllerFactory {
     /// Makes an instance of the 'PasscodeViewController'
     ///
     /// - Returns: The instance
-    static func makePasscodeViewController () -> UIViewController {
+    static func makePasscodeViewController (withGradient gradient: Gradient,
+                                            andCallback callback: @escaping ((_ passcode: Int?)->Void)) -> UIViewController {
         let passcodeViewController: PasscodeViewController = makeViewController()
+        passcodeViewController.gradient = gradient
+        passcodeViewController.callback = callback
         return passcodeViewController
     }
-    
     // MARK: - Private helper functions
     
     /// Makes a view controller from the given class

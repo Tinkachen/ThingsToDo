@@ -19,6 +19,14 @@ enum Icon {
     
     // Others
     file, woman, man, children, family
+    
+    /// Creates a random icon
+    ///
+    /// - Returns: The icon
+    static func rdmIcon () -> Icon {
+        // TODO: Swift 4.2 .randomElement()
+        return Array(Icons.allIcons.keys)[Int(arc4random_uniform(UInt32(Themes.allThemes.count)))]
+    }
 }
 
 /// The icons for the tasks

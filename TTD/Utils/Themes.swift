@@ -13,6 +13,14 @@ enum Gradient {
     case lightBlue
     case pink
     case purple
+    
+    /// Creates a random gradient
+    ///
+    /// - Returns: The gradient
+    static func rdmGradient () -> Gradient {
+        // TODO: Swift 4.2 .randomElement()
+        return Array(Themes.allThemes.keys)[Int(arc4random_uniform(UInt32(Themes.allThemes.count)))]
+    }
 }
 
 /// The construction of a color theme
@@ -25,10 +33,10 @@ struct Theme {
 /// The color themes for the app
 struct Themes {
     
-    static let allThemes: [Gradient : Theme] = [.yellow: yellow,
-                                                .lightBlue: lightBlue,
-                                                .pink: pink,
-                                                .purple: purple]
+    static let allThemes: [Gradient : Theme] = [.yellow : yellow,
+                                                .lightBlue : lightBlue,
+                                                .pink : pink,
+                                                .purple : purple]
     
     /// Gives the theme informations
     ///

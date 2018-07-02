@@ -17,7 +17,7 @@ struct MainService {
     func createDummyData () -> [TodoListViewModel] {
         var todoLists = [TodoListViewModel]()
         
-        todoLists.append(TodoListViewModel(id: "1", gradient: .yellow, iconName: "", title: "Test", passcode: nil, tasks: nil))
+        todoLists.append(TodoListViewModel(id: "1", gradient: .yellow, icon: .audio, title: "Test", passcode: nil, tasks: nil))
         
         return todoLists
     }

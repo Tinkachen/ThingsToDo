@@ -36,12 +36,25 @@ class PasscodeViewController: UIViewController {
     
     // MARK: - Variables
     
+    /// The callback for setting a new passcode
+    var callback: ((_ passcode: Int?)->Void)!
+    
+    /// The gradient of the pass code view
+    var gradient: Gradient!
+    
     /// The view model
     private var viewModel: PasscodeViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        self.view.applyGradient(colors: Themes.getTheme(gradient).gradient)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     // MARK: - Button Actions
@@ -50,7 +63,8 @@ class PasscodeViewController: UIViewController {
     ///
     /// - Parameter sender: The sender of the action
     @IBAction fileprivate func cancelButtonAction (_ sender: UIButton) {
-        
+        callback(nil)
+        dismissPasscodeView()
     }
     
     /// The action for the passcode button
@@ -64,6 +78,10 @@ class PasscodeViewController: UIViewController {
     
     /// Dismisses the passcode view
     private func dismissPasscodeView () {
-        self.dismiss(animated: true, completion: nil)
+        if let navigationControllerUnwrapped = self.navigationController {
+            navigationControllerUnwrapped.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }

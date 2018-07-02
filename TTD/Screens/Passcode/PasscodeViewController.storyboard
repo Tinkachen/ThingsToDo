@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r4j-pC-VfG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r4j-pC-VfG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -62,25 +62,34 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IXF-BA-cd6">
-                                <rect key="frame" x="16.5" y="161" width="342" height="456"/>
+                                <rect key="frame" x="17.5" y="161" width="340.5" height="456"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="62M-wo-FFx">
-                                        <rect key="frame" x="0.0" y="0.0" width="342" height="114.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="340.5" height="114"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWI-Mr-TJf" customClass="PasscodeButton" customModule="TTD" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="114" height="114.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="113.5" height="114"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="XWI-Mr-TJf" secondAttribute="height" multiplier="1:1" id="2iC-ZU-9qc"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="passcodeButtonAction:" destination="r4j-pC-VfG" eventType="touchUpInside" id="8Nc-bs-dq3"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCT-jx-UQs" customClass="PasscodeButton" customModule="TTD" customModuleProvider="target">
-                                                <rect key="frame" x="114" y="0.0" width="114" height="114.5"/>
+                                                <rect key="frame" x="113.5" y="0.0" width="113.5" height="114"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="passcodeButtonAction:" destination="r4j-pC-VfG" eventType="touchUpInside" id="qba-X9-9c2"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fq8-ar-gC7" customClass="PasscodeButton" customModule="TTD" customModuleProvider="target">
-                                                <rect key="frame" x="228" y="0.0" width="114" height="114.5"/>
+                                                <rect key="frame" x="227" y="0.0" width="113.5" height="114"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="passcodeButtonAction:" destination="r4j-pC-VfG" eventType="touchUpInside" id="6YJ-c4-RkC"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -91,52 +100,73 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDp-0I-NRh">
-                                        <rect key="frame" x="0.0" y="114.5" width="342" height="113.5"/>
+                                        <rect key="frame" x="0.0" y="114" width="340.5" height="114"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DY0-A1-3Rg" customClass="PasscodeButton" customModule="TTD" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="114" height="113.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="113.5" height="114"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="passcodeButtonAction:" destination="r4j-pC-VfG" eventType="touchUpInside" id="Dy5-Ja-VXd"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1XN-F6-Phi" customClass="PasscodeButton" customModule="TTD" customModuleProvider="target">
-                                                <rect key="frame" x="114" y="0.0" width="114" height="113.5"/>
+                                                <rect key="frame" x="113.5" y="0.0" width="113.5" height="114"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="passcodeButtonAction:" destination="r4j-pC-VfG" eventType="touchUpInside" id="LIf-0u-an9"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3F-aO-Hop" customClass="PasscodeButton" customModule="TTD" customModuleProvider="target">
-                                                <rect key="frame" x="228" y="0.0" width="114" height="113.5"/>
+                                                <rect key="frame" x="227" y="0.0" width="113.5" height="114"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="passcodeButtonAction:" destination="r4j-pC-VfG" eventType="touchUpInside" id="fS0-jF-PyJ"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iFx-cf-Kom">
-                                        <rect key="frame" x="0.0" y="228" width="342" height="114.5"/>
+                                        <rect key="frame" x="0.0" y="228" width="340.5" height="114"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gxj-V0-jvp" customClass="PasscodeButton" customModule="TTD" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="114" height="114.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="113.5" height="114"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="passcodeButtonAction:" destination="r4j-pC-VfG" eventType="touchUpInside" id="uoh-El-k37"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGo-RG-0MM" customClass="PasscodeButton" customModule="TTD" customModuleProvider="target">
-                                                <rect key="frame" x="114" y="0.0" width="114" height="114.5"/>
+                                                <rect key="frame" x="113.5" y="0.0" width="113.5" height="114"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="passcodeButtonAction:" destination="r4j-pC-VfG" eventType="touchUpInside" id="mWj-E2-3gW"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRn-dP-BT8" customClass="PasscodeButton" customModule="TTD" customModuleProvider="target">
-                                                <rect key="frame" x="228" y="0.0" width="114" height="114.5"/>
+                                                <rect key="frame" x="227" y="0.0" width="113.5" height="114"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="passcodeButtonAction:" destination="r4j-pC-VfG" eventType="touchUpInside" id="NSM-a4-dVz"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6H-rj-Lc1">
-                                        <rect key="frame" x="0.0" y="342.5" width="342" height="113.5"/>
+                                        <rect key="frame" x="0.0" y="342" width="340.5" height="114"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xhn-W1-zEI">
-                                                <rect key="frame" x="0.0" y="0.0" width="114" height="113.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="113.5" height="114"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9aY-yN-6Fp" customClass="PasscodeButton" customModule="TTD" customModuleProvider="target">
-                                                <rect key="frame" x="114" y="0.0" width="114" height="113.5"/>
+                                                <rect key="frame" x="113.5" y="0.0" width="113.5" height="114"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="passcodeButtonAction:" destination="r4j-pC-VfG" eventType="touchUpInside" id="lCJ-M3-Bv5"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqe-LX-Xeq">
-                                                <rect key="frame" x="228" y="0.0" width="114" height="113.5"/>
+                                                <rect key="frame" x="227" y="0.0" width="113.5" height="114"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
@@ -169,6 +199,9 @@
                                     <constraint firstAttribute="height" constant="30" id="ebx-Sy-qUY"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="cancelButtonAction:" destination="r4j-pC-VfG" eventType="touchUpInside" id="MiX-Hh-4oi"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -186,6 +219,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ARw-th-nYY"/>
                     </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="gRz-Cd-VWo" id="n0Q-w8-WNs"/>
+                        <outlet property="indicatorStackView" destination="wXy-HU-i96" id="Urh-A5-Cjj"/>
+                        <outlet property="titleLabel" destination="Axa-yZ-Pat" id="uHA-1P-ypi"/>
+                        <outletCollection property="indicatorView" destination="DL0-Oe-e9L" collectionClass="NSMutableArray" id="6ZD-6t-yAU"/>
+                        <outletCollection property="indicatorView" destination="HAf-RA-8i5" collectionClass="NSMutableArray" id="DM0-s7-UgJ"/>
+                        <outletCollection property="indicatorView" destination="rcG-Ku-Ro0" collectionClass="NSMutableArray" id="sBV-nv-8Vp"/>
+                        <outletCollection property="indicatorView" destination="ddV-gf-1NW" collectionClass="NSMutableArray" id="rlL-J2-id4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DjL-0I-7yu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

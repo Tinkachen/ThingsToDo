@@ -13,24 +13,52 @@ private enum Constants {
     
     /// Informations for the table view
     enum TableView {
+        
+        /// The identifier of the header
         static let headerCellId = "TodoTaskHeaderCell"
+        
+        /// The header height
         static let headerCellHeight: CGFloat = 40
         
+        /// The identifier of the table view cell
         static let todoTaskTableViewCellId = "TodoTaskTableVieCellId"
+        
+        /// The table view cell height
         static let todoTaskTableViewCellHeight: CGFloat = 30
     }
     
     /// Constant images
     enum Images {
+        
+        /// The close icon
         static let closeIcon = #imageLiteral(resourceName: "CloseIcon")
+        
+        /// The lcok icon
+        static let lockItem = #imageLiteral(resourceName: "Lock")
+        
+        /// The unlock icon
+        static let unlockItem = #imageLiteral(resourceName: "Unlock")
     }
     
-    /// Strings for the outlets
+    /// Localized strings for the view
     enum Strings {
+        
+        /// The title for the view
         static let viewTitle = NSLocalizedString("NTLVC_title", comment: "The title for the view")
+        
+        /// The placeholder for the name of the todo list
         static let namePlaceholder = NSLocalizedString("NTLVC_name_placeholer", comment: "The place holder for the todo list name")
+        
+        /// The text for choosing a gradient
         static let chooseGradient = NSLocalizedString("NTLVC_choose_gradient", comment: "The text for choosing a gradient")
+        
+        /// The text for choosing an icon
         static let chooseIcon = NSLocalizedString("NTLVC_choose_icon", comment: "The text for choosing an icon")
+        
+        /// The task text
+        static let tasks = NSLocalizedString("NTLVC_tasks", comment: "The task text")
+        
+        /// The text to secure the todo list with a passcode
         static let secureWithPasscode = NSLocalizedString("NTLVC_secure_passcode", comment: "The text to secure the todo list with a passcode")
     }
 }
@@ -55,8 +83,8 @@ class TodoListViewController: UIViewController {
     /// The text field for the todo list name
     @IBOutlet fileprivate weak var nameTextField: SkyFloatingLabelTextField!
     
-    /// The toggle for the passcode setting
-    @IBOutlet fileprivate weak var passcodeToggle: UISwitch!
+    /// The button for enable or disable passcode security
+    @IBOutlet fileprivate weak var passcodeButton: UIButton!
     
     /// The progress background view
     @IBOutlet fileprivate weak var progressBackgroundView: UIView!
@@ -100,6 +128,32 @@ class TodoListViewController: UIViewController {
         iconContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(chooseIconPressed)))
         gradientContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(chooseGradientPressed)))
         
+        // Setup view with view model
+        setupViewWithViewModel()
+    }
+    
+    /// Setup the view with the passed view model
+    func setupViewWithViewModel () {
+        
+        // Title
+        self.nameTextField.text = viewModel.title
+        
+        // Gradient
+        self.gradientContainer.applyGradient(colors: Themes.getTheme(viewModel.gradient).gradient)
+        
+        // Icon
+        self.iconImageView.image = Icons.getIcon(viewModel.icon)
+        
+        // Tasks
+        self.taskLabel.text = "\(viewModel.tasks?.count ?? 0) \(Constants.Strings.tasks)"
+        
+        // Passcode Button
+        updatePasscodeImage(isLocked: viewModel.passcode != nil ? true : false)
+        
+    }
+    
+    private func updatePasscodeImage (isLocked: Bool) {
+        passcodeButton.setImage(isLocked ? Constants.Images.lockItem : Constants.Images.unlockItem, for: .normal)
     }
     
     // MARK: - Actions
@@ -107,13 +161,19 @@ class TodoListViewController: UIViewController {
     /// Presents a view for selecting a icon for the todo list
     @objc fileprivate func chooseIconPressed () {
         let choiceView: ChoiceView = .fromNib()
-        choiceView.setupForIcons(Constants.Strings.chooseIcon, andData: Icons.allIcons)
+        choiceView.setupForIcons(Constants.Strings.chooseIcon, andData: Icons.allIcons) { (icon) in
+            self.iconImageView.image = Icons.getIcon(icon)
+            self.viewModel.icon = icon
+        }
     }
     
     /// Presents a view for selecting a gradient for the todo list
     @objc fileprivate func chooseGradientPressed () {
         let choiceView: ChoiceView = .fromNib()
-        choiceView.setupForGradients(Constants.Strings.chooseGradient, andData: Themes.allThemes)
+        choiceView.setupForGradients(Constants.Strings.chooseGradient, andData: Themes.allThemes) { (gradient) in
+            self.gradientContainer.applyGradient(colors: Themes.getTheme(gradient).gradient)
+            self.viewModel.gradient = gradient
+        }
     }
     
     /// Presents the 'TodoTaskViewController', to add a new task to the todo list
@@ -127,8 +187,23 @@ class TodoListViewController: UIViewController {
     /// Secures the todo list with a passcode
     ///
     /// - Parameter sender: The sender of the event
-    @IBAction fileprivate func saveWithPasscodeToggleSwitched (_ sender: UISwitch) {
-        
+    @IBAction fileprivate func saveWithPasscodeButtonPressed (_ sender: UIButton) {
+        if viewModel.passcode != nil {
+            updatePasscodeImage(isLocked: false)
+            viewModel.passcode = nil
+        } else {
+            passcodeButton.setImage(Constants.Images.lockItem, for: .normal)
+            let passcodeViewConroller = ViewControllerFactory.makePasscodeViewController(withGradient: viewModel.gradient) { (passcode) in
+                guard let passcodeUnwrapped = passcode else {
+                    self.viewModel.passcode = nil
+                    self.updatePasscodeImage(isLocked: false)
+                    return
+                }
+                self.viewModel.passcode = passcodeUnwrapped
+                self.updatePasscodeImage(isLocked: true)
+            }
+            self.navigationController?.pushViewController(passcodeViewConroller, animated: true)
+        }
     }
     
     /// Called when the close button in the navigation bar is pressed

@@ -16,6 +16,8 @@ private enum Constants {
     
     /// Strings for the outlets
     enum Strings {
+        
+        /// The localized text to welcome the user
         static let welcomeUser = NSLocalizedString("MVC_welcome_user", comment: "The welcome text")
     }
 }

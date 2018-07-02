@@ -38,8 +38,14 @@ class ChoiceView: UIView {
     /// The gradient data
     private var gradients: [Gradient : Theme] = [:]
     
+    /// The callback for selecting a gradient
+    private var gradientCallback: ((_ gradient: Gradient)->Void)!
+    
     /// The icon data
     private var icons: [Icon : UIImage?] = [:]
+    
+    /// The callback for selecting an icon
+    private var iconCallback: ((_ icon: Icon)->Void)!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -56,18 +62,20 @@ class ChoiceView: UIView {
     ///
     /// - Parameter title: The title of the view
     /// - Parameter data: The data for the collection view
-    func setupForGradients (_ title: String, andData data: [Gradient : Theme]) {
+    func setupForGradients (_ title: String, andData data: [Gradient : Theme], callback: @escaping ((_ gradient: Gradient)->Void)) {
         forGradients = true
         self.titleLabel.text = title
+        self.gradientCallback = callback
     }
     
     /// Sets up the view with the passed informations for icons
     ///
     /// - Parameter title: The title of the view
     /// - Parameter data: The data for the collection view
-    func setupForIcons (_ title: String, andData data: [Icon : UIImage?]) {
+    func setupForIcons (_ title: String, andData data: [Icon : UIImage?], callback: @escaping ((_ icon: Icon)->Void)) {
         forGradients = false
         self.titleLabel.text = title
+        self.iconCallback = callback
     }
     
     // MARK: - Actions

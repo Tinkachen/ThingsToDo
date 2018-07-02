@@ -17,6 +17,7 @@
 "NTLVC_name_placeholer" = "What is the name of your list?";
 "NTLVC_choose_gradient" = "Choose the gradient for your list!";
 "NTLVC_choose_icon" = "Choose the icon for your list!";
+"NTLVC_tasks" = "Tasks";
 "NTLVC_secure_passcode" = "Would you secure your list with a passcode?";
 
 /* New Todo Task View Controller */

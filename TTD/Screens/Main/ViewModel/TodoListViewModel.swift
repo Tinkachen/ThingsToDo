@@ -41,7 +41,7 @@ struct TodoListViewModel {
     var gradient: Gradient!
     
     /// The icon
-    var iconName: String!
+    var icon: Icon!
     
     /// The title
     var title: String!
@@ -68,11 +68,13 @@ struct TodoTaskViewModel {
     /// The end date
     var taskEndDate: Date!
     
+    /// Indicator if a time has been set
     var isTimerSet: Bool = false
     
     /// The priority level
     var priority: PriorityLevel!
     
+    /// Indicator if the task has been done
     var isDone: Bool = false
     
     /// The date formatter

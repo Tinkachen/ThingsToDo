@@ -50,6 +50,18 @@ struct ViewModelFactory {
     ///
     /// - Returns: The instance
     static func makePasscodeViewModel () -> PasscodeViewModel {
-        return PasscodeViewModel()
+        var viewModel =  PasscodeViewModel()
+        viewModel.initWithNewPasscode()
+        return viewModel
+    }
+    
+    /// Makes an instance of the 'PasscodeViewModel'
+    /// - Parameter passcode: The passcode
+    ///
+    /// - Returns: The instance
+    static func makePasscodeViewModel (withPasscode passcode: String) -> PasscodeViewModel {
+        var viewModel =  PasscodeViewModel()
+        viewModel.initWithPasscode(passcode)
+        return viewModel
     }
 }

@@ -39,6 +39,7 @@ class ViewControllerFactory {
     
     /// Makes an instance of the 'NewTodoListViewController'
     ///
+    /// - Parameter viewModel: The view model
     /// - Returns: The instance
     static func makeTodoListViewController (WithViewModel viewModel: TodoListViewModel?) -> UIViewController {
         let todoListViewController: TodoListViewController = makeViewController()
@@ -53,43 +54,45 @@ class ViewControllerFactory {
     
     /// Makes an instance of the 'NewTodoTaskViewController'
     ///
+    /// - Parameter viewModel: The view model
     /// - Returns: The instance
-    static func makeTodoTaskViewController (WithViewModel viewModel: TodoTaskViewModel?) -> UIViewController {
+    static func makeTodoTaskViewController (WithViewModel viewModel: TodoTaskViewModel?, AndGradient gradient: Gradient) -> UIViewController {
         let todoTaskViewController: TodoTaskViewController = makeViewController()
         todoTaskViewController.service = ServiceFactory.makeTodoTaskService()
         todoTaskViewController.viewModel = viewModel ?? ViewModelFactory.makeTodoTaskVieModel()
+        todoTaskViewController.gradient = gradient
         return todoTaskViewController
     }
     
     /// Makes an instance of the 'PasscodeViewController'
     ///
+    /// - Parameter gradient: The gradient
+    /// - Parameter callback: The callback for entering a passcode
     /// - Returns: The instance
     static func makePasscodeViewController (withGradient gradient: Gradient,
                                             andCallback callback: @escaping ((_ passcode: Int?)->Void)) -> UIViewController {
         let passcodeViewController: PasscodeViewController = makeViewController()
+        passcodeViewController.viewModel = ViewModelFactory.makePasscodeViewModel()
         passcodeViewController.gradient = gradient
         passcodeViewController.callback = callback
         return passcodeViewController
     }
     
-    /// <#Description#>
+    /// Makes an instance of the 'PasscodeViewController'
     ///
-    /// - Returns: <#return value description#>
-    static func makeChoiceViewController (forIcon title: String, callback: @escaping ((_ icon: Icon)->Void)) -> UIViewController {
-        let choiceViewController: ChoiceViewController = makeViewController()
-        choiceViewController.forGradients = false
-        choiceViewController.iconCallback = callback
-        return choiceViewController
-    }
-    
-    /// <#Description#>
-    ///
-    /// - Returns: <#return value description#>
-    static func makeChoiceViewController (forGradient title: String, callback: @escaping ((_ gradient: Gradient)->Void)) -> UIViewController {
-        let choiceViewController: ChoiceViewController = makeViewController()
-        choiceViewController.forGradients = true
-        choiceViewController.gradientCallback = callback
-        return choiceViewController
+    /// - Parameters:
+    ///   - gradient: The gradient
+    ///   - passcode: The passcode
+    ///   - callback: The callb ack for entering a passcode (success / failure)
+    /// - Returns: The instance
+    static func makePasscodeViewController (withGradient gradient: Gradient,
+                                            andPasscode passcode: String,
+                                            andCallback callback: @escaping (_ success: Bool)->Void) -> UIViewController {
+        let passcodeViewController: PasscodeViewController = makeViewController()
+        passcodeViewController.viewModel = ViewModelFactory.makePasscodeViewModel(withPasscode: passcode)
+        passcodeViewController.gradient = gradient
+//        passcodeViewController.callback = callback TODO
+        return passcodeViewController
     }
     
     // MARK: - Private helper functions
@@ -104,6 +107,4 @@ class ViewControllerFactory {
         }
         return viewController
     }
-    
-    
 }

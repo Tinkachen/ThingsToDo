@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oqC-Ch-ufr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oqC-Ch-ufr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,9 +18,49 @@
                     <view key="view" contentMode="scaleToFill" id="h0F-o4-QTF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aU9-P6-eIc">
+                                <rect key="frame" x="306" y="523" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="aU9-P6-eIc" secondAttribute="height" multiplier="1:1" id="MYM-zy-nSI"/>
+                                    <constraint firstAttribute="height" constant="44" id="UKe-hj-8uC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="+"/>
+                                <connections>
+                                    <action selector="addNewTaskButtonPressed:" destination="oqC-Ch-ufr" eventType="touchUpInside" id="RAt-j3-5mn"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FkT-sd-eok">
+                                <rect key="frame" x="25" y="194" width="325" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bAi-66-DSM" firstAttribute="trailing" secondItem="FkT-sd-eok" secondAttribute="trailing" constant="25" id="6Sv-fm-juU"/>
+                            <constraint firstItem="bAi-66-DSM" firstAttribute="bottom" secondItem="aU9-P6-eIc" secondAttribute="bottom" constant="100" id="Dd1-jO-Cp1"/>
+                            <constraint firstItem="aU9-P6-eIc" firstAttribute="leading" secondItem="bAi-66-DSM" secondAttribute="leading" id="KXx-yr-bn6"/>
+                            <constraint firstItem="bAi-66-DSM" firstAttribute="trailing" secondItem="aU9-P6-eIc" secondAttribute="trailing" constant="25" id="R69-t5-eDm"/>
+                            <constraint firstItem="FkT-sd-eok" firstAttribute="top" secondItem="bAi-66-DSM" secondAttribute="top" constant="174" id="Ryh-6f-B7w"/>
+                            <constraint firstItem="FkT-sd-eok" firstAttribute="leading" secondItem="bAi-66-DSM" secondAttribute="leading" constant="25" id="lrE-gd-rQQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="bAi-66-DSM"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="KXx-yr-bn6"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="floatingButton" destination="aU9-P6-eIc" id="nZA-QO-C1J"/>
+                        <outlet property="floatingButtonAspectRatioConstraint" destination="MYM-zy-nSI" id="MgO-oe-gYl"/>
+                        <outlet property="floatingButtonBottomConstraint" destination="Dd1-jO-Cp1" id="VR8-bn-Ojh"/>
+                        <outlet property="floatingButtonLeadingConstraint" destination="KXx-yr-bn6" id="RkE-ql-hrc"/>
+                        <outlet property="floatingButtonTrailingConstraint" destination="R69-t5-eDm" id="oMM-HJ-9SO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dJh-Aj-7Rl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

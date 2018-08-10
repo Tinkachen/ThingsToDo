@@ -105,8 +105,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let todoListViewController = ViewControllerFactory.makeTodoListViewController(WithViewModel: todoListViewModels[indexPath.row])
-        self.navigationController?.present(todoListViewController, animated: true, completion: nil)
+//        let todoListViewController = ViewControllerFactory.makeTodoListViewController(WithViewModel: todoListViewModels[indexPath.row])
+//        self.navigationController?.present(todoListViewController, animated: true, completion: nil)
     }
 
     private var collectionViewFlowLayout: UICollectionViewFlowLayout {

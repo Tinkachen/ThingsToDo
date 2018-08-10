@@ -1,0 +1,774 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		28A529FCBFBC60E0F7680FF44AA20287 /* SAMKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 467DB29B6CE6347CBCC6F89D831B89EE /* SAMKeychainQuery.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		29BAFD401DFE711D91145072822D32F0 /* SAMKeychain-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BC59FEF4CEC8927935FB060EA723CCF /* SAMKeychain-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2CD035E735DD13B38F9E1FA97227EB35 /* Pods-TTDTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BB1399472D5DAA6DFAF6B06B4A403D2 /* Pods-TTDTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B032021C129F8D1E76A45EAA455E5B8 /* Pods-TTD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB2BFE3E9693708F792C10363F5B030 /* Pods-TTD-dummy.m */; };
+		43C595C4321D8BC90D2645BAE281AA22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C10A31CD5CFA3EFE266394471B152E /* Foundation.framework */; };
+		52BA763A9F9844A4653AA7E378FF3737 /* Pods-TTD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C5F7A5709F00CD5495980D66E7BE5E5 /* Pods-TTD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6A0BD37B1F3E00AF7D37FEB91CE425BD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C085E02FF89804F50ADDA04F5A586E94 /* Security.framework */; };
+		88DC46D216D9CF5FD3497B582C2C0D63 /* SAMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = A5951A74082C57801B593CC89807AF50 /* SAMKeychain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		9DC7964CB95CE04AA24559F1411A3331 /* SAMKeychainQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 4750DDEBB30FCFB4FA63C2BC37A4214D /* SAMKeychainQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A9694A121922348C1CEE33CE3529C786 /* SAMKeychain.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D413D76727073737DAA57CA60C778547 /* SAMKeychain.bundle */; };
+		B4C03DB7F98ABF71356194924B5211FE /* SAMKeychain-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA3AA0C8ACEBC012D1A1A08D3EFF6CB /* SAMKeychain-dummy.m */; };
+		C8640F80B344464CD665A51AEC803B3B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C10A31CD5CFA3EFE266394471B152E /* Foundation.framework */; };
+		CF692763B457124BDE394C8842F69C3E /* SAMKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F034B27064FF8E4018C72896F1D15CE /* SAMKeychain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECF4AE8F67D8A4FB6126BA3D3FA80F74 /* Pods-TTDTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9CBC0EC62664EF409BE070AEEFD4CD /* Pods-TTDTests-dummy.m */; };
+		F04E2072E2C63142B724E46C7D0A5CEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C10A31CD5CFA3EFE266394471B152E /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		244676DED6D6AC1170D90447024685DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E06D9ABB803CD7AAB756E88B2294BA9;
+			remoteInfo = SAMKeychain;
+		};
+		71C6B3DEC39170D963E881301BDD6049 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C681F2F6C2AC75207DE28745584EEC4F;
+			remoteInfo = "Pods-TTD";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0637EF0D76957BF0822641BD3A1BEC60 /* Pods-TTD-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TTD-resources.sh"; sourceTree = "<group>"; };
+		11C10A31CD5CFA3EFE266394471B152E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		1529DE9C107513A8AF48654CEB51DEBC /* Pods-TTD-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TTD-acknowledgements.plist"; sourceTree = "<group>"; };
+		15B30119F8A56CE7F457AC25070C584D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F034B27064FF8E4018C72896F1D15CE /* SAMKeychain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SAMKeychain.h; path = Sources/SAMKeychain.h; sourceTree = "<group>"; };
+		27562A7185C4E7C3F0BE269E0BDC5C71 /* SAMKeychain.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SAMKeychain.modulemap; sourceTree = "<group>"; };
+		3283C309848FF4360E45897D4048AA56 /* SAMKeychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SAMKeychain.framework; path = SAMKeychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		467DB29B6CE6347CBCC6F89D831B89EE /* SAMKeychainQuery.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SAMKeychainQuery.m; path = Sources/SAMKeychainQuery.m; sourceTree = "<group>"; };
+		4750DDEBB30FCFB4FA63C2BC37A4214D /* SAMKeychainQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SAMKeychainQuery.h; path = Sources/SAMKeychainQuery.h; sourceTree = "<group>"; };
+		49C869521B29B0A282DC0F274FECC3FA /* SAMKeychain-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SAMKeychain-prefix.pch"; sourceTree = "<group>"; };
+		4D7F01E2D4DE70489062197C30C8E5F3 /* Pods-TTD-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TTD-frameworks.sh"; sourceTree = "<group>"; };
+		5898694A1043CEBB43AC99267D7478B6 /* Pods_TTD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TTD.framework; path = "Pods-TTD.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AB46226C4C406C2A092FC6F26F69835 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BB1399472D5DAA6DFAF6B06B4A403D2 /* Pods-TTDTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TTDTests-umbrella.h"; sourceTree = "<group>"; };
+		6EB2BFE3E9693708F792C10363F5B030 /* Pods-TTD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TTD-dummy.m"; sourceTree = "<group>"; };
+		703A34A1130C16142AC46DD9341E6BAD /* Pods-TTD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TTD.modulemap"; sourceTree = "<group>"; };
+		745591D0ECEFDD8E10D4152079E37966 /* Pods-TTDTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TTDTests.modulemap"; sourceTree = "<group>"; };
+		8205C7284C36E94F7CF18E30F5CE8195 /* Pods-TTD-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TTD-acknowledgements.markdown"; sourceTree = "<group>"; };
+		8536A9045236F54915B619ACE2D063A6 /* Pods-TTDTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TTDTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8650A2D040281ADCA650792BA048C46A /* SAMKeychain.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SAMKeychain.xcconfig; sourceTree = "<group>"; };
+		8BC59FEF4CEC8927935FB060EA723CCF /* SAMKeychain-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SAMKeychain-umbrella.h"; sourceTree = "<group>"; };
+		8C5F7A5709F00CD5495980D66E7BE5E5 /* Pods-TTD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TTD-umbrella.h"; sourceTree = "<group>"; };
+		8F4ED795822EAE401F5436BC8B247E66 /* Pods_TTDTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TTDTests.framework; path = "Pods-TTDTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F9CBC0EC62664EF409BE070AEEFD4CD /* Pods-TTDTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TTDTests-dummy.m"; sourceTree = "<group>"; };
+		8FD1971C832312A9D1A0D5BCC9B1D48F /* Pods-TTD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TTD.release.xcconfig"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9CA3AA0C8ACEBC012D1A1A08D3EFF6CB /* SAMKeychain-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SAMKeychain-dummy.m"; sourceTree = "<group>"; };
+		A565ABAEC90B16442E3C80F3FF543429 /* Pods-TTDTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TTDTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		A5951A74082C57801B593CC89807AF50 /* SAMKeychain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SAMKeychain.m; path = Sources/SAMKeychain.m; sourceTree = "<group>"; };
+		BA48889F1A79E0E4C55AF7722DF12F59 /* Pods-TTDTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TTDTests-frameworks.sh"; sourceTree = "<group>"; };
+		C085E02FF89804F50ADDA04F5A586E94 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		C35A0CB1A1167CABA0CCBD5ACB02DE1E /* Pods-TTDTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TTDTests.release.xcconfig"; sourceTree = "<group>"; };
+		CA0275F6F1A4A9241CB6ECBB76032913 /* Pods-TTDTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TTDTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		CD502B4122AD390DF7F41EE6E7C3DE3D /* Pods-TTD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TTD.debug.xcconfig"; sourceTree = "<group>"; };
+		CFCC77E714EE99BFFDD30B299A170AD3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D413D76727073737DAA57CA60C778547 /* SAMKeychain.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SAMKeychain.bundle; path = Support/SAMKeychain.bundle; sourceTree = "<group>"; };
+		DE4244CDBEAD0DBCD13B7C5159EAD814 /* Pods-TTDTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TTDTests-resources.sh"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		15FCAC5988FF826B64B1B75DF22B09A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8640F80B344464CD665A51AEC803B3B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E44F1FD42E84B977D7C560775A9B1D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43C595C4321D8BC90D2645BAE281AA22 /* Foundation.framework in Frameworks */,
+				6A0BD37B1F3E00AF7D37FEB91CE425BD /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A82399352185DB905A9BC844C8C18840 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F04E2072E2C63142B724E46C7D0A5CEC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3CFA9EED86D99FAEE10FA50D5209523C /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				534E8A8F69FB948B47AD8C26BFBBD05C /* Pods-TTD */,
+				4CB2E53D3262E6BE539D9485B3211F4C /* Pods-TTDTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4F990579C2E52276FD3C28227B49D60B /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4CB2E53D3262E6BE539D9485B3211F4C /* Pods-TTDTests */ = {
+			isa = PBXGroup;
+			children = (
+				15B30119F8A56CE7F457AC25070C584D /* Info.plist */,
+				745591D0ECEFDD8E10D4152079E37966 /* Pods-TTDTests.modulemap */,
+				CA0275F6F1A4A9241CB6ECBB76032913 /* Pods-TTDTests-acknowledgements.markdown */,
+				A565ABAEC90B16442E3C80F3FF543429 /* Pods-TTDTests-acknowledgements.plist */,
+				8F9CBC0EC62664EF409BE070AEEFD4CD /* Pods-TTDTests-dummy.m */,
+				BA48889F1A79E0E4C55AF7722DF12F59 /* Pods-TTDTests-frameworks.sh */,
+				DE4244CDBEAD0DBCD13B7C5159EAD814 /* Pods-TTDTests-resources.sh */,
+				5BB1399472D5DAA6DFAF6B06B4A403D2 /* Pods-TTDTests-umbrella.h */,
+				8536A9045236F54915B619ACE2D063A6 /* Pods-TTDTests.debug.xcconfig */,
+				C35A0CB1A1167CABA0CCBD5ACB02DE1E /* Pods-TTDTests.release.xcconfig */,
+			);
+			name = "Pods-TTDTests";
+			path = "Target Support Files/Pods-TTDTests";
+			sourceTree = "<group>";
+		};
+		4F990579C2E52276FD3C28227B49D60B /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				11C10A31CD5CFA3EFE266394471B152E /* Foundation.framework */,
+				C085E02FF89804F50ADDA04F5A586E94 /* Security.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		534E8A8F69FB948B47AD8C26BFBBD05C /* Pods-TTD */ = {
+			isa = PBXGroup;
+			children = (
+				CFCC77E714EE99BFFDD30B299A170AD3 /* Info.plist */,
+				703A34A1130C16142AC46DD9341E6BAD /* Pods-TTD.modulemap */,
+				8205C7284C36E94F7CF18E30F5CE8195 /* Pods-TTD-acknowledgements.markdown */,
+				1529DE9C107513A8AF48654CEB51DEBC /* Pods-TTD-acknowledgements.plist */,
+				6EB2BFE3E9693708F792C10363F5B030 /* Pods-TTD-dummy.m */,
+				4D7F01E2D4DE70489062197C30C8E5F3 /* Pods-TTD-frameworks.sh */,
+				0637EF0D76957BF0822641BD3A1BEC60 /* Pods-TTD-resources.sh */,
+				8C5F7A5709F00CD5495980D66E7BE5E5 /* Pods-TTD-umbrella.h */,
+				CD502B4122AD390DF7F41EE6E7C3DE3D /* Pods-TTD.debug.xcconfig */,
+				8FD1971C832312A9D1A0D5BCC9B1D48F /* Pods-TTD.release.xcconfig */,
+			);
+			name = "Pods-TTD";
+			path = "Target Support Files/Pods-TTD";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
+				BF4BDEF7DEC1C21CD808737A4ACDE8FB /* Pods */,
+				B8CA21CD92104FB0C56A6CFCB66417B8 /* Products */,
+				3CFA9EED86D99FAEE10FA50D5209523C /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		B0E3FFF1777438D25E9522EF2561497E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5AB46226C4C406C2A092FC6F26F69835 /* Info.plist */,
+				27562A7185C4E7C3F0BE269E0BDC5C71 /* SAMKeychain.modulemap */,
+				8650A2D040281ADCA650792BA048C46A /* SAMKeychain.xcconfig */,
+				9CA3AA0C8ACEBC012D1A1A08D3EFF6CB /* SAMKeychain-dummy.m */,
+				49C869521B29B0A282DC0F274FECC3FA /* SAMKeychain-prefix.pch */,
+				8BC59FEF4CEC8927935FB060EA723CCF /* SAMKeychain-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SAMKeychain";
+			sourceTree = "<group>";
+		};
+		B8CA21CD92104FB0C56A6CFCB66417B8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5898694A1043CEBB43AC99267D7478B6 /* Pods_TTD.framework */,
+				8F4ED795822EAE401F5436BC8B247E66 /* Pods_TTDTests.framework */,
+				3283C309848FF4360E45897D4048AA56 /* SAMKeychain.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BF4BDEF7DEC1C21CD808737A4ACDE8FB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F96D79477F61AD45B0303034737A3AB4 /* SAMKeychain */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C193794E7F23D7B6C851A0A37A62B25D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D413D76727073737DAA57CA60C778547 /* SAMKeychain.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F96D79477F61AD45B0303034737A3AB4 /* SAMKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				1F034B27064FF8E4018C72896F1D15CE /* SAMKeychain.h */,
+				A5951A74082C57801B593CC89807AF50 /* SAMKeychain.m */,
+				4750DDEBB30FCFB4FA63C2BC37A4214D /* SAMKeychainQuery.h */,
+				467DB29B6CE6347CBCC6F89D831B89EE /* SAMKeychainQuery.m */,
+				C193794E7F23D7B6C851A0A37A62B25D /* Resources */,
+				B0E3FFF1777438D25E9522EF2561497E /* Support Files */,
+			);
+			name = SAMKeychain;
+			path = SAMKeychain;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		7766EA8F878C9DD5D335C9CDD4191CC1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29BAFD401DFE711D91145072822D32F0 /* SAMKeychain-umbrella.h in Headers */,
+				CF692763B457124BDE394C8842F69C3E /* SAMKeychain.h in Headers */,
+				9DC7964CB95CE04AA24559F1411A3331 /* SAMKeychainQuery.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9A65F219F265622A0F99B3AC06282CD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52BA763A9F9844A4653AA7E378FF3737 /* Pods-TTD-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F09A4D18BCF9889B9DDD05B4C21DB6F1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CD035E735DD13B38F9E1FA97227EB35 /* Pods-TTDTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8E06D9ABB803CD7AAB756E88B2294BA9 /* SAMKeychain */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C030EC68288FB8C65AA9A972EF0A770 /* Build configuration list for PBXNativeTarget "SAMKeychain" */;
+			buildPhases = (
+				C9BD641BC750940F4772964305205E38 /* Sources */,
+				9E44F1FD42E84B977D7C560775A9B1D5 /* Frameworks */,
+				7766EA8F878C9DD5D335C9CDD4191CC1 /* Headers */,
+				7F230E96972A540115616ABB6D6DCA98 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SAMKeychain;
+			productName = SAMKeychain;
+			productReference = 3283C309848FF4360E45897D4048AA56 /* SAMKeychain.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		961488E1FAD067480798A4F15CA3EBC9 /* Pods-TTDTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC162EBBEF617BC12457F5BD1C85C056 /* Build configuration list for PBXNativeTarget "Pods-TTDTests" */;
+			buildPhases = (
+				2F34F068B8F8EE232FB0E4AF57911042 /* Sources */,
+				A82399352185DB905A9BC844C8C18840 /* Frameworks */,
+				F09A4D18BCF9889B9DDD05B4C21DB6F1 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A7D96057C28314B688DD1DF5AA3BC148 /* PBXTargetDependency */,
+			);
+			name = "Pods-TTDTests";
+			productName = "Pods-TTDTests";
+			productReference = 8F4ED795822EAE401F5436BC8B247E66 /* Pods_TTDTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C681F2F6C2AC75207DE28745584EEC4F /* Pods-TTD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2296FA5628C7B9BC417433FEC34A932 /* Build configuration list for PBXNativeTarget "Pods-TTD" */;
+			buildPhases = (
+				823C739CF4BE294A23BEF7E1F192F745 /* Sources */,
+				15FCAC5988FF826B64B1B75DF22B09A2 /* Frameworks */,
+				A9A65F219F265622A0F99B3AC06282CD /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B32C37FB18D1351457779DEA40393674 /* PBXTargetDependency */,
+			);
+			name = "Pods-TTD";
+			productName = "Pods-TTD";
+			productReference = 5898694A1043CEBB43AC99267D7478B6 /* Pods_TTD.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = B8CA21CD92104FB0C56A6CFCB66417B8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C681F2F6C2AC75207DE28745584EEC4F /* Pods-TTD */,
+				961488E1FAD067480798A4F15CA3EBC9 /* Pods-TTDTests */,
+				8E06D9ABB803CD7AAB756E88B2294BA9 /* SAMKeychain */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7F230E96972A540115616ABB6D6DCA98 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9694A121922348C1CEE33CE3529C786 /* SAMKeychain.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2F34F068B8F8EE232FB0E4AF57911042 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECF4AE8F67D8A4FB6126BA3D3FA80F74 /* Pods-TTDTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		823C739CF4BE294A23BEF7E1F192F745 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B032021C129F8D1E76A45EAA455E5B8 /* Pods-TTD-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9BD641BC750940F4772964305205E38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4C03DB7F98ABF71356194924B5211FE /* SAMKeychain-dummy.m in Sources */,
+				88DC46D216D9CF5FD3497B582C2C0D63 /* SAMKeychain.m in Sources */,
+				28A529FCBFBC60E0F7680FF44AA20287 /* SAMKeychainQuery.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A7D96057C28314B688DD1DF5AA3BC148 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-TTD";
+			target = C681F2F6C2AC75207DE28745584EEC4F /* Pods-TTD */;
+			targetProxy = 71C6B3DEC39170D963E881301BDD6049 /* PBXContainerItemProxy */;
+		};
+		B32C37FB18D1351457779DEA40393674 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SAMKeychain;
+			target = 8E06D9ABB803CD7AAB756E88B2294BA9 /* SAMKeychain */;
+			targetProxy = 244676DED6D6AC1170D90447024685DF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		08638A96A528B1EC32DE62F8A728389D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		3028D3569964207D35FE7551353D42AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C35A0CB1A1167CABA0CCBD5ACB02DE1E /* Pods-TTDTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-TTDTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TTDTests/Pods-TTDTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8715C436AFA85F6220DCB99B457276C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8650A2D040281ADCA650792BA048C46A /* SAMKeychain.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SAMKeychain/SAMKeychain-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SAMKeychain/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SAMKeychain/SAMKeychain.modulemap";
+				PRODUCT_MODULE_NAME = SAMKeychain;
+				PRODUCT_NAME = SAMKeychain;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9983A3F3B0D24A70A0F250ABD44A6ABA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8536A9045236F54915B619ACE2D063A6 /* Pods-TTDTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-TTDTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TTDTests/Pods-TTDTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9DAE5233986C01ADB6E67169C53A3FD2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		AA414B7A464D70DF89EEEB5DAE9A77B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FD1971C832312A9D1A0D5BCC9B1D48F /* Pods-TTD.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-TTD/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TTD/Pods-TTD.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		CF797DC4228F52B5A6C0D1A10411F2B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8650A2D040281ADCA650792BA048C46A /* SAMKeychain.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SAMKeychain/SAMKeychain-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SAMKeychain/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SAMKeychain/SAMKeychain.modulemap";
+				PRODUCT_MODULE_NAME = SAMKeychain;
+				PRODUCT_NAME = SAMKeychain;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F5D498C940E90695BCC09C15C117E839 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD502B4122AD390DF7F41EE6E7C3DE3D /* Pods-TTD.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-TTD/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TTD/Pods-TTD.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DAE5233986C01ADB6E67169C53A3FD2 /* Debug */,
+				08638A96A528B1EC32DE62F8A728389D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C030EC68288FB8C65AA9A972EF0A770 /* Build configuration list for PBXNativeTarget "SAMKeychain" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8715C436AFA85F6220DCB99B457276C8 /* Debug */,
+				CF797DC4228F52B5A6C0D1A10411F2B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2296FA5628C7B9BC417433FEC34A932 /* Build configuration list for PBXNativeTarget "Pods-TTD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5D498C940E90695BCC09C15C117E839 /* Debug */,
+				AA414B7A464D70DF89EEEB5DAE9A77B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC162EBBEF617BC12457F5BD1C85C056 /* Build configuration list for PBXNativeTarget "Pods-TTDTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9983A3F3B0D24A70A0F250ABD44A6ABA /* Debug */,
+				3028D3569964207D35FE7551353D42AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

@@ -20,10 +20,18 @@
 "NTLVC_tasks" = "Tasks";
 "NTLVC_secure_passcode" = "Would you secure your list with a passcode?";
 
+/* Choice View */
+"CV_done_button" = "Done";
+"CV_gradient_view_title" = "";
+"CV_icon_view_title" = "";
+
 /* New Todo Task View Controller */
 "NTTVC_title" = "New Task";
 "NTTVC_name_placeholer" = "What tasks are you planning to perform?";
 "NTTVC_notes_placeholder" = "Would you write some notes to the task?";
 
 /* Passcode View Controller */
+"PCVC_new_passcode" = "Enter new passcode";
+"PCVC_repeat_new_passcode" = "Repeat new passcode";
+"PCVC_verify_passcode" = "Enter passcode";
 "PCVC_cancel_btn" = "Cancel";

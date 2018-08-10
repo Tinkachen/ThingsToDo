@@ -59,19 +59,25 @@ class CollectionViewCell: UICollectionViewCell {
         
         // Setup Progress View
         progressBackgroundView.layer.cornerRadius = progressBackgroundView.bounds.height / 2
+        progressBackgroundView.backgroundColor = .lightGray
         
         progressIndicatorView = UIView(frame:
             CGRect(x: 0, y: 0,
                    width: progressBackgroundView.bounds.width,
                    height: progressBackgroundView.bounds.height))
-        progressIndicatorView.layer.cornerRadius = progressBackgroundView.layer.cornerRadius
         progressBackgroundView.addSubview(progressIndicatorView)
         
         progressPercentLabel.text = String(Int(Constants.testValue * 100))
-        progressIndicatorView.applyGradient(colors: Themes.purple.gradient)
+        progressIndicatorView.applyGradient(colors: Themes.purple.gradient, WithCornerRadius: progressBackgroundView.layer.cornerRadius)
         progressIndicatorView.frame = CGRect(x: 0, y: 0,
                                               width: progressBackgroundView.bounds.width * Constants.testValue,
                                               height: progressIndicatorView.bounds.height)
+        
+        // Setup Background View
+        containerView.layer.shadowColor = UIColor.black.cgColor
+        containerView.layer.shadowOpacity = 0.5
+        containerView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        containerView.layer.shadowRadius = 5
     }
     
     /// Setup up the view with the passed informations

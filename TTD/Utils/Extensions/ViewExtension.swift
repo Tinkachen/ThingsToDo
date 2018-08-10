@@ -22,6 +22,19 @@ extension UIView {
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
     
+    /// Applies a gradient on the view
+    ///
+    /// - Parameter colors: The colors for the gradient
+    func applyGradient (colors: [CGColor], WithCornerRadius cornerRadius: CGFloat) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.bounds
+        gradientLayer.colors = colors
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.cornerRadius = cornerRadius
+        
+        self.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
     /// Makes a instance of the passed class connected to the same name nib file
     ///
     /// - Returns: The instance of the class connected to the nib file

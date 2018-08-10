@@ -22,6 +22,10 @@ extension UIColor {
                   alpha: CGFloat(1.0))
     }
     
+    // MARK: - Main Colors
+    
+    static let lightGray = UIColor(hex: 0xF6F6F6)
+    
     // MARK: - Colors
     
     static let goldenDream = UIColor(hex: 0xFDEB71)

@@ -61,6 +61,9 @@ private enum Constants {
         /// The text to secure the todo list with a passcode
         static let secureWithPasscode = NSLocalizedString("NTLVC_secure_passcode", comment: "The text to secure the todo list with a passcode")
     }
+    
+    /// The bottom constraint constant for the floating button
+    static let foatingButtonBottomConstraint: CGFloat = 100
 }
 
 /// Interface for creating a new todo list
@@ -97,6 +100,9 @@ class TodoListViewController: UIViewController {
     
     /// The button to add a new todo task
     @IBOutlet fileprivate weak var addTodoTaskFloatingButton: UIButton!
+    
+    /// The bottom constraint of the floating button
+    @IBOutlet fileprivate weak var addTodoTaskFloatingButtonBottomConstraint: NSLayoutConstraint!
     
     // MARK: - Variables
     
@@ -136,15 +142,6 @@ class TodoListViewController: UIViewController {
         
         // Setup view with view model
         setupViewWithViewModel()
-        
-        // Register Notifications
-        registerNotifications()
-    }
-    
-    /// <#Description#>
-    private func registerNotifications () {
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardShows), name: "<#T##NSNotification.Name?#>", object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardHides), name: "<#T##NSNotification.Name?#>", object: nil)
     }
     
     /// Setup the view with the passed view model
@@ -154,9 +151,19 @@ class TodoListViewController: UIViewController {
         self.nameTextField.text = viewModel.title
         
         // Gradient
-        self.gradientContainer.applyGradient(colors: Themes.getTheme(viewModel.gradient).gradient)
+        self.gradientContainer.applyGradient(colors: Themes.getTheme(viewModel.gradient).gradient, WithCornerRadius: self.gradientContainer.bounds.height / 2)
+        self.gradientContainer.layer.cornerRadius = self.gradientContainer.bounds.height / 2
+        self.gradientContainer.layer.borderColor = UIColor.lightGray.cgColor
+        self.gradientContainer.layer.borderWidth = 1.0
+        self.gradientContainer.layer.shadowColor = UIColor.black.cgColor
+        self.gradientContainer.layer.shadowOpacity = 0.5
+        self.gradientContainer.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.gradientContainer.layer.shadowRadius = 5
         
         // Icon
+        self.iconContainer.layer.cornerRadius = self.iconImageView.bounds.height / 2
+        self.iconContainer.layer.borderColor = UIColor.lightGray.cgColor
+        self.iconContainer.layer.borderWidth = 1.0
         self.iconImageView.image = Icons.getIcon(viewModel.icon)
         
         // Tasks
@@ -167,10 +174,16 @@ class TodoListViewController: UIViewController {
         
     }
     
-    /// <#Description#>
+    /// Applies the layout for the floating button
     private func applyLayoutForFloatingButton () {
         addTodoTaskFloatingButton.layer.cornerRadius = addTodoTaskFloatingButton.bounds.height / 2
-        addTodoTaskFloatingButton.applyGradient(colors: Themes.getTheme(viewModel.gradient).gradient)
+        addTodoTaskFloatingButton.applyGradient(colors: Themes.getTheme(viewModel.gradient).gradient, WithCornerRadius: addTodoTaskFloatingButton.layer.cornerRadius)
+        addTodoTaskFloatingButton.layer.borderWidth = 1.0
+        addTodoTaskFloatingButton.layer.borderColor = UIColor.lightGray.cgColor
+        addTodoTaskFloatingButton.layer.shadowColor = UIColor.black.cgColor
+        addTodoTaskFloatingButton.layer.shadowOpacity = 0.5
+        addTodoTaskFloatingButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        addTodoTaskFloatingButton.layer.shadowRadius = 5
     }
     
     private func updatePasscodeImage (isLocked: Bool) {
@@ -181,30 +194,29 @@ class TodoListViewController: UIViewController {
     
     /// Presents a view for selecting a icon for the todo list
     @objc fileprivate func chooseIconPressed () {
-        let choiceViewController = ViewControllerFactory.makeChoiceViewController(forIcon: Constants.Strings.chooseIcon) { (icon) in
+        let choiceView = CustomAlert(iconCallback: { (icon) in
             self.iconImageView.image = Icons.getIcon(icon)
             self.viewModel.icon = icon
-        }
-        
-        self.present(choiceViewController, animated: true, completion: nil)
+        })
+        choiceView.show(animated: true)
     }
     
     /// Presents a view for selecting a gradient for the todo list
     @objc fileprivate func chooseGradientPressed () {
-        let choiceViewController = ViewControllerFactory.makeChoiceViewController(forGradient: Constants.Strings.chooseGradient) { (gradient) in
+        let choiceView = CustomAlert(gradientCallback: { (gradient) in
             self.gradientContainer.applyGradient(colors: Themes.getTheme(gradient).gradient)
             self.viewModel.gradient = gradient
-        }
-        
-        self.present(choiceViewController, animated: true, completion: nil)
+        })
+        choiceView.show(animated: true)
     }
     
     /// Presents the 'TodoTaskViewController', to add a new task to the todo list
     ///
     /// - Parameter sender: The sender of the event
     @IBAction fileprivate func addTasksButtonPressed (_ sender: UIButton) {
-        let newTodoTaskViewController = ViewControllerFactory.makeTodoTaskViewController(WithViewModel: nil)
-        self.navigationController?.pushViewController(newTodoTaskViewController, animated: true)
+        let newTodoTaskViewController = ViewControllerFactory.makeTodoTaskViewController(WithViewModel: nil, AndGradient: viewModel.gradient)
+//        self.navigationController?.pushViewController(newTodoTaskViewController, animated: true)
+        self.navigationController?.present(newTodoTaskViewController, animated: true, completion: nil)
     }
     
     /// Secures the todo list with a passcode
@@ -232,18 +244,6 @@ class TodoListViewController: UIViewController {
     /// Called when the close button in the navigation bar is pressed
     @objc private func closeButtonPressed () {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    // MARK: - Keyboard Notification Actions
-    
-    /// <#Description#>
-    private func keyboardShows () {
-        
-    }
-    
-    /// <#Description#>
-    private func keyboardHides () {
-        
     }
 }
 
@@ -291,7 +291,7 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         let key = Array(sortedTaskViewModel.keys)[indexPath.section]
         let taskViewModel = sortedTaskViewModel[key]![indexPath.row]
         
-        let todoTaskViewController = ViewControllerFactory.makeTodoTaskViewController(WithViewModel: taskViewModel)
+        let todoTaskViewController = ViewControllerFactory.makeTodoTaskViewController(WithViewModel: taskViewModel, AndGradient: viewModel.gradient)
         self.navigationController?.pushViewController(todoTaskViewController, animated: true)
     }
 }

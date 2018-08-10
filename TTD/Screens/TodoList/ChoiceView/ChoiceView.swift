@@ -1,11 +1,12 @@
 //
-//  ChoiceViewController.swift
+//  ChoiceView.swift
 //  TTD
 //
-//  Created by Catharina Herchert on 11.06.18.
+//  Created by Catharina Herchert on 10.08.18.
 //  Copyright © 2018 Catharina Herchert. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 /// Private constants
@@ -16,10 +17,23 @@ private enum Constants {
     
     /// The size of the collection view cell
     static let collectionViewCellSize = CGSize(width: 50, height: 50)
+    
+    /// The strings
+    enum Strings {
+        
+        /// The title for the icon view
+        static let iconViewTitle = NSLocalizedString("CV_icon_view_title", comment: "The view title for icons")
+        
+        /// The title for the gradient view
+        static let gradientViewTitle = NSLocalizedString("CV_gradient_view_title", comment: "The view title for gradients")
+        
+        /// The title for the done button
+        static let doneButtonText = NSLocalizedString("CV_done_button", comment: "Done button text")
+    }
 }
 
 /// Collection view to pick up a specific value (icon / gradient)
-class ChoiceViewController: UIViewController {
+class ChoiceView: UIView {
     
     // MARK: - Outlets
     
@@ -41,14 +55,22 @@ class ChoiceViewController: UIViewController {
     /// The callback for selecting an icon
     var iconCallback: ((_ icon: Icon)->Void)!
     
-    override func viewDidLoad () {
-        super.viewDidLoad()
+    /// The callback for closing the view
+    var closeCallback: (()->Void)!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        // Title
+        self.titleLabel.text = forGradients ? Constants.Strings.gradientViewTitle : Constants.Strings.iconViewTitle
         
         // Setup collection view
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: Constants.collectionViewCellId, bundle: nil), forCellWithReuseIdentifier: Constants.collectionViewCellId)
         
+        // Done Button
+        doneButton.setTitle(Constants.Strings.doneButtonText, for: .normal)
         doneButton.addTarget(self, action: #selector(closeViewButtonPressed), for: .touchUpInside)
     }
     
@@ -56,12 +78,12 @@ class ChoiceViewController: UIViewController {
     
     /// Closes the view
     @objc fileprivate func closeViewButtonPressed () {
-        self.dismiss(animated: true, completion: nil)
+        closeCallback()
     }
 }
 
 // MARK: - Collection View Extension
-extension ChoiceViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ChoiceView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return Constants.collectionViewCellSize
@@ -81,5 +103,9 @@ extension ChoiceViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.applyData(image)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        forGradients ? gradientCallback(Array(Themes.allThemes.keys)[indexPath.row]) : iconCallback(Array(Icons.allIcons.keys)[indexPath.row])
     }
 }

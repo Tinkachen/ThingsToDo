@@ -33,11 +33,11 @@ extension CAGradientLayer {
         endPoint = Properties.end
     }
     
-    /// <#Description#>
+    /// Creates a gradient and fills up the view
     ///
     /// - Parameters:
-    ///   - size: <#size description#>
-    ///   - colors: <#colors description#>
+    ///   - size: The size of the gradient
+    ///   - colors: The colors for the gradient
     convenience init (size: CGSize, colors: Gradient) {
         self.init()
         self.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)

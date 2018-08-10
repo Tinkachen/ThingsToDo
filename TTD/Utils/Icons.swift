@@ -18,7 +18,7 @@ enum Icon {
     christmas, clothe, construction, crime, ecology, food, furniture, health, holidays, hotel, learning, leisure, object, party, romance, spa, space, sport, symbols, tools, transportation, weather,
     
     // Others
-    file, woman, man, children, family
+    file, woman, man, children
     
     /// Creates a random icon
     ///
@@ -41,7 +41,7 @@ struct Icons {
         .christmas : christmas, .clothe : clothe, .construction : construction, .crime : crime, .ecology : ecology, .food : food, .furniture : furniture, .health : health, .holidays : holidays, .hotel : hotel, .learning : learning, .leisure : leisure, .object : object, .party : party, .romance : romance, .spa : spa, .space : space, .sport : sport, .symbols : symbols, .tools : tools, .transportation : transportation, .weather : weather,
         
         // Others
-        .file : file, .woman : woman, .man : man, .children : children, .family : family
+        .file : file, .woman : woman, .man : man, .children : children
     ]
     
     /// Gives the icon sa an image
@@ -139,57 +139,54 @@ struct Icons {
             return man
         case .children:
             return children
-        case .family:
-            return family
         }
     }
     
     // Essential
-    static let audio = UIImage(named: "")
-    static let buildings = UIImage(named: "")
-    static let coding = UIImage(named: "")
-    static let communication = UIImage(named: "")
-    static let device = UIImage(named: "")
-    static let finance = UIImage(named: "")
-    static let gaming = UIImage(named: "")
-    static let image = UIImage(named: "")
-    static let logistik = UIImage(named: "")
-    static let money = UIImage(named: "")
-    static let places = UIImage(named: "")
-    static let shopping = UIImage(named: "")
-    static let statistic = UIImage(named: "")
-    static let time = UIImage(named: "")
-    static let office = UIImage(named: "")
-    static let video = UIImage(named: "")
+    static let audio = #imageLiteral(resourceName: "Audio")
+    static let buildings = #imageLiteral(resourceName: "Buildings")
+    static let coding = #imageLiteral(resourceName: "Coding")
+    static let communication = #imageLiteral(resourceName: "Communication")
+    static let device = #imageLiteral(resourceName: "Device")
+    static let finance = #imageLiteral(resourceName: "Finance")
+    static let gaming = #imageLiteral(resourceName: "Gaming")
+    static let image = #imageLiteral(resourceName: "Image")
+    static let logistik = #imageLiteral(resourceName: "Logistic")
+    static let money = #imageLiteral(resourceName: "Money")
+    static let places = #imageLiteral(resourceName: "Places")
+    static let shopping = #imageLiteral(resourceName: "Shopping")
+    static let statistic = #imageLiteral(resourceName: "Statistics")
+    static let time = #imageLiteral(resourceName: "Time")
+    static let office = #imageLiteral(resourceName: "Office")
+    static let video = #imageLiteral(resourceName: "Video")
     
     // Extra
-    static let christmas = UIImage(named: "")
-    static let clothe = UIImage(named: "")
-    static let construction = UIImage(named: "")
-    static let crime = UIImage(named: "")
-    static let ecology = UIImage(named: "")
-    static let food = UIImage(named: "")
-    static let furniture = UIImage(named: "")
-    static let health = UIImage(named: "")
-    static let holidays = UIImage(named: "")
-    static let hotel = UIImage(named: "")
-    static let learning = UIImage(named: "")
-    static let leisure = UIImage(named: "")
-    static let object = UIImage(named: "")
-    static let party = UIImage(named: "")
-    static let romance = UIImage(named: "")
-    static let spa = UIImage(named: "")
-    static let space = UIImage(named: "")
-    static let sport = UIImage(named: "")
-    static let symbols = UIImage(named: "")
-    static let tools = UIImage(named: "")
-    static let transportation = UIImage(named: "")
-    static let weather = UIImage(named: "")
+    static let christmas = #imageLiteral(resourceName: "Christmas")
+    static let clothe = #imageLiteral(resourceName: "Clothe")
+    static let construction = #imageLiteral(resourceName: "Construction")
+    static let crime = #imageLiteral(resourceName: "Crime")
+    static let ecology = #imageLiteral(resourceName: "Ecology")
+    static let food = #imageLiteral(resourceName: "Food")
+    static let furniture = #imageLiteral(resourceName: "Furniture")
+    static let health = #imageLiteral(resourceName: "Health")
+    static let holidays = #imageLiteral(resourceName: "Holiday")
+    static let hotel = #imageLiteral(resourceName: "Hotel")
+    static let learning = #imageLiteral(resourceName: "Learning")
+    static let leisure = #imageLiteral(resourceName: "Leisure")
+    static let object = #imageLiteral(resourceName: "Object")
+    static let party = #imageLiteral(resourceName: "Party")
+    static let romance = #imageLiteral(resourceName: "Romance")
+    static let spa = #imageLiteral(resourceName: "Spa")
+    static let space = #imageLiteral(resourceName: "space")
+    static let sport = #imageLiteral(resourceName: "Sport")
+    static let symbols = #imageLiteral(resourceName: "Symbol")
+    static let tools = #imageLiteral(resourceName: "Tool")
+    static let transportation = #imageLiteral(resourceName: "Transportation")
+    static let weather = #imageLiteral(resourceName: "Weather")
     
     // Others
-    static let file = UIImage(named: "")
-    static let woman = UIImage(named: "")
-    static let man = UIImage(named: "")
-    static let children = UIImage(named: "")
-    static let family = UIImage(named: "")
+    static let file = #imageLiteral(resourceName: "File")
+    static let woman = #imageLiteral(resourceName: "Woman")
+    static let man = #imageLiteral(resourceName: "Man")
+    static let children = #imageLiteral(resourceName: "Children")
 }

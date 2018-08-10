@@ -1,5 +1,5 @@
 //
-//  ChoiceView.swift
+//  ChoiceViewController.swift
 //  TTD
 //
 //  Created by Catharina Herchert on 11.06.18.
@@ -15,11 +15,11 @@ private enum Constants {
     static let collectionViewCellId = "ChoiceViewCollectionViewCell"
     
     /// The size of the collection view cell
-    static let collectionViewCellSize = CGSize(width: 20, height: 20)
+    static let collectionViewCellSize = CGSize(width: 50, height: 50)
 }
 
 /// Collection view to pick up a specific value (icon / gradient)
-class ChoiceView: UIView {
+class ChoiceViewController: UIViewController {
     
     // MARK: - Outlets
     
@@ -33,22 +33,16 @@ class ChoiceView: UIView {
     @IBOutlet fileprivate weak var doneButton: UIButton!
     
     // MARK: - Variables
-    private var forGradients: Bool = false
-    
-    /// The gradient data
-    private var gradients: [Gradient : Theme] = [:]
+    var forGradients: Bool = false
     
     /// The callback for selecting a gradient
-    private var gradientCallback: ((_ gradient: Gradient)->Void)!
-    
-    /// The icon data
-    private var icons: [Icon : UIImage?] = [:]
+    var gradientCallback: ((_ gradient: Gradient)->Void)!
     
     /// The callback for selecting an icon
-    private var iconCallback: ((_ icon: Icon)->Void)!
+    var iconCallback: ((_ icon: Icon)->Void)!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func viewDidLoad () {
+        super.viewDidLoad()
         
         // Setup collection view
         collectionView.delegate = self
@@ -58,49 +52,33 @@ class ChoiceView: UIView {
         doneButton.addTarget(self, action: #selector(closeViewButtonPressed), for: .touchUpInside)
     }
     
-    /// Sets up the view with the passed informations for gradients
-    ///
-    /// - Parameter title: The title of the view
-    /// - Parameter data: The data for the collection view
-    func setupForGradients (_ title: String, andData data: [Gradient : Theme], callback: @escaping ((_ gradient: Gradient)->Void)) {
-        forGradients = true
-        self.titleLabel.text = title
-        self.gradientCallback = callback
-    }
-    
-    /// Sets up the view with the passed informations for icons
-    ///
-    /// - Parameter title: The title of the view
-    /// - Parameter data: The data for the collection view
-    func setupForIcons (_ title: String, andData data: [Icon : UIImage?], callback: @escaping ((_ icon: Icon)->Void)) {
-        forGradients = false
-        self.titleLabel.text = title
-        self.iconCallback = callback
-    }
-    
     // MARK: - Actions
     
     /// Closes the view
     @objc fileprivate func closeViewButtonPressed () {
-        
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
 // MARK: - Collection View Extension
-extension ChoiceView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ChoiceViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return Constants.collectionViewCellSize
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return forGradients ? Array(gradients.keys).count : Array(icons.keys).count
+        return forGradients ? Array(Themes.allThemes.keys).count : Array(Icons.allIcons.keys).count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.collectionViewCellId, for: indexPath) as? ChoiceViewCollectionViewCell else {
             fatalError("Could not instanciate collection view cell!")
         }
+        
+        let image = forGradients ? CAGradientLayer(size: Constants.collectionViewCellSize, colors: Array(Themes.allThemes.keys)[indexPath.row]).createGradientImage() : Icons.getIcon(Array(Icons.allIcons.keys)[indexPath.row])
+        
+        cell.applyData(image)
         
         return cell
     }

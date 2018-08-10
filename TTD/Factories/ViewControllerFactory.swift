@@ -71,6 +71,27 @@ class ViewControllerFactory {
         passcodeViewController.callback = callback
         return passcodeViewController
     }
+    
+    /// <#Description#>
+    ///
+    /// - Returns: <#return value description#>
+    static func makeChoiceViewController (forIcon title: String, callback: @escaping ((_ icon: Icon)->Void)) -> UIViewController {
+        let choiceViewController: ChoiceViewController = makeViewController()
+        choiceViewController.forGradients = false
+        choiceViewController.iconCallback = callback
+        return choiceViewController
+    }
+    
+    /// <#Description#>
+    ///
+    /// - Returns: <#return value description#>
+    static func makeChoiceViewController (forGradient title: String, callback: @escaping ((_ gradient: Gradient)->Void)) -> UIViewController {
+        let choiceViewController: ChoiceViewController = makeViewController()
+        choiceViewController.forGradients = true
+        choiceViewController.gradientCallback = callback
+        return choiceViewController
+    }
+    
     // MARK: - Private helper functions
     
     /// Makes a view controller from the given class

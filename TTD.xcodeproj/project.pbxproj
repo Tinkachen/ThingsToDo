@@ -11,6 +11,7 @@
 		231535CC20CC00BC00883266 /* CollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231535CB20CC00BC00883266 /* CollectionViewExtension.swift */; };
 		231535CE20CC013900883266 /* EmptyCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231535CD20CC013900883266 /* EmptyCollectionView.swift */; };
 		231535D020CC014000883266 /* EmptyCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 231535CF20CC014000883266 /* EmptyCollectionView.xib */; };
+		233491A720F522C000DC6DF9 /* ChoiceViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 233491A620F522C000DC6DF9 /* ChoiceViewController.storyboard */; };
 		23502BD120B2F14600DA00A9 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23502BD020B2F14600DA00A9 /* CollectionViewCell.swift */; };
 		2357802920A20663001DBFC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2357802820A20663001DBFC4 /* AppDelegate.swift */; };
 		2357803020A20665001DBFC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2357802F20A20665001DBFC4 /* Assets.xcassets */; };
@@ -42,7 +43,6 @@
 		23D9D28620D6D3B00050E8E9 /* TodoTaskHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D9D28520D6D3B00050E8E9 /* TodoTaskHeaderCell.swift */; };
 		23D9D28820D6D3B90050E8E9 /* TodoTaskHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23D9D28720D6D3B90050E8E9 /* TodoTaskHeaderCell.xib */; };
 		23D9D28A20D6D3C10050E8E9 /* TodoTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23D9D28920D6D3C10050E8E9 /* TodoTaskTableViewCell.xib */; };
-		23D9D28C20D6ECCC0050E8E9 /* ChoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23D9D28B20D6ECCC0050E8E9 /* ChoiceView.xib */; };
 		23D9D28E20D6ED2A0050E8E9 /* ChoiceViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23D9D28D20D6ED2A0050E8E9 /* ChoiceViewCollectionViewCell.xib */; };
 		23D9D29020D6ED360050E8E9 /* ChoiceViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D9D28F20D6ED360050E8E9 /* ChoiceViewCollectionViewCell.swift */; };
 		23F12B7920CEFA2200D6BA39 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B7820CEFA2200D6BA39 /* TodoListViewController.swift */; };
@@ -51,7 +51,7 @@
 		23F12B7F20CEFA4500D6BA39 /* TodoTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B7E20CEFA4500D6BA39 /* TodoTaskViewController.swift */; };
 		23F12B8120CEFA5200D6BA39 /* TodoTaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B8020CEFA5200D6BA39 /* TodoTaskService.swift */; };
 		23F12B8520CEFC5100D6BA39 /* TodoListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B8420CEFC5100D6BA39 /* TodoListService.swift */; };
-		23F12B8820CF037B00D6BA39 /* ChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B8720CF037B00D6BA39 /* ChoiceView.swift */; };
+		23F12B8820CF037B00D6BA39 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B8720CF037B00D6BA39 /* ChoiceViewController.swift */; };
 		23F12B8A20CF08DD00D6BA39 /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B8920CF08DD00D6BA39 /* MainService.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +70,7 @@
 		231535CB20CC00BC00883266 /* CollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewExtension.swift; sourceTree = "<group>"; };
 		231535CD20CC013900883266 /* EmptyCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionView.swift; sourceTree = "<group>"; };
 		231535CF20CC014000883266 /* EmptyCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyCollectionView.xib; sourceTree = "<group>"; };
+		233491A620F522C000DC6DF9 /* ChoiceViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChoiceViewController.storyboard; sourceTree = "<group>"; };
 		23502BD020B2F14600DA00A9 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		2357802520A20663001DBFC4 /* TTD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2357802820A20663001DBFC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,7 +108,6 @@
 		23D9D28520D6D3B00050E8E9 /* TodoTaskHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTaskHeaderCell.swift; sourceTree = "<group>"; };
 		23D9D28720D6D3B90050E8E9 /* TodoTaskHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoTaskHeaderCell.xib; sourceTree = "<group>"; };
 		23D9D28920D6D3C10050E8E9 /* TodoTaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoTaskTableViewCell.xib; sourceTree = "<group>"; };
-		23D9D28B20D6ECCC0050E8E9 /* ChoiceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceView.xib; sourceTree = "<group>"; };
 		23D9D28D20D6ED2A0050E8E9 /* ChoiceViewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceViewCollectionViewCell.xib; sourceTree = "<group>"; };
 		23D9D28F20D6ED360050E8E9 /* ChoiceViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		23F12B7820CEFA2200D6BA39 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 		23F12B7E20CEFA4500D6BA39 /* TodoTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTaskViewController.swift; sourceTree = "<group>"; };
 		23F12B8020CEFA5200D6BA39 /* TodoTaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTaskService.swift; sourceTree = "<group>"; };
 		23F12B8420CEFC5100D6BA39 /* TodoListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListService.swift; sourceTree = "<group>"; };
-		23F12B8720CF037B00D6BA39 /* ChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceView.swift; sourceTree = "<group>"; };
+		23F12B8720CF037B00D6BA39 /* ChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceViewController.swift; sourceTree = "<group>"; };
 		23F12B8920CF08DD00D6BA39 /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -355,8 +355,8 @@
 		23F12B8620CF036B00D6BA39 /* ChoiceView */ = {
 			isa = PBXGroup;
 			children = (
-				23F12B8720CF037B00D6BA39 /* ChoiceView.swift */,
-				23D9D28B20D6ECCC0050E8E9 /* ChoiceView.xib */,
+				23F12B8720CF037B00D6BA39 /* ChoiceViewController.swift */,
+				233491A620F522C000DC6DF9 /* ChoiceViewController.storyboard */,
 				23D9D28F20D6ED360050E8E9 /* ChoiceViewCollectionViewCell.swift */,
 				23D9D28D20D6ED2A0050E8E9 /* ChoiceViewCollectionViewCell.xib */,
 			);
@@ -453,12 +453,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				233491A720F522C000DC6DF9 /* ChoiceViewController.storyboard in Resources */,
 				23F12B7B20CEFA2A00D6BA39 /* TodoListViewController.storyboard in Resources */,
 				23D9D28A20D6D3C10050E8E9 /* TodoTaskTableViewCell.xib in Resources */,
 				23D9D28820D6D3B90050E8E9 /* TodoTaskHeaderCell.xib in Resources */,
 				23CC53D120B210AF004F40E3 /* example_concept.gif in Resources */,
 				231535D020CC014000883266 /* EmptyCollectionView.xib in Resources */,
-				23D9D28C20D6ECCC0050E8E9 /* ChoiceView.xib in Resources */,
 				23F12B7D20CEFA3D00D6BA39 /* TodoTaskViewController.storyboard in Resources */,
 				2357806120A88E07001DBFC4 /* Localizable.strings in Resources */,
 				23D9D28E20D6ED2A0050E8E9 /* ChoiceViewCollectionViewCell.xib in Resources */,
@@ -486,7 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2357806620A89100001DBFC4 /* PasscodeViewModel.swift in Sources */,
-				23F12B8820CF037B00D6BA39 /* ChoiceView.swift in Sources */,
+				23F12B8820CF037B00D6BA39 /* ChoiceViewController.swift in Sources */,
 				23D9D27E20D6B0C90050E8E9 /* TodoListViewModel.swift in Sources */,
 				2357805A20A88C34001DBFC4 /* ServiceFactory.swift in Sources */,
 				2357804A20A2068E001DBFC4 /* ColorExtension.swift in Sources */,
@@ -609,7 +609,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -665,7 +665,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

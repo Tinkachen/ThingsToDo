@@ -81,7 +81,7 @@ class TodoListViewController: UIViewController {
     @IBOutlet fileprivate weak var taskLabel: UILabel!
     
     /// The text field for the todo list name
-    @IBOutlet fileprivate weak var nameTextField: SkyFloatingLabelTextField!
+    @IBOutlet fileprivate weak var nameTextField: UITextField!
     
     /// The button for enable or disable passcode security
     @IBOutlet fileprivate weak var passcodeButton: UIButton!
@@ -94,6 +94,9 @@ class TodoListViewController: UIViewController {
     
     /// The table view
     @IBOutlet fileprivate weak var tableView: UITableView!
+    
+    /// The button to add a new todo task
+    @IBOutlet fileprivate weak var addTodoTaskFloatingButton: UIButton!
     
     // MARK: - Variables
     
@@ -128,8 +131,20 @@ class TodoListViewController: UIViewController {
         iconContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(chooseIconPressed)))
         gradientContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(chooseGradientPressed)))
         
+        // Apply layout to floating button
+        applyLayoutForFloatingButton()
+        
         // Setup view with view model
         setupViewWithViewModel()
+        
+        // Register Notifications
+        registerNotifications()
+    }
+    
+    /// <#Description#>
+    private func registerNotifications () {
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardShows), name: "<#T##NSNotification.Name?#>", object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardHides), name: "<#T##NSNotification.Name?#>", object: nil)
     }
     
     /// Setup the view with the passed view model
@@ -152,6 +167,12 @@ class TodoListViewController: UIViewController {
         
     }
     
+    /// <#Description#>
+    private func applyLayoutForFloatingButton () {
+        addTodoTaskFloatingButton.layer.cornerRadius = addTodoTaskFloatingButton.bounds.height / 2
+        addTodoTaskFloatingButton.applyGradient(colors: Themes.getTheme(viewModel.gradient).gradient)
+    }
+    
     private func updatePasscodeImage (isLocked: Bool) {
         passcodeButton.setImage(isLocked ? Constants.Images.lockItem : Constants.Images.unlockItem, for: .normal)
     }
@@ -160,20 +181,22 @@ class TodoListViewController: UIViewController {
     
     /// Presents a view for selecting a icon for the todo list
     @objc fileprivate func chooseIconPressed () {
-        let choiceView: ChoiceView = .fromNib()
-        choiceView.setupForIcons(Constants.Strings.chooseIcon, andData: Icons.allIcons) { (icon) in
+        let choiceViewController = ViewControllerFactory.makeChoiceViewController(forIcon: Constants.Strings.chooseIcon) { (icon) in
             self.iconImageView.image = Icons.getIcon(icon)
             self.viewModel.icon = icon
         }
+        
+        self.present(choiceViewController, animated: true, completion: nil)
     }
     
     /// Presents a view for selecting a gradient for the todo list
     @objc fileprivate func chooseGradientPressed () {
-        let choiceView: ChoiceView = .fromNib()
-        choiceView.setupForGradients(Constants.Strings.chooseGradient, andData: Themes.allThemes) { (gradient) in
+        let choiceViewController = ViewControllerFactory.makeChoiceViewController(forGradient: Constants.Strings.chooseGradient) { (gradient) in
             self.gradientContainer.applyGradient(colors: Themes.getTheme(gradient).gradient)
             self.viewModel.gradient = gradient
         }
+        
+        self.present(choiceViewController, animated: true, completion: nil)
     }
     
     /// Presents the 'TodoTaskViewController', to add a new task to the todo list
@@ -209,6 +232,18 @@ class TodoListViewController: UIViewController {
     /// Called when the close button in the navigation bar is pressed
     @objc private func closeButtonPressed () {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Keyboard Notification Actions
+    
+    /// <#Description#>
+    private func keyboardShows () {
+        
+    }
+    
+    /// <#Description#>
+    private func keyboardHides () {
+        
     }
 }
 

@@ -12,6 +12,13 @@ import UIKit
 // MARK: - Extension of CA Gradient Layer
 extension CAGradientLayer {
     
+    private struct Properties {
+        static let start = CGPoint(x: 0, y: 0.5)
+        static let end = CGPoint(x: 1, y: 0.5)
+    }
+    
+    
+    
     /// Creates a gradient and fills up the view
     ///
     /// - Parameters:
@@ -22,8 +29,21 @@ extension CAGradientLayer {
         self.frame = frame
         
         self.colors = colors
-        startPoint = CGPoint(x: 0, y: 0.5)
-        endPoint = CGPoint(x: 1, y: 0.5)
+        startPoint = Properties.start
+        endPoint = Properties.end
+    }
+    
+    /// <#Description#>
+    ///
+    /// - Parameters:
+    ///   - size: <#size description#>
+    ///   - colors: <#colors description#>
+    convenience init (size: CGSize, colors: Gradient) {
+        self.init()
+        self.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        self.colors = Themes.getTheme(colors).gradient
+        startPoint = Properties.start
+        endPoint = Properties.end
     }
     
     /// Convertes the gradient to an image

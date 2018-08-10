@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qkn-kO-bb6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qkn-kO-bb6">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -43,28 +43,25 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, Jane." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fHM-7D-Yjf">
-                                <rect key="frame" x="50" y="100" width="275" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="50" y="100" width="275" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ye3-Th-i88">
-                                <rect key="frame" x="50" y="144" width="275" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="fPA-Fs-51K"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="50" y="161" width="275" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TODAY : SEPTEMBER 20, 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nI-fK-Xjx">
-                                <rect key="frame" x="50" y="264" width="275" height="15"/>
+                                <rect key="frame" x="50" y="268" width="275" height="15"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iRb-1l-wcA">
-                                <rect key="frame" x="0.0" y="279" width="375" height="368"/>
+                                <rect key="frame" x="0.0" y="298" width="375" height="349"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Vlp-xE-8VE">
                                     <size key="itemSize" width="50" height="50"/>
@@ -88,11 +85,11 @@
                             <constraint firstItem="Ye3-Th-i88" firstAttribute="leading" secondItem="fHM-7D-Yjf" secondAttribute="leading" id="Vku-Iq-gMB"/>
                             <constraint firstItem="Hy2-3x-Wal" firstAttribute="bottom" secondItem="iRb-1l-wcA" secondAttribute="bottom" constant="20" id="WDz-aD-dKT"/>
                             <constraint firstItem="2nI-fK-Xjx" firstAttribute="leading" secondItem="fHM-7D-Yjf" secondAttribute="leading" id="ZAW-KK-PgR"/>
-                            <constraint firstItem="2nI-fK-Xjx" firstAttribute="top" secondItem="Ye3-Th-i88" secondAttribute="bottom" constant="90" id="h6R-wo-CQN"/>
+                            <constraint firstItem="2nI-fK-Xjx" firstAttribute="top" secondItem="Hy2-3x-Wal" secondAttribute="top" constant="248" id="ZQM-OC-hVb"/>
                             <constraint firstItem="fHM-7D-Yjf" firstAttribute="top" secondItem="6rZ-M8-Pz8" secondAttribute="bottom" constant="30" id="ozx-gX-3av"/>
-                            <constraint firstItem="iRb-1l-wcA" firstAttribute="top" secondItem="2nI-fK-Xjx" secondAttribute="bottom" id="pYp-nV-glK"/>
                             <constraint firstItem="Hy2-3x-Wal" firstAttribute="trailing" secondItem="iRb-1l-wcA" secondAttribute="trailing" id="ubw-eH-hI2"/>
                             <constraint firstItem="Ye3-Th-i88" firstAttribute="trailing" secondItem="fHM-7D-Yjf" secondAttribute="trailing" id="waZ-il-Pld"/>
+                            <constraint firstItem="iRb-1l-wcA" firstAttribute="top" secondItem="2nI-fK-Xjx" secondAttribute="bottom" constant="15" id="xhE-79-C2w"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Hy2-3x-Wal"/>
                     </view>

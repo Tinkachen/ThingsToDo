@@ -60,6 +60,7 @@
                         <outlet property="floatingButtonBottomConstraint" destination="Dd1-jO-Cp1" id="VR8-bn-Ojh"/>
                         <outlet property="floatingButtonLeadingConstraint" destination="KXx-yr-bn6" id="RkE-ql-hrc"/>
                         <outlet property="floatingButtonTrailingConstraint" destination="R69-t5-eDm" id="oMM-HJ-9SO"/>
+                        <outlet property="nameTextField" destination="FkT-sd-eok" id="QFG-NG-2AC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dJh-Aj-7Rl" userLabel="First Responder" sceneMemberID="firstResponder"/>

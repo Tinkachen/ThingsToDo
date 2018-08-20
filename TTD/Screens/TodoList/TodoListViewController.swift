@@ -177,6 +177,7 @@ class TodoListViewController: UIViewController {
     /// Applies the layout for the floating button
     private func applyLayoutForFloatingButton () {
         addTodoTaskFloatingButton.layer.cornerRadius = addTodoTaskFloatingButton.bounds.height / 2
+        addTodoTaskFloatingButton.removeGradientLayer()
         addTodoTaskFloatingButton.applyGradient(colors: Themes.getTheme(viewModel.gradient).gradient, WithCornerRadius: addTodoTaskFloatingButton.layer.cornerRadius)
         addTodoTaskFloatingButton.layer.borderWidth = 1.0
         addTodoTaskFloatingButton.layer.borderColor = UIColor.lightGray.cgColor
@@ -204,8 +205,10 @@ class TodoListViewController: UIViewController {
     /// Presents a view for selecting a gradient for the todo list
     @objc fileprivate func chooseGradientPressed () {
         let choiceView = CustomAlert(gradientCallback: { (gradient) in
-            self.gradientContainer.applyGradient(colors: Themes.getTheme(gradient).gradient)
+            self.gradientContainer.removeGradientLayer()
+            self.gradientContainer.applyGradient(colors: Themes.getTheme(gradient).gradient, WithCornerRadius: self.gradientContainer.layer.cornerRadius)
             self.viewModel.gradient = gradient
+            self.applyLayoutForFloatingButton()
         })
         choiceView.show(animated: true)
     }

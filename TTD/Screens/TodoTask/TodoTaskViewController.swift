@@ -30,6 +30,7 @@ private enum Constants {
     /// <#Description#>
     static let floatingButtonBottomConstraintConstant: CGFloat = 100
     
+    /// <#Description#>
     static let floatingButtonTrailingConstraintConstant: CGFloat = 25
 }
 
@@ -39,7 +40,7 @@ class TodoTaskViewController: UIViewController {
     // MARK: - Outlets
     
     /// The text field for the name of the todo task
-    @IBOutlet fileprivate weak var nameTextField: SkyFloatingLabelTextField!
+    @IBOutlet fileprivate weak var nameTextField: UITextField!
     
     /// The image view for the list icon
     @IBOutlet fileprivate weak var listIconImageView: UIImageView!
@@ -85,6 +86,8 @@ class TodoTaskViewController: UIViewController {
         applyLayoutForFloatingButton()
         
         registerNotifications()
+        
+        nameTextField.delegate = self
     }
     
     /// Applies the layout for the floating button
@@ -138,19 +141,24 @@ class TodoTaskViewController: UIViewController {
     /// - Parameter notification: <#notification description#>
     @objc private func keyboardShows (notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            
-            UIView.animate(withDuration: 0.6, animations: {
-                self.floatingButtonBottomConstraint.constant = keyboardSize.height + Constants.buttonSize.height
-                self.floatingButtonAspectRatioConstraint.isActive = false
-                self.floatingButtonLeadingConstraint.isActive = true
-                self.floatingButtonTrailingConstraint.constant = 0
+            animateFloat(forKeyboardSize: keyboardSize)
+            print("Ich wurde gezeigt")
+        }
+    }
     
-                self.applyLayoutForFloatingButton(false)
-                
-                self.view.layoutIfNeeded()
-            }) { (complete) in
-                self.floatingButton.applyGradient(colors: Themes.getTheme(self.gradient).gradient)
-            }
+    private func animateFloat (forKeyboardSize keyboardSize: CGRect) {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.floatingButtonBottomConstraint.constant = keyboardSize.height + Constants.buttonSize.height
+            self.floatingButtonAspectRatioConstraint.isActive = false
+            self.floatingButtonLeadingConstraint.isActive = true
+            self.floatingButtonTrailingConstraint.constant = 0
+            self.floatingButton.applyGradient(colors: Themes.getTheme(self.gradient).gradient, WithCornerRadius: self.floatingButton.layer.cornerRadius)
+            
+            self.applyLayoutForFloatingButton(false)
+            
+            self.view.layoutIfNeeded()
+        }) { (complete) in
+            self.floatingButton.applyGradient(colors: Themes.getTheme(self.gradient).gradient)
         }
     }
     
@@ -160,4 +168,14 @@ class TodoTaskViewController: UIViewController {
     @objc private func keyboardHides (notification: Notification) {
         
     }
+}
+
+// MARK: Text Field Delegate
+extension TodoTaskViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }

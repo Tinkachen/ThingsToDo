@@ -35,6 +35,12 @@ extension UIView {
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
     
+    func removeGradientLayer () {
+        self.layer.sublayers?.forEach {
+            $0.removeFromSuperlayer()
+        }
+    }
+    
     /// Makes a instance of the passed class connected to the same name nib file
     ///
     /// - Returns: The instance of the class connected to the nib file

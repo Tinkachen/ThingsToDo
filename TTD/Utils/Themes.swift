@@ -8,8 +8,8 @@
 
 import UIKit
 
-enum Gradient {
-    case yellow
+enum Gradient: Int {
+    case yellow = 0
     case lightBlue
     case pink
     case purple

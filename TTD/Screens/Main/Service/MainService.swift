@@ -7,9 +7,27 @@
 //
 
 import Foundation
+import UIKit
+import CoreData
+
+enum ErrorMessage {
+    
+    static let noContext = ""
+    
+    static let noEntity = ""
+    
+    static let unknown = ""
+    
+    static let noSave = ""
+}
+
+protocol MainService {
+    
+    static var context: NSManagedObjectContext? { get }
+}
 
 /// The service for getting data from the local storage
-struct MainService {
+extension MainService {
     
     /// Creates dummy data of todo lists
     ///
@@ -20,5 +38,15 @@ struct MainService {
         todoLists.append(TodoListViewModel(id: "1", gradient: .yellow, icon: .audio, title: "Test", passcode: nil, tasks: nil))
         
         return todoLists
+    }
+    
+    // Core Data
+    
+    static var context: NSManagedObjectContext? {
+        guard let appDel = UIApplication.shared.delegate as? AppDelegate else {
+            return nil
+        }
+        
+        return appDel.persistentContainer.viewContext
     }
 }

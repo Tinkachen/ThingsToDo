@@ -31,6 +31,8 @@
 		2357806D20A89B01001DBFC4 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2357806B20A89B01001DBFC4 /* SkyFloatingLabelTextFieldWithIcon.swift */; };
 		2357806F20A8C4A3001DBFC4 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2357806E20A8C4A3001DBFC4 /* Themes.swift */; };
 		2357807120A8C669001DBFC4 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2357807020A8C669001DBFC4 /* TextFieldExtension.swift */; };
+		235AF2F9212B290F00D15FCE /* TDD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 235AF2F7212B290F00D15FCE /* TDD.xcdatamodeld */; };
+		235AF2FB212B31F300D15FCE /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235AF2FA212B31F300D15FCE /* StringExtension.swift */; };
 		23CC53D120B210AF004F40E3 /* example_concept.gif in Resources */ = {isa = PBXBuildFile; fileRef = 23CC53D020B210AF004F40E3 /* example_concept.gif */; };
 		23CC53D420B2E600004F40E3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CC53D320B2E600004F40E3 /* MainViewController.swift */; };
 		23CC53D620B2E61D004F40E3 /* MainViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23CC53D520B2E61D004F40E3 /* MainViewController.storyboard */; };
@@ -102,6 +104,8 @@
 		2357806B20A89B01001DBFC4 /* SkyFloatingLabelTextFieldWithIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextFieldWithIcon.swift; sourceTree = "<group>"; };
 		2357806E20A8C4A3001DBFC4 /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		2357807020A8C669001DBFC4 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
+		235AF2F8212B290F00D15FCE /* TDD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TDD.xcdatamodel; sourceTree = "<group>"; };
+		235AF2FA212B31F300D15FCE /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		23CC53CF20B20CA2004F40E3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		23CC53D020B210AF004F40E3 /* example_concept.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = example_concept.gif; sourceTree = "<group>"; };
 		23CC53D320B2E600004F40E3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 				2357807020A8C669001DBFC4 /* TextFieldExtension.swift */,
 				231535CB20CC00BC00883266 /* CollectionViewExtension.swift */,
 				49540AD2211DB63700280445 /* Modal.swift */,
+				235AF2FA212B31F300D15FCE /* StringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				2357802820A20663001DBFC4 /* AppDelegate.swift */,
+				235AF2F7212B290F00D15FCE /* TDD.xcdatamodeld */,
 				2357802F20A20665001DBFC4 /* Assets.xcassets */,
 				2357803420A20665001DBFC4 /* Info.plist */,
 			);
@@ -591,6 +597,7 @@
 				23CC53D920B2E73D004F40E3 /* PersonalizeViewController.swift in Sources */,
 				2357807120A8C669001DBFC4 /* TextFieldExtension.swift in Sources */,
 				23F12B8A20CF08DD00D6BA39 /* MainService.swift in Sources */,
+				235AF2FB212B31F300D15FCE /* StringExtension.swift in Sources */,
 				23502BD120B2F14600DA00A9 /* CollectionViewCell.swift in Sources */,
 				23F12B7F20CEFA4500D6BA39 /* TodoTaskViewController.swift in Sources */,
 				23D9D29020D6ED360050E8E9 /* ChoiceViewCollectionViewCell.swift in Sources */,
@@ -607,6 +614,7 @@
 				23D9D28420D6D39C0050E8E9 /* TodoTaskTableViewCell.swift in Sources */,
 				2357806C20A89B01001DBFC4 /* SkyFloatingLabelTextField.swift in Sources */,
 				2357806F20A8C4A3001DBFC4 /* Themes.swift in Sources */,
+				235AF2F9212B290F00D15FCE /* TDD.xcdatamodeld in Sources */,
 				2357805C20A88C3B001DBFC4 /* ViewModelFactory.swift in Sources */,
 				2357806D20A89B01001DBFC4 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
 				2357805520A212B5001DBFC4 /* PasscodeViewController.swift in Sources */,
@@ -782,7 +790,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TTD/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.itinka.TTD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -797,7 +808,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TTD/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.itinka.TTD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -813,7 +827,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TTDTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.itinka.TTDTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -830,7 +848,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TTDTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.itinka.TTDTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -870,6 +892,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		235AF2F7212B290F00D15FCE /* TDD.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				235AF2F8212B290F00D15FCE /* TDD.xcdatamodel */,
+			);
+			currentVersion = 235AF2F8212B290F00D15FCE /* TDD.xcdatamodel */;
+			path = TDD.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2357801D20A20662001DBFC4 /* Project object */;
 }

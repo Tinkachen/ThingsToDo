@@ -14,11 +14,11 @@ import Foundation
 /// - middle: Middle priority level
 /// - high: High priority level
 /// - none: No priority level
-enum PriorityLevel {
+enum PriorityLevel: Int {
+    case none = 0
     case low
     case middle
     case high
-    case none
 }
 
 /// Private constants

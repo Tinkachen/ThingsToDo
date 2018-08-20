@@ -9,10 +9,10 @@
 import UIKit
 
 /// The enum for the available icons
-enum Icon {
+enum Icon: Int {
     
     // Essential
-    case audio, buildings, coding, communication, device, finance, gaming, image, logistik, money, places, shopping, statistic, time, office, video,
+    case audio = 0, buildings, coding, communication, device, finance, gaming, image, logistik, money, places, shopping, statistic, time, office, video,
     
     // Extra
     christmas, clothe, construction, crime, ecology, food, furniture, health, holidays, hotel, learning, leisure, object, party, romance, spa, space, sport, symbols, tools, transportation, weather,

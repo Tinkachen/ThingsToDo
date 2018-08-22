@@ -12,6 +12,9 @@
 /* Main View Controller */
 "MVC_welcome_user" = "Hello, %@";
 
+/* Main View Controller Collection View Cell */
+"MVC_CVC_tasks" = "Tasks";
+
 /* New Todo List View Controller */
 "NTLVC_title" = "New To-Do List";
 "NTLVC_name_placeholer" = "What is the name of your list?";

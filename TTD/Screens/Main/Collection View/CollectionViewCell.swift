@@ -10,9 +10,10 @@ import UIKit
 
 /// Private Constants
 private enum Constants {
-    
-    /// Test value for the progress view
-    static let testValue: CGFloat = 0.5
+
+    enum Strings {
+        static let tasksStringKey = "MVC_CVC_tasks"
+    }
 }
 
 /// The Collection View Cell for the main view controller
@@ -36,7 +37,7 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet fileprivate weak var taskLabel: UILabel!
     
     /// The title label
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
+    @IBOutlet fileprivate weak var descriptionLabel: UILabel!
     
     /// The progress background view
     @IBOutlet fileprivate weak var progressBackgroundView: UIView!
@@ -50,12 +51,43 @@ class CollectionViewCell: UICollectionViewCell {
     fileprivate var progressIndicatorView: UIView!
     
     /// The view model
-    private var viewModel: String!
+    private var viewModel: TodoListViewModel!
+    
+    private var deleteCallback: (()->Void)!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        taskLabel.text = "bla"
+        // Setup Background View
+        containerView.layer.shadowColor = UIColor.black.cgColor
+        containerView.layer.shadowOpacity = 0.5
+        containerView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        containerView.layer.shadowRadius = 5
+    }
+    
+    /// <#Description#>
+    private func setupTaskLabel () {
+        
+        if let tasks = viewModel.tasks {
+            taskLabel.text = "\(tasks.count) \(Constants.Strings.tasksStringKey.localized)"
+        } else {
+            taskLabel.text = "0 \(Constants.Strings.tasksStringKey.localized)"
+        }
+    }
+    
+    /// Setup up the view with the passed informations
+    ///
+    /// - Parameter viewModel: The view model
+    func setupView (_ viewModel: TodoListViewModel, deleteCallback: @escaping (()->Void)) {
+        self.viewModel = viewModel
+        self.deleteCallback = deleteCallback
+        
+        descriptionLabel.text = viewModel.title
+        
+        setupTaskLabel()
+        
+        badgeImageView.image = viewModel.image()
+        badgeImageView.tintColor = viewModel.getMainColor()
         
         // Setup Progress View
         progressBackgroundView.layer.cornerRadius = progressBackgroundView.bounds.height / 2
@@ -67,24 +99,11 @@ class CollectionViewCell: UICollectionViewCell {
                    height: progressBackgroundView.bounds.height))
         progressBackgroundView.addSubview(progressIndicatorView)
         
-        progressPercentLabel.text = String(Int(Constants.testValue * 100))
-        progressIndicatorView.applyGradient(colors: Themes.purple.gradient, WithCornerRadius: progressBackgroundView.layer.cornerRadius)
+        progressPercentLabel.text = String(Int(viewModel.getDonePercentage() * 100))
+        progressIndicatorView.applyGradient(colors: viewModel.getGradient(), WithCornerRadius: progressBackgroundView.layer.cornerRadius)
         progressIndicatorView.frame = CGRect(x: 0, y: 0,
-                                              width: progressBackgroundView.bounds.width * Constants.testValue,
-                                              height: progressIndicatorView.bounds.height)
-        
-        // Setup Background View
-        containerView.layer.shadowColor = UIColor.black.cgColor
-        containerView.layer.shadowOpacity = 0.5
-        containerView.layer.shadowOffset = CGSize(width: 0, height: 1)
-        containerView.layer.shadowRadius = 5
-    }
-    
-    /// Setup up the view with the passed informations
-    ///
-    /// - Parameter viewModel: The view model
-    func setupView (_ viewModel: String) {
-        self.viewModel = viewModel
+                                             width: progressBackgroundView.bounds.width * viewModel.getDonePercentage(),
+                                             height: progressIndicatorView.bounds.height)
     }
     
     override func layoutSubviews() {
@@ -102,4 +121,10 @@ class CollectionViewCell: UICollectionViewCell {
         badgeImageContainerView.layer.cornerRadius = badgeImageContainerView.frame.height / 2
     }
     
+    // Actions
+    
+    /// <#Description#>
+    @IBAction fileprivate func cellActionButtonPressed () {
+        deleteCallback()
+    }
 }

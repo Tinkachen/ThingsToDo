@@ -104,7 +104,7 @@ struct TodoTaskService: MainService {
         let vm = NSManagedObject(entity: entity, insertInto: contextUnwrapped)
         
         vm.setValue(viewModel.listId, forKey: Constants.KeyPaths.listIdKey)
-        vm.setValue(viewModel.taskId, forKey: Constants.KeyPaths.taskIdKey)
+        vm.setValue(UUID().uuidString, forKey: Constants.KeyPaths.taskIdKey)
         vm.setValue(viewModel.taskDescription, forKey: Constants.KeyPaths.taskDescriptionKey)
         vm.setValue(viewModel.taskEndDate, forKey: Constants.KeyPaths.taskEndDateKey)
         vm.setValue(viewModel.isTimerSet, forKey: Constants.KeyPaths.isTimerSetKey)

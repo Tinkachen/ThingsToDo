@@ -61,4 +61,24 @@ extension CAGradientLayer {
         
         return image
     }
+    
+    /// <#Description#>
+    ///
+    /// - Parameters:
+    ///   - colors: <#colors description#>
+    ///   - duration: <#duration description#>
+    func animateChanges (to colors: [CGColor], duration: TimeInterval) {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock({
+            // Set to final colors when animation ends
+            self.colors = colors
+        })
+        let animation = CABasicAnimation(keyPath: "colors")
+        animation.duration = duration
+        animation.toValue = colors
+        animation.fillMode = kCAFillModeForwards
+        animation.isRemovedOnCompletion = false
+        add(animation, forKey: "changeColors")
+        CATransaction.commit()
+    }
 }

@@ -8,6 +8,14 @@
 
 import Foundation
 
+extension String {
+    
+    /// <#Description#>
+    var localized: String {
+        return NSLocalizedString(self, comment: "")
+    }
+}
+
 extension String: Error {
     
 }

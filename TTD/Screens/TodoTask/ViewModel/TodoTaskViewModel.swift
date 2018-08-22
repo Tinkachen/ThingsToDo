@@ -1,8 +1,8 @@
 //
-//  TodoListViewModel.swift
+//  TodoTaskViewModel.swift
 //  TTD
 //
-//  Created by Catharina Herchert on 17.06.18.
+//  Created by Catharina Herchert on 22.08.18.
 //  Copyright © 2018 Catharina Herchert. All rights reserved.
 //
 
@@ -29,28 +29,6 @@ private enum Constants {
     
     /// The local identifier for the date format
     static let localIdentifer = Locale(identifier: "de")
-}
-
-/// The view model for the todo list
-struct TodoListViewModel {
-    
-    /// The id (primary key)
-    var id: String!
-    
-    /// The gradient
-    var gradient: Gradient!
-    
-    /// The icon
-    var icon: Icon!
-    
-    /// The title
-    var title: String!
-    
-    /// The passcode
-    var passcode: Int?
-    
-    /// The tasks
-    var tasks: [TodoTaskViewModel]?
 }
 
 /// The view model for the todo task

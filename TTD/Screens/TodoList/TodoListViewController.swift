@@ -44,22 +44,22 @@ private enum Constants {
     enum Strings {
         
         /// The title for the view
-        static let viewTitle = NSLocalizedString("NTLVC_title", comment: "The title for the view")
+        static let viewTitleKey = "NTLVC_title"
         
         /// The placeholder for the name of the todo list
-        static let namePlaceholder = NSLocalizedString("NTLVC_name_placeholer", comment: "The place holder for the todo list name")
+        static let namePlaceholderKey = "NTLVC_name_placeholer"
         
         /// The text for choosing a gradient
-        static let chooseGradient = NSLocalizedString("NTLVC_choose_gradient", comment: "The text for choosing a gradient")
+        static let chooseGradientKey = "NTLVC_choose_gradient"
         
         /// The text for choosing an icon
-        static let chooseIcon = NSLocalizedString("NTLVC_choose_icon", comment: "The text for choosing an icon")
+        static let chooseIconKey = "NTLVC_choose_icon"
         
         /// The task text
-        static let tasks = NSLocalizedString("NTLVC_tasks", comment: "The task text")
+        static let tasksKey = "NTLVC_tasks"
         
         /// The text to secure the todo list with a passcode
-        static let secureWithPasscode = NSLocalizedString("NTLVC_secure_passcode", comment: "The text to secure the todo list with a passcode")
+        static let secureWithPasscodeKey = "NTLVC_secure_passcode"
     }
     
     /// The bottom constraint constant for the floating button
@@ -167,7 +167,7 @@ class TodoListViewController: UIViewController {
         self.iconImageView.image = Icons.getIcon(viewModel.icon)
         
         // Tasks
-        self.taskLabel.text = "\(viewModel.tasks?.count ?? 0) \(Constants.Strings.tasks)"
+        self.taskLabel.text = "\(viewModel.tasks?.count ?? 0) \(Constants.Strings.tasksKey.localized)"
         
         // Passcode Button
         updatePasscodeImage(isLocked: viewModel.passcode != nil ? true : false)

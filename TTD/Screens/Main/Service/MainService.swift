@@ -12,13 +12,13 @@ import CoreData
 
 enum ErrorMessage {
     
-    static let noContext = ""
+    static let noContext = "No context found."
     
-    static let noEntity = ""
+    static let noEntity = "No entity found with the name."
     
-    static let unknown = ""
+    static let unknown = "An unknown Error occured."
     
-    static let noSave = ""
+    static let noSave = "There was no save of the data possible."
 }
 
 protocol MainService {

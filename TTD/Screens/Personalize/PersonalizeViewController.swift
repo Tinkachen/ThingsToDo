@@ -13,7 +13,7 @@ private enum Constants {
     
     /// Strings for the outlets
     enum Strings {
-        static let namePlaceholer = NSLocalizedString("PVC_name_placeholder", comment: "The placeholder for the user name text field")
+        static let namePlaceholerKey = "PVC_name_placeholder"
     }
 }
 

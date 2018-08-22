@@ -15,13 +15,13 @@ private enum Constants {
     enum Strings {
         
         /// The title for the view
-        static let viewTitle = NSLocalizedString("NTTVC_title", comment: "The title for the view")
+        static let viewTitleKey = "NTTVC_title"
         
         /// The placeholder for the name
-        static let namePlaceholder = NSLocalizedString("NTTVC_name_placeholer", comment: "The placeholder for the task name")
+        static let namePlaceholderKey = "NTTVC_name_placeholer"
         
         /// The placeholder for the notes
-        static let notesPlaceholder = NSLocalizedString("NTTVC_notes_placeholder", comment: "The placeholder for the notes")
+        static let notesPlaceholderKey = "NTTVC_notes_placeholder"
     }
     
     /// <#Description#>
@@ -88,6 +88,7 @@ class TodoTaskViewController: UIViewController {
         registerNotifications()
         
         nameTextField.delegate = self
+        
     }
     
     /// Applies the layout for the floating button

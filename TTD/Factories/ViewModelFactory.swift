@@ -15,10 +15,10 @@ private enum Constants {
     enum Strings {
         
         /// Title for a new todo list
-        static let newTodoList = NSLocalizedString("NTLVC_title", comment: "Title for a new todo list")
+        static let newTodoListKey = "NTLVC_title"
         
         /// Title for a new todo task
-        static let newTodoTask = NSLocalizedString("NTTVC_title", comment: "Title for a new todo task")
+        static let newTodoTaskKey = "NTTVC_title"
     }
 }
 
@@ -29,12 +29,18 @@ struct ViewModelFactory {
     ///
     /// - Returns: The instance
     static func makeTodoListViewModel () -> TodoListViewModel {
-        return TodoListViewModel(id: UUID().uuidString,
-                                 gradient: Gradient.rdmGradient(),
-                                 icon: Icon.rdmIcon(),
-                                 title: Constants.Strings.newTodoList,
-                                 passcode: nil,
-                                 tasks: nil)
+        let newTodoList = TodoListViewModel(id: UUID().uuidString,
+                                            gradient: Gradient.rdmGradient(),
+                                            icon: Icon.rdmIcon(),
+                                            title: Constants.Strings.newTodoListKey.localized,
+                                            passcode: nil,
+                                            tasks: nil)
+        TodoListService.saveNewListViewModel(newTodoList) { (error) in
+            if error != nil {
+                print("BLA")
+            }
+        }
+        return newTodoList
     }
     
     /// Makes an instance of 'TodoTaskViewModel'
@@ -42,7 +48,7 @@ struct ViewModelFactory {
     /// - Returns: The instance
     static func makeTodoTaskVieModel () -> TodoTaskViewModel {
         var viewModel = TodoTaskViewModel()
-        viewModel.taskDescription = Constants.Strings.newTodoTask
+        viewModel.taskDescription = Constants.Strings.newTodoTaskKey.localized
         return viewModel
     }
     

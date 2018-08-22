@@ -22,13 +22,13 @@ private enum Constants {
     enum Strings {
         
         /// The title for the icon view
-        static let iconViewTitle = NSLocalizedString("CV_icon_view_title", comment: "The view title for icons")
+        static let iconViewTitleKey = "CV_icon_view_title"
         
         /// The title for the gradient view
-        static let gradientViewTitle = NSLocalizedString("CV_gradient_view_title", comment: "The view title for gradients")
+        static let gradientViewTitleKey = "CV_gradient_view_title"
         
         /// The title for the done button
-        static let doneButtonText = NSLocalizedString("CV_done_button", comment: "Done button text")
+        static let doneButtonTextKey = "CV_done_button"
     }
 }
 
@@ -62,7 +62,7 @@ class ChoiceView: UIView {
         super.awakeFromNib()
         
         // Title
-        self.titleLabel.text = forGradients ? Constants.Strings.gradientViewTitle : Constants.Strings.iconViewTitle
+        self.titleLabel.text = forGradients ? Constants.Strings.gradientViewTitleKey.localized : Constants.Strings.iconViewTitleKey.localized
         
         // Setup collection view
         collectionView.delegate = self
@@ -70,7 +70,7 @@ class ChoiceView: UIView {
         collectionView.register(UINib(nibName: Constants.collectionViewCellId, bundle: nil), forCellWithReuseIdentifier: Constants.collectionViewCellId)
         
         // Done Button
-        doneButton.setTitle(Constants.Strings.doneButtonText, for: .normal)
+        doneButton.setTitle(Constants.Strings.doneButtonTextKey.localized, for: .normal)
         doneButton.addTarget(self, action: #selector(closeViewButtonPressed), for: .touchUpInside)
     }
     

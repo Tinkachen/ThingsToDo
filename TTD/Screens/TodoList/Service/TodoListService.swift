@@ -103,8 +103,8 @@ struct TodoListService: MainService {
         let vm = NSManagedObject(entity: entity, insertInto: contextUnwrapped)
         
         vm.setValue(viewModel.id, forKey: Constants.KeyPaths.idKey)
-        vm.setValue(viewModel.gradient, forKey: Constants.KeyPaths.gradientKey)
-        vm.setValue(viewModel.icon, forKey: Constants.KeyPaths.iconKey)
+        vm.setValue(viewModel.gradient.rawValue, forKey: Constants.KeyPaths.gradientKey)
+        vm.setValue(viewModel.icon.rawValue, forKey: Constants.KeyPaths.iconKey)
         vm.setValue(viewModel.title, forKey: Constants.KeyPaths.titleKey)
         vm.setValue(viewModel.passcode, forKey: Constants.KeyPaths.passcodeKey)
         
@@ -113,6 +113,7 @@ struct TodoListService: MainService {
             listObjects.append(vm)
             listViewModels.append(viewModel)
             completion(nil)
+            return
         } catch let error as Error {
             completion(error)
         }
@@ -126,6 +127,11 @@ struct TodoListService: MainService {
     ///   - viewModel: The view model for the update
     static func updateListViewModel (_ viewModel: TodoListViewModel) {
         
+        guard let contextUnwrapped = context else {
+            print(ErrorMessage.noContext)
+            return
+        }
+        
         listObjects.forEach {
             if ($0.value(forKey: Constants.KeyPaths.idKey) as? String) == viewModel.id {
                 $0.setValue(viewModel.gradient, forKey: Constants.KeyPaths.gradientKey)
@@ -137,6 +143,30 @@ struct TodoListService: MainService {
         
         for i in 0..<listViewModels.count {
             listViewModels[i] = viewModel
+        }
+        
+        do {
+            try contextUnwrapped.save()
+        } catch let error as Error {
+            print(error)
+        }
+    }
+    
+    /// <#Description#>
+    ///
+    /// - Parameter viewModel: <#viewModel description#>
+    static func deleteListViewModel (_ viewModel: TodoListViewModel) {
+        guard let contextUnwrapped = context else {
+            print(ErrorMessage.noContext)
+            return
+        }
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constants.KeyPaths.listKey)
+        
+        do {
+            try contextUnwrapped.save()
+        } catch let error as Error {
+            print(error)
         }
     }
 }

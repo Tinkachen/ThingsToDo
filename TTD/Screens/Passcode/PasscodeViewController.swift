@@ -15,16 +15,16 @@ private enum Constants {
     enum Strings {
         
         /// The text for a new passcode
-        static let newPasscodeText =  NSLocalizedString("PCVC_new_passcode", comment: "Enter new passcode text")
+        static let newPasscodeTextKey = "PCVC_new_passcode"
         
         /// The text for repeating the new passcode
-        static let repeatNewPasscodeText = NSLocalizedString("PCVC_repeat_new_passcode", comment: "Repeat new passcode text")
+        static let repeatNewPasscodeTextKey = "PCVC_repeat_new_passcode"
         
         /// The text for verifing the passcode
-        static let verifyPasscodeText = NSLocalizedString("PCVC_verify_passcode", comment: "Verify saved passcode")
+        static let verifyPasscodeTextKey = "PCVC_verify_passcode"
         
         /// The cancel button text
-        static let cancelButtonText = NSLocalizedString("PCVC_cancel_btn", comment: "Cancel button text")
+        static let cancelButtonTextKey = "PCVC_cancel_btn"
     }
     
     /// Constants for the password indicator stack view, shaking animation
@@ -100,16 +100,16 @@ class PasscodeViewController: UIViewController {
     func setText (forState state: PasscodeType) {
         switch state {
         case .new:
-            self.titleLabel.text = Constants.Strings.newPasscodeText
+            self.titleLabel.text = Constants.Strings.newPasscodeTextKey.localized
             self.cancelButton.isHidden = false
             break
         case .verify:
-            self.titleLabel.text = Constants.Strings.verifyPasscodeText
+            self.titleLabel.text = Constants.Strings.verifyPasscodeTextKey.localized
             self.cancelButton.isHidden = true
             break
         // case verifyNew and default
         default:
-            self.titleLabel.text = Constants.Strings.repeatNewPasscodeText
+            self.titleLabel.text = Constants.Strings.repeatNewPasscodeTextKey.localized
             self.cancelButton.isHidden = false
         }
     }

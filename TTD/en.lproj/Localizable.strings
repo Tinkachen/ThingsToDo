@@ -32,6 +32,7 @@
 
 /* New Todo Task View Controller */
 "NTTVC_title" = "New Task";
+"NTTVC_description" = "What tasks are you planning to perform?";
 "NTTVC_name_placeholer" = "What tasks are you planning to perform?";
 "NTTVC_notes_placeholder" = "Would you write some notes to the task?";
 

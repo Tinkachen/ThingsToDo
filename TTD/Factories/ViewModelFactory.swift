@@ -36,8 +36,8 @@ struct ViewModelFactory {
                                             passcode: nil,
                                             tasks: nil)
         TodoListService.saveNewListViewModel(newTodoList) { (error) in
-            if error != nil {
-                print("BLA")
+            if let error = error {
+                print(error)
             }
         }
         return newTodoList
@@ -46,9 +46,15 @@ struct ViewModelFactory {
     /// Makes an instance of 'TodoTaskViewModel'
     ///
     /// - Returns: The instance
-    static func makeTodoTaskVieModel () -> TodoTaskViewModel {
-        var viewModel = TodoTaskViewModel()
-        viewModel.taskDescription = Constants.Strings.newTodoTaskKey.localized
+    static func makeTodoTaskVieModel (forList list: String) -> TodoTaskViewModel {
+        let viewModel = TodoTaskViewModel(listId: list,
+                                          taskId: UUID().uuidString,
+                                          taskDescription: Constants.Strings.newTodoTaskKey.localized,
+                                          taskEndDate: Date(),
+                                          isTimerSet: false,
+                                          priority: .none,
+                                          isDone: false,
+                                          notes: "")
         return viewModel
     }
     

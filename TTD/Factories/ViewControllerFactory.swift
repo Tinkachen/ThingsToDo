@@ -55,13 +55,16 @@ class ViewControllerFactory {
     /// Makes an instance of the 'NewTodoTaskViewController'
     ///
     /// - Parameter viewModel: The view model
+    /// - Parameter list: The todo list view model id
+    /// - Parameter gradient: The main gradient of the list
     /// - Returns: The instance
-    static func makeTodoTaskViewController (WithViewModel viewModel: TodoTaskViewModel?, AndGradient gradient: Gradient) -> UIViewController {
+    static func makeTodoTaskViewController (WithViewModel viewModel: TodoTaskViewModel?, ForList list: String, AndGradient gradient: Gradient) -> UIViewController {
         let todoTaskViewController: TodoTaskViewController = makeViewController()
         todoTaskViewController.service = ServiceFactory.makeTodoTaskService()
-        todoTaskViewController.viewModel = viewModel ?? ViewModelFactory.makeTodoTaskVieModel()
+        todoTaskViewController.viewModel = viewModel ?? ViewModelFactory.makeTodoTaskVieModel(forList: list)
         todoTaskViewController.gradient = gradient
-        return todoTaskViewController
+        let navigationController = UINavigationController(rootViewController: todoTaskViewController)
+        return navigationController
     }
     
     /// Makes an instance of the 'PasscodeViewController'

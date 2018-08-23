@@ -29,17 +29,6 @@ protocol MainService {
 /// The service for getting data from the local storage
 extension MainService {
     
-    /// Creates dummy data of todo lists
-    ///
-    /// - Returns: The created dummy data
-    func createDummyData () -> [TodoListViewModel] {
-        var todoLists = [TodoListViewModel]()
-        
-        todoLists.append(TodoListViewModel(id: "1", gradient: .yellow, icon: .audio, title: "Test", passcode: nil, tasks: nil))
-        
-        return todoLists
-    }
-    
     // Core Data
     
     static var context: NSManagedObjectContext? {

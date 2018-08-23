@@ -134,8 +134,8 @@ struct TodoListService: MainService {
         
         listObjects.forEach {
             if ($0.value(forKey: Constants.KeyPaths.idKey) as? String) == viewModel.id {
-                $0.setValue(viewModel.gradient, forKey: Constants.KeyPaths.gradientKey)
-                $0.setValue(viewModel.icon, forKey: Constants.KeyPaths.iconKey)
+                $0.setValue(viewModel.gradient.rawValue, forKey: Constants.KeyPaths.gradientKey)
+                $0.setValue(viewModel.icon.rawValue, forKey: Constants.KeyPaths.iconKey)
                 $0.setValue(viewModel.title, forKey: Constants.KeyPaths.titleKey)
                 $0.setValue(viewModel.passcode, forKey: Constants.KeyPaths.passcodeKey)
             }
@@ -161,7 +161,12 @@ struct TodoListService: MainService {
             return
         }
         
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constants.KeyPaths.listKey)
+        listObjects.forEach {
+            if ($0.value(forKey: Constants.KeyPaths.idKey) as? String) == viewModel.id {
+                contextUnwrapped.delete($0)
+                listViewModels = getListViewModels()
+            }
+        }
         
         do {
             try contextUnwrapped.save()

@@ -65,8 +65,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.applyGradient(colors: Themes.purple.gradient)
-        
         // Setup Collection View
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -77,8 +75,15 @@ class MainViewController: UIViewController {
         
         collectionViewCellSize = CGSize(width: collectionView.frame.size.width * 0.8, height: collectionView.frame.size.height)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         getListViewModels()
+        collectionView.reloadData()
         
+        self.view.removeGradientLayer()
+        
+        self.view.applyGradient(colors: todoListViewModels.count > 0 ? todoListViewModels[indexOfMajorCell()].getGradient() : Themes.getTheme(Gradient.rdmGradient()).gradient)
     }
     
     /// Requests the list view models from the local storage
@@ -98,13 +103,16 @@ class MainViewController: UIViewController {
     
     fileprivate func deleteCell (atIndexPath indexPath: IndexPath) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: Constants.Strings.alertDeleteKey, style: .destructive, handler: { (alertAction) in
+        alertController.addAction(UIAlertAction(title: Constants.Strings.alertDeleteKey.localized, style: .destructive, handler: { (alertAction) in
             let vm = self.todoListViewModels[indexPath.row]
             vm.deleteListViewModel()
             self.todoListViewModels.remove(at: indexPath.row)
             self.collectionView.reloadData()
+            let newIndex = ((self.indexOfMajorCell() / self.todoListViewModels.count) < (self.todoListViewModels.count / 2)) ? self.indexOfMajorCell() + 1 : self.indexOfMajorCell() - 1
+            self.view.transitToGradient(from: vm.getGradient(), to: self.todoListViewModels[newIndex].getGradient())
+            alertController.dismiss(animated: true, completion: nil)
         }))
-        alertController.addAction(UIAlertAction(title: Constants.Strings.alertCancelKey, style: .cancel, handler: { (alertAction) in
+        alertController.addAction(UIAlertAction(title: Constants.Strings.alertCancelKey.localized, style: .cancel, handler: { (alertAction) in
             alertController.dismiss(animated: true, completion: nil)
         }))
         
@@ -203,7 +211,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: velocity.x, options: .allowUserInteraction, animations: {
                 scrollView.contentOffset = CGPoint(x: toValue, y: 0)
                 scrollView.layoutIfNeeded()
-            }, completion: nil)
+            }, completion: { (completed) in
+                let from = self.todoListViewModels[self.indexOfCellBeforeDragging]
+                let to = self.todoListViewModels[hasEnoughVelocityToSlideToTheNextCell ? self.indexOfCellBeforeDragging + 1 : self.indexOfCellBeforeDragging - 1]
+                self.view.transitToGradient(from: from.getGradient(), to: to.getGradient())
+            })
             
         } else {
             // This is a much better way to scroll to a cell:

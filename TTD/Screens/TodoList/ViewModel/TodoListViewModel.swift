@@ -31,6 +31,11 @@ struct TodoListViewModel {
     /// The tasks
     var tasks: [TodoTaskViewModel]?
     
+    /// Updates the tasks
+    mutating func updateTasks () {
+        tasks = TodoTaskService.getTaskViewModels(forList: id)
+    }
+    
     /// Updates the stored list view model
     func updateListViewModel () {
         TodoListService.updateListViewModel(self)
@@ -39,6 +44,11 @@ struct TodoListViewModel {
     /// Deletes the stored list view model
     func deleteListViewModel () {
         TodoListService.deleteListViewModel(self)
+    }
+    
+    func deleteTaskViewModel (atIndex: Int) {
+        guard let tasksUnwrapped = tasks else { return }
+        TodoTaskService.deleteTaskViewModel(tasksUnwrapped[atIndex])
     }
     
     /// Calculates the percentage of the done state

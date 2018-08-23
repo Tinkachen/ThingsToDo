@@ -18,13 +18,13 @@ private enum Constants {
         static let headerCellId = "TodoTaskHeaderCell"
         
         /// The header height
-        static let headerCellHeight: CGFloat = 40
+        static let headerCellHeight: CGFloat = 20
         
         /// The identifier of the table view cell
-        static let todoTaskTableViewCellId = "TodoTaskTableVieCellId"
+        static let todoTaskTableViewCellId = "TodoTaskTableViewCell"
         
         /// The table view cell height
-        static let todoTaskTableViewCellHeight: CGFloat = 30
+        static let todoTaskTableViewCellHeight: CGFloat = 50
     }
     
     /// Constant images
@@ -119,8 +119,17 @@ class TodoListViewController: UIViewController {
     var sortedTaskViewModel: [Date : [TodoTaskViewModel]] {
         var sorted = [Date : [TodoTaskViewModel]]()
         guard let tasks = viewModel.tasks else { return sorted }
-        sorted = Dictionary(grouping: tasks, by: { $0.taskEndDate })
+        sorted = Dictionary(grouping: tasks, by: { $0.dateForSorting() })
         return sorted
+    }
+    
+    /// A date formatter
+    var dateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.doesRelativeDateFormatting = true
+        
+        return dateFormatter
     }
     
     override func viewDidLoad() {
@@ -147,11 +156,20 @@ class TodoListViewController: UIViewController {
         setupViewWithViewModel()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        viewModel.updateTasks()
+        tableView.reloadData()
+    }
+    
     /// Setup the view with the passed view model
     func setupViewWithViewModel () {
         
         // Title
         self.nameTextField.text = viewModel.title
+        self.nameTextField.delegate = self
+        self.nameTextField.tintColor = viewModel.getMainColor()
         
         // Gradient
         self.gradientContainer.applyGradient(colors: Themes.getTheme(viewModel.gradient).gradient, WithCornerRadius: self.gradientContainer.bounds.height / 2)
@@ -214,6 +232,8 @@ class TodoListViewController: UIViewController {
     
     /// Presents a view for selecting a icon for the todo list
     @objc fileprivate func chooseIconPressed () {
+        nameTextField.resignFirstResponder()
+        
         let choiceView = CustomAlert(iconCallback: { (icon) in
             self.iconImageView.image = Icons.getIcon(icon)
             self.viewModel.icon = icon
@@ -223,12 +243,15 @@ class TodoListViewController: UIViewController {
     
     /// Presents a view for selecting a gradient for the todo list
     @objc fileprivate func chooseGradientPressed () {
+        nameTextField.resignFirstResponder()
+        
         let choiceView = CustomAlert(gradientCallback: { (gradient) in
             self.gradientContainer.removeGradientLayer()
             self.gradientContainer.applyGradient(colors: Themes.getTheme(gradient).gradient, WithCornerRadius: self.gradientContainer.layer.cornerRadius)
             self.viewModel.gradient = gradient
             self.iconImageView.tintColor = self.viewModel.getMainColor()
             self.passcodeButton.tintColor = self.viewModel.getMainColor()
+            self.nameTextField.tintColor = self.viewModel.getMainColor()
             
             
             self.applyProgressBarLayout()
@@ -241,7 +264,7 @@ class TodoListViewController: UIViewController {
     ///
     /// - Parameter sender: The sender of the event
     @IBAction fileprivate func addTasksButtonPressed (_ sender: UIButton) {
-        let newTodoTaskViewController = ViewControllerFactory.makeTodoTaskViewController(WithViewModel: nil, AndGradient: viewModel.gradient)
+        let newTodoTaskViewController = ViewControllerFactory.makeTodoTaskViewController(WithViewModel: nil, ForList: viewModel.id, AndGradient: viewModel.gradient)
         self.navigationController?.present(newTodoTaskViewController, animated: true, completion: nil)
     }
     
@@ -267,6 +290,7 @@ class TodoListViewController: UIViewController {
     
     /// Called when the close button in the navigation bar is pressed
     @objc private func closeButtonPressed () {
+        viewModel.updateListViewModel()
         self.dismiss(animated: true, completion: nil)
     }
 }
@@ -280,7 +304,8 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: TodoTaskHeaderCell = .fromNib()
-        headerView.setTitle("\(Array(sortedTaskViewModel)[section])")
+        let dateString = dateFormatter.string(from: Array(sortedTaskViewModel)[section].key)
+        headerView.setTitle(dateString)
         return headerView
     }
     
@@ -306,16 +331,29 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         let key = Array(sortedTaskViewModel.keys)[indexPath.section]
         let taskViewModel = sortedTaskViewModel[key]![indexPath.row]
         
-        cell.applyData(title: taskViewModel.taskDescription, isTimerSet: taskViewModel.isTimerSet, isDone: taskViewModel.isDone)
+        cell.applyData(taskViewModel)
         
-        return UITableViewCell()
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let key = Array(sortedTaskViewModel.keys)[indexPath.section]
         let taskViewModel = sortedTaskViewModel[key]![indexPath.row]
         
-        let todoTaskViewController = ViewControllerFactory.makeTodoTaskViewController(WithViewModel: taskViewModel, AndGradient: viewModel.gradient)
-        self.navigationController?.pushViewController(todoTaskViewController, animated: true)
+        let todoTaskViewController = ViewControllerFactory.makeTodoTaskViewController(WithViewModel: taskViewModel, ForList: taskViewModel.listId, AndGradient: viewModel.gradient)
+        self.navigationController?.present(todoTaskViewController, animated: true, completion: nil)
+    }
+}
+
+extension TodoListViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        viewModel.title = textField.text ?? Constants.Strings.namePlaceholderKey.localized
+        textField.resignFirstResponder()
+        return false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        viewModel.title = textField.text ?? Constants.Strings.namePlaceholderKey.localized
     }
 }

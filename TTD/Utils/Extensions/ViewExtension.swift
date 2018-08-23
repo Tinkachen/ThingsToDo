@@ -8,49 +8,56 @@
 
 import UIKit
 
+private enum Constants {
+    
+    static let gradientLayerName = "gradientLayer"
+}
+
 extension UIView {
     
     /// Applies a gradient on the view
     ///
     /// - Parameter colors: The colors for the gradient
-    func applyGradient (colors: [CGColor]) {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.name = "gradientLayer"
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.frame = self.bounds
-        gradientLayer.colors = colors
-        self.layer.insertSublayer(gradientLayer, at: 0)
-    }
-    
-    /// Applies a gradient on the view
-    ///
-    /// - Parameter colors: The colors for the gradient
-    func applyGradient (colors: [CGColor], WithCornerRadius cornerRadius: CGFloat) {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.name = "gradientLayer"
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.frame = self.bounds
+    /// - Parameter cornerRadius: (optional) Corner radius for the layer
+    func applyGradient (colors: [CGColor], WithCornerRadius cornerRadius: CGFloat = 0) {
+        let gradientLayer = getGradientLayer()
         gradientLayer.colors = colors
         gradientLayer.cornerRadius = cornerRadius
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
     
-    /// <#Description#>
+    /// Removes the gradient layer
     func removeGradientLayer () {
         if let layers = self.layer.sublayers {
             for layer in layers {
-                if (layer.name == "gradientLayer") {
+                if (layer.name == Constants.gradientLayerName) {
                     layer.removeFromSuperlayer()
                 }
             }
         }
     }
     
-    func transitToGradient (from: [CGColor], to: [CGColor]) {
+    /// Searches the sublayers for the gradient layer
+    ///
+    /// - Returns: The gradient layer
+    func getGradientLayer () -> CAGradientLayer {
+        if let layers = self.layer.sublayers {
+            for layer in layers {
+                if (layer.name == Constants.gradientLayerName) {
+                    return layer as! CAGradientLayer
+                }
+            }
+        }
+        
         let gradientLayer = CAGradientLayer()
-        gradientLayer.name = "gradientLayer"
+        gradientLayer.name = Constants.gradientLayerName
         gradientLayer.locations = [0.0, 1.0]
         gradientLayer.frame = self.bounds
+        return gradientLayer
+    }
+    
+    func transitToGradient (from: [CGColor], to: [CGColor]) {
+        let gradientLayer = getGradientLayer()
         gradientLayer.colors = from
         self.layer.insertSublayer(gradientLayer, at: 0)
     

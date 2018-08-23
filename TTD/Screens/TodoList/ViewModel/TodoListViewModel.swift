@@ -31,19 +31,19 @@ struct TodoListViewModel {
     /// The tasks
     var tasks: [TodoTaskViewModel]?
     
-    /// <#Description#>
+    /// Updates the stored list view model
     func updateListViewModel () {
         TodoListService.updateListViewModel(self)
     }
     
-    /// <#Description#>
+    /// Deletes the stored list view model
     func deleteListViewModel () {
         TodoListService.deleteListViewModel(self)
     }
     
-    /// <#Description#>
+    /// Calculates the percentage of the done state
     ///
-    /// - Returns: <#return value description#>
+    /// - Returns: The done percentage raw value
     func getDonePercentage () -> Float {
         var doneItems = 0
         
@@ -58,20 +58,23 @@ struct TodoListViewModel {
         return Float(doneItems)
     }
     
-    /// <#Description#>
+    /// Requests the image of the view model
     ///
-    /// - Returns: <#return value description#>
+    /// - Returns: The image
     func image () -> UIImage? {
         return Icons.getIcon(icon)
     }
     
-    /// <#Description#>
+    /// Requests the main color of the gradient
     ///
-    /// - Returns: <#return value description#>
+    /// - Returns: The color
     func getMainColor () -> UIColor {
         return Themes.getTheme(gradient).main
     }
     
+    /// Requests the gradient informations
+    ///
+    /// - Returns: The gradient
     func getGradient () -> [CGColor] {
         return Themes.getTheme(gradient).gradient
     }

@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
     
-    /// <#Description#>
+    /// To call localized strings easier
     var localized: String {
         return NSLocalizedString(self, comment: "")
     }

@@ -24,13 +24,13 @@ private enum Constants {
         static let notesPlaceholderKey = "NTTVC_notes_placeholder"
     }
     
-    /// <#Description#>
+    /// The size of the button
     static let buttonSize = CGSize(width: 44, height: 44)
     
-    /// <#Description#>
+    /// The bottom constraint of the floating button
     static let floatingButtonBottomConstraintConstant: CGFloat = 100
     
-    /// <#Description#>
+    /// The trailing constraint of the floating button
     static let floatingButtonTrailingConstraintConstant: CGFloat = 25
 }
 
@@ -54,16 +54,16 @@ class TodoTaskViewController: UIViewController {
     /// The floating button
     @IBOutlet fileprivate weak var floatingButton: UIButton!
     
-    /// <#Description#>
+    /// The floating button bottom constraint
     @IBOutlet fileprivate weak var floatingButtonBottomConstraint: NSLayoutConstraint!
     
-    /// <#Description#>
+    /// The floating button aspect ration constraint
     @IBOutlet fileprivate weak var floatingButtonAspectRatioConstraint: NSLayoutConstraint!
     
-    /// <#Description#>
+    /// The floating button leading constraint
     @IBOutlet fileprivate weak var floatingButtonLeadingConstraint: NSLayoutConstraint!
     
-    /// <#Description#>
+    /// The floating button trailing constraint
     @IBOutlet fileprivate weak var floatingButtonTrailingConstraint: NSLayoutConstraint!
     
     
@@ -137,9 +137,9 @@ class TodoTaskViewController: UIViewController {
     
     // MARK: - Keyboard Notification Actions
     
-    /// <#Description#>
+    /// Observer call when the keyboard will be shown
     ///
-    /// - Parameter notification: <#notification description#>
+    /// - Parameter notification: The notification
     @objc private func keyboardShows (notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             animateFloat(forKeyboardSize: keyboardSize)
@@ -147,14 +147,17 @@ class TodoTaskViewController: UIViewController {
         }
     }
     
+    /// Animates the floating button to the new position
+    ///
+    /// - Parameter keyboardSize: The size of the keyboard
     private func animateFloat (forKeyboardSize keyboardSize: CGRect) {
         UIView.animate(withDuration: 0.25, animations: {
             self.floatingButtonBottomConstraint.constant = keyboardSize.height + Constants.buttonSize.height
             self.floatingButtonAspectRatioConstraint.isActive = false
             self.floatingButtonLeadingConstraint.isActive = true
             self.floatingButtonTrailingConstraint.constant = 0
-            self.floatingButton.applyGradient(colors: Themes.getTheme(self.gradient).gradient, WithCornerRadius: self.floatingButton.layer.cornerRadius)
-            
+//            self.floatingButton.applyGradient(colors: Themes.getTheme(self.gradient).gradient, WithCornerRadius: self.floatingButton.layer.cornerRadius)
+            self.floatingButton.setImage(CAGradientLayer(frame: self.floatingButton.frame, colors: Themes.getTheme(self.gradient).gradient).createGradientImage(), for: .normal)
             self.applyLayoutForFloatingButton(false)
             
             self.view.layoutIfNeeded()
@@ -163,9 +166,9 @@ class TodoTaskViewController: UIViewController {
         }
     }
     
-    /// <#Description#>
+    /// Observer call when the keybaord will be hidden
     ///
-    /// - Parameter notification: <#notification description#>
+    /// - Parameter notification: The notification
     @objc private func keyboardHides (notification: Notification) {
         
     }

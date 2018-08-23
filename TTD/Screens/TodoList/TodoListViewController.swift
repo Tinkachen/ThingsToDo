@@ -190,7 +190,7 @@ class TodoListViewController: UIViewController {
         addTodoTaskFloatingButton.layer.shadowRadius = 5
     }
     
-    /// <#Description#>
+    /// Applys the layout to the progress bar
     private func applyProgressBarLayout () {
         
         progressPercentLabel.text =  "\(Int(viewModel.getDonePercentage() * 100)) %"
@@ -204,7 +204,7 @@ class TodoListViewController: UIViewController {
         progressBar.progressImage = CAGradientLayer(frame: progressBar.frame, colors: viewModel.getGradient()).createGradientImage()
     }
     
-    /// <#Description#>
+    /// Applys the layout to the passcode button
     private func applyPasscodeButtonLayout () {
         self.passcodeButton.tintColor = viewModel.getMainColor()
         passcodeButton.setImage(viewModel.passcode != nil ? Constants.Images.lockItem : Constants.Images.unlockItem, for: .normal)

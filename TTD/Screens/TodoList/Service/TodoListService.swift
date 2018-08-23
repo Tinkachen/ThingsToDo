@@ -152,9 +152,9 @@ struct TodoListService: MainService {
         }
     }
     
-    /// <#Description#>
+    /// Deletes the list view model
     ///
-    /// - Parameter viewModel: <#viewModel description#>
+    /// - Parameter viewModel: The view model to be deleted
     static func deleteListViewModel (_ viewModel: TodoListViewModel) {
         guard let contextUnwrapped = context else {
             print(ErrorMessage.noContext)

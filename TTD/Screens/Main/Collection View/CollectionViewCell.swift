@@ -64,7 +64,7 @@ class CollectionViewCell: UICollectionViewCell {
         containerView.layer.shadowRadius = 5
     }
     
-    /// <#Description#>
+    /// Sets up the task label
     private func setupTaskLabel () {
         
         if let tasks = viewModel.tasks {
@@ -117,7 +117,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     // Actions
     
-    /// <#Description#>
+    /// Called when the action button of the cell was pressed
     @IBAction fileprivate func cellActionButtonPressed () {
         deleteCallback()
     }

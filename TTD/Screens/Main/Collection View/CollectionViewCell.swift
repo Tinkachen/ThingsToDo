@@ -14,6 +14,8 @@ private enum Constants {
     enum Strings {
         static let tasksStringKey = "MVC_CVC_tasks"
     }
+    
+    static let progressBarHeight: CGFloat = 5
 }
 
 /// The Collection View Cell for the main view controller
@@ -39,16 +41,13 @@ class CollectionViewCell: UICollectionViewCell {
     /// The title label
     @IBOutlet fileprivate weak var descriptionLabel: UILabel!
     
-    /// The progress background view
-    @IBOutlet fileprivate weak var progressBackgroundView: UIView!
+    /// The progress view
+    @IBOutlet fileprivate weak var progressBar: UIProgressView!
     
     /// The progress percent label
     @IBOutlet fileprivate weak var progressPercentLabel: UILabel!
     
     // MARK: - Variables
-    
-    /// The progress indictator view
-    fileprivate var progressIndicatorView: UIView!
     
     /// The view model
     private var viewModel: TodoListViewModel!
@@ -89,21 +88,16 @@ class CollectionViewCell: UICollectionViewCell {
         badgeImageView.image = viewModel.image()
         badgeImageView.tintColor = viewModel.getMainColor()
         
-        // Setup Progress View
-        progressBackgroundView.layer.cornerRadius = progressBackgroundView.bounds.height / 2
-        progressBackgroundView.backgroundColor = .lightGray
+        progressPercentLabel.text = "\(Int(viewModel.getDonePercentage() * 100)) %"
         
-        progressIndicatorView = UIView(frame:
-            CGRect(x: 0, y: 0,
-                   width: progressBackgroundView.bounds.width,
-                   height: progressBackgroundView.bounds.height))
-        progressBackgroundView.addSubview(progressIndicatorView)
+        progressBar.layer.cornerRadius = Constants.progressBarHeight / 2
+        progressBar.clipsToBounds = true
+        progressBar.layer.sublayers![1].cornerRadius = Constants.progressBarHeight / 2
+        progressBar.subviews[1].clipsToBounds = true
+        progressBar.setProgress(viewModel.getDonePercentage(), animated: true)
+        progressBar.trackTintColor = .lightGray
+        progressBar.progressImage = CAGradientLayer(frame: progressBar.frame, colors: viewModel.getGradient()).createGradientImage()
         
-        progressPercentLabel.text = String(Int(viewModel.getDonePercentage() * 100))
-        progressIndicatorView.applyGradient(colors: viewModel.getGradient(), WithCornerRadius: progressBackgroundView.layer.cornerRadius)
-        progressIndicatorView.frame = CGRect(x: 0, y: 0,
-                                             width: progressBackgroundView.bounds.width * viewModel.getDonePercentage(),
-                                             height: progressIndicatorView.bounds.height)
     }
     
     override func layoutSubviews() {

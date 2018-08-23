@@ -26,13 +26,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gra-a3-crk">
                                 <rect key="frame" x="9.5" y="10" width="230" height="340"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6h4-ku-WNH">
-                                        <rect key="frame" x="15" y="320" width="159.5" height="5"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="5" id="3UI-jG-MjU"/>
-                                        </constraints>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aA6-FH-fxg">
                                         <rect key="frame" x="15" y="15" width="40" height="40"/>
                                         <subviews>
@@ -76,6 +69,12 @@
                                             <action selector="cellActionButtonPressed" destination="a6w-10-0CT" eventType="touchUpInside" id="Q3T-4T-ZV9"/>
                                         </connections>
                                     </button>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Orf-Sh-ztM">
+                                        <rect key="frame" x="15" y="320" width="159.5" height="5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="5" id="xEs-Ej-B9j"/>
+                                        </constraints>
+                                    </progressView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -83,18 +82,18 @@
                                     <constraint firstItem="QRh-wo-rFi" firstAttribute="centerY" secondItem="aA6-FH-fxg" secondAttribute="centerY" id="14c-MP-AHS"/>
                                     <constraint firstItem="QRh-wo-rFi" firstAttribute="height" secondItem="aA6-FH-fxg" secondAttribute="height" id="8oH-yf-Tas"/>
                                     <constraint firstAttribute="trailing" secondItem="u7h-0r-w7B" secondAttribute="trailing" constant="16" id="Dgn-SI-Zl9"/>
+                                    <constraint firstItem="Orf-Sh-ztM" firstAttribute="top" secondItem="GQb-ge-JB3" secondAttribute="bottom" constant="30" id="Euz-UA-oEq"/>
+                                    <constraint firstItem="Orf-Sh-ztM" firstAttribute="leading" secondItem="GQb-ge-JB3" secondAttribute="leading" id="GUW-KB-kpl"/>
                                     <constraint firstAttribute="trailing" secondItem="QRh-wo-rFi" secondAttribute="trailing" constant="15" id="K4b-1T-BoM"/>
                                     <constraint firstItem="aA6-FH-fxg" firstAttribute="leading" secondItem="Gra-a3-crk" secondAttribute="leading" constant="15" id="Ott-09-koA"/>
-                                    <constraint firstItem="6h4-ku-WNH" firstAttribute="top" secondItem="GQb-ge-JB3" secondAttribute="bottom" constant="30" id="YpU-Pc-9K9"/>
-                                    <constraint firstItem="6h4-ku-WNH" firstAttribute="leading" secondItem="Gra-a3-crk" secondAttribute="leading" constant="15" id="aq4-Ou-YFw"/>
                                     <constraint firstItem="GQb-ge-JB3" firstAttribute="leading" secondItem="Gra-a3-crk" secondAttribute="leading" constant="15" id="b9u-5M-ikk"/>
                                     <constraint firstItem="5Tc-Vp-Mla" firstAttribute="leading" secondItem="Gra-a3-crk" secondAttribute="leading" constant="15" id="cX9-TB-e9I"/>
                                     <constraint firstItem="QRh-wo-rFi" firstAttribute="width" secondItem="aA6-FH-fxg" secondAttribute="width" id="czQ-pa-ilm"/>
-                                    <constraint firstItem="u7h-0r-w7B" firstAttribute="leading" secondItem="6h4-ku-WNH" secondAttribute="trailing" constant="10" id="hIv-xc-b2x"/>
+                                    <constraint firstItem="u7h-0r-w7B" firstAttribute="centerY" secondItem="Orf-Sh-ztM" secondAttribute="centerY" id="ens-UM-kNz"/>
                                     <constraint firstAttribute="trailing" secondItem="5Tc-Vp-Mla" secondAttribute="trailing" constant="15" id="kli-gj-WFA"/>
+                                    <constraint firstAttribute="bottom" secondItem="Orf-Sh-ztM" secondAttribute="bottom" constant="15" id="mMF-Ym-Uzk"/>
                                     <constraint firstItem="GQb-ge-JB3" firstAttribute="top" secondItem="5Tc-Vp-Mla" secondAttribute="bottom" constant="5" id="mYC-og-UUh"/>
-                                    <constraint firstItem="u7h-0r-w7B" firstAttribute="centerY" secondItem="6h4-ku-WNH" secondAttribute="centerY" id="x8i-m8-bM1"/>
-                                    <constraint firstAttribute="bottom" secondItem="6h4-ku-WNH" secondAttribute="bottom" constant="15" id="xz0-SB-jeq"/>
+                                    <constraint firstItem="u7h-0r-w7B" firstAttribute="leading" secondItem="Orf-Sh-ztM" secondAttribute="trailing" constant="10" id="uzd-FX-GTd"/>
                                     <constraint firstItem="aA6-FH-fxg" firstAttribute="top" secondItem="Gra-a3-crk" secondAttribute="top" constant="15" id="y78-0m-BOH"/>
                                 </constraints>
                             </view>
@@ -122,7 +121,7 @@
                 <outlet property="badgeImageView" destination="Bfh-3r-VE5" id="heM-r5-uCP"/>
                 <outlet property="containerView" destination="Gra-a3-crk" id="gXK-nv-kMo"/>
                 <outlet property="descriptionLabel" destination="GQb-ge-JB3" id="HEd-g1-BVg"/>
-                <outlet property="progressBackgroundView" destination="6h4-ku-WNH" id="dlQ-bf-2IL"/>
+                <outlet property="progressBar" destination="Orf-Sh-ztM" id="A1P-Yx-a4i"/>
                 <outlet property="progressPercentLabel" destination="u7h-0r-w7B" id="QJS-BL-Y4B"/>
                 <outlet property="taskLabel" destination="5Tc-Vp-Mla" id="JWf-3U-bDD"/>
             </connections>

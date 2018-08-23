@@ -44,18 +44,18 @@ struct TodoListViewModel {
     /// <#Description#>
     ///
     /// - Returns: <#return value description#>
-    func getDonePercentage () -> CGFloat {
+    func getDonePercentage () -> Float {
         var doneItems = 0
         
         if let tasksUnwrapped = tasks {
             tasksUnwrapped.forEach {
                 doneItems = doneItems + ($0.isDone ? 1 : 0)
             }
-            
-            return tasksUnwrapped.count == 0 ? CGFloat(0) : CGFloat(doneItems/tasksUnwrapped.count)
+
+            return tasksUnwrapped.count == 0 ? Float(0) : Float(doneItems/tasksUnwrapped.count)
         }
-        
-        return CGFloat(doneItems)
+
+        return Float(doneItems)
     }
     
     /// <#Description#>

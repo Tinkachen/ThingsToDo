@@ -64,6 +64,9 @@ private enum Constants {
     
     /// The bottom constraint constant for the floating button
     static let foatingButtonBottomConstraint: CGFloat = 100
+    
+    /// The height of the progress bar
+    static let progressBarHeight: CGFloat = 5
 }
 
 /// Interface for creating a new todo list
@@ -89,8 +92,8 @@ class TodoListViewController: UIViewController {
     /// The button for enable or disable passcode security
     @IBOutlet fileprivate weak var passcodeButton: UIButton!
     
-    /// The progress background view
-    @IBOutlet fileprivate weak var progressBackgroundView: UIView!
+    /// The progress view
+    @IBOutlet fileprivate weak var progressBar: UIProgressView!
     
     /// The progress percent label
     @IBOutlet fileprivate weak var progressPercentLabel: UILabel!
@@ -161,17 +164,17 @@ class TodoListViewController: UIViewController {
         self.gradientContainer.layer.shadowRadius = 5
         
         // Icon
-        self.iconContainer.layer.cornerRadius = self.iconImageView.bounds.height / 2
+        self.iconContainer.layer.cornerRadius = self.iconContainer.frame.width / 2
         self.iconContainer.layer.borderColor = UIColor.lightGray.cgColor
         self.iconContainer.layer.borderWidth = 1.0
         self.iconImageView.image = Icons.getIcon(viewModel.icon)
+        self.iconImageView.tintColor = viewModel.getMainColor()
         
         // Tasks
         self.taskLabel.text = "\(viewModel.tasks?.count ?? 0) \(Constants.Strings.tasksKey.localized)"
         
-        // Passcode Button
-        updatePasscodeImage(isLocked: viewModel.passcode != nil ? true : false)
-        
+        applyProgressBarLayout()
+        applyPasscodeButtonLayout()
     }
     
     /// Applies the layout for the floating button
@@ -187,8 +190,24 @@ class TodoListViewController: UIViewController {
         addTodoTaskFloatingButton.layer.shadowRadius = 5
     }
     
-    private func updatePasscodeImage (isLocked: Bool) {
-        passcodeButton.setImage(isLocked ? Constants.Images.lockItem : Constants.Images.unlockItem, for: .normal)
+    /// <#Description#>
+    private func applyProgressBarLayout () {
+        
+        progressPercentLabel.text =  "\(Int(viewModel.getDonePercentage() * 100)) %"
+        
+        progressBar.layer.cornerRadius = Constants.progressBarHeight / 2
+        progressBar.clipsToBounds = true
+        progressBar.layer.sublayers![1].cornerRadius = Constants.progressBarHeight / 2
+        progressBar.subviews[1].clipsToBounds = true
+        progressBar.setProgress(viewModel.getDonePercentage(), animated: true)
+        progressBar.trackTintColor = .lightGray
+        progressBar.progressImage = CAGradientLayer(frame: progressBar.frame, colors: viewModel.getGradient()).createGradientImage()
+    }
+    
+    /// <#Description#>
+    private func applyPasscodeButtonLayout () {
+        self.passcodeButton.tintColor = viewModel.getMainColor()
+        passcodeButton.setImage(viewModel.passcode != nil ? Constants.Images.lockItem : Constants.Images.unlockItem, for: .normal)
     }
     
     // MARK: - Actions
@@ -208,6 +227,11 @@ class TodoListViewController: UIViewController {
             self.gradientContainer.removeGradientLayer()
             self.gradientContainer.applyGradient(colors: Themes.getTheme(gradient).gradient, WithCornerRadius: self.gradientContainer.layer.cornerRadius)
             self.viewModel.gradient = gradient
+            self.iconImageView.tintColor = self.viewModel.getMainColor()
+            self.passcodeButton.tintColor = self.viewModel.getMainColor()
+            
+            
+            self.applyProgressBarLayout()
             self.applyLayoutForFloatingButton()
         })
         choiceView.show(animated: true)
@@ -218,7 +242,6 @@ class TodoListViewController: UIViewController {
     /// - Parameter sender: The sender of the event
     @IBAction fileprivate func addTasksButtonPressed (_ sender: UIButton) {
         let newTodoTaskViewController = ViewControllerFactory.makeTodoTaskViewController(WithViewModel: nil, AndGradient: viewModel.gradient)
-//        self.navigationController?.pushViewController(newTodoTaskViewController, animated: true)
         self.navigationController?.present(newTodoTaskViewController, animated: true, completion: nil)
     }
     
@@ -227,21 +250,19 @@ class TodoListViewController: UIViewController {
     /// - Parameter sender: The sender of the event
     @IBAction fileprivate func saveWithPasscodeButtonPressed (_ sender: UIButton) {
         if viewModel.passcode != nil {
-            updatePasscodeImage(isLocked: false)
             viewModel.passcode = nil
         } else {
             passcodeButton.setImage(Constants.Images.lockItem, for: .normal)
             let passcodeViewConroller = ViewControllerFactory.makePasscodeViewController(withGradient: viewModel.gradient) { (passcode) in
                 guard let passcodeUnwrapped = passcode else {
                     self.viewModel.passcode = nil
-                    self.updatePasscodeImage(isLocked: false)
                     return
                 }
                 self.viewModel.passcode = passcodeUnwrapped
-                self.updatePasscodeImage(isLocked: true)
             }
             self.navigationController?.pushViewController(passcodeViewConroller, animated: true)
         }
+        self.applyPasscodeButtonLayout()
     }
     
     /// Called when the close button in the navigation bar is pressed

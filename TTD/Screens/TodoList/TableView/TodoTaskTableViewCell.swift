@@ -35,6 +35,11 @@ class TodoTaskTableViewCell: UITableViewCell {
     /// The image view for the timer
     @IBOutlet fileprivate weak var timerImageView: UIImageView!
     
+    // Variables
+    
+    /// The view model
+    private var viewModel: TodoTaskViewModel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -46,10 +51,15 @@ class TodoTaskTableViewCell: UITableViewCell {
     ///   - title: The title
     ///   - isTimerSet: The timer is set indicator
     ///   - isDone: The check box is on indicator
-    func applyData (title: String, isTimerSet: Bool, isDone: Bool) {
-        titleLabel.text = title
-        timerImageView.image = isTimerSet ? Constants.timerImage : nil
-        checkImageView.image = isDone ? Constants.checkImage : nil
+    func applyData (_ viewModel: TodoTaskViewModel) {
+        self.viewModel = viewModel
+        titleLabel.text = viewModel.taskDescription
+        timerImageView.image = viewModel.isTimerSet ? Constants.timerImage : nil
+        checkImageView.image = viewModel.isDone ? Constants.checkImage : nil
+        
+        checkImageView.isUserInteractionEnabled = true
+        checkBoxView.isUserInteractionEnabled = true
+        checkImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didSelectCheckBox)))
     }
     
     override func layoutSubviews() {
@@ -59,4 +69,12 @@ class TodoTaskTableViewCell: UITableViewCell {
         checkBoxView.layer.borderWidth = Constants.checkboxBorderWith
     }
     
+    // Actions
+    
+    /// Called when the check box is selected
+    @objc private func didSelectCheckBox () {
+        viewModel.isDone = !viewModel.isDone
+        checkImageView.image = viewModel.isDone ? Constants.checkImage : nil
+        viewModel.updateTaskViewModel()
+    }
 }

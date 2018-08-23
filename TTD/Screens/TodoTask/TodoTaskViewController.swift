@@ -11,8 +11,18 @@ import UIKit
 /// Private constants
 private enum Constants {
     
+    /// Constant images
+    enum Images {
+        
+        /// The close icon
+        static let closeIcon = #imageLiteral(resourceName: "CloseIcon")
+    }
+    
     /// Strings for the outlets
     enum Strings {
+        
+        /// The description text
+        static let descriptionTextKey = "NTTVC_description"
         
         /// The title for the view
         static let viewTitleKey = "NTTVC_title"
@@ -39,14 +49,26 @@ class TodoTaskViewController: UIViewController {
     
     // MARK: - Outlets
     
+    /// The scroll view
+    @IBOutlet fileprivate weak var scrollView: UIScrollView!
+    
+    /// The description label
+    @IBOutlet fileprivate weak var descriptionLabel: UILabel!
+    
     /// The text field for the name of the todo task
     @IBOutlet fileprivate weak var nameTextField: UITextField!
     
-    /// The image view for the list icon
-    @IBOutlet fileprivate weak var listIconImageView: UIImageView!
+    /// The topic name button
+    @IBOutlet fileprivate weak var topicNameButton: UIButton!
     
-    /// The name of the todo list
-    @IBOutlet fileprivate weak var listNameLabel: UILabel!
+    /// The schedule button
+    @IBOutlet fileprivate weak var scheduleButton: UIButton!
+    
+    /// The reminder button
+    @IBOutlet fileprivate weak var reminderButton: UIButton!
+    
+    /// The priority button
+    @IBOutlet fileprivate weak var priorityButton: UIButton!
     
     /// The text view for notes
     @IBOutlet fileprivate weak var notesTextView: UITextView!
@@ -82,12 +104,22 @@ class TodoTaskViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.isHidden = false
+        let closeItem = UIBarButtonItem(image: Constants.Images.closeIcon, style: .plain, target: self, action: #selector(closeButtonPressed))
+        closeItem.tintColor = .black
+        self.navigationItem.leftBarButtonItem = closeItem
         
         applyLayoutForFloatingButton()
         
         registerNotifications()
         
         nameTextField.delegate = self
+        nameTextField.text = viewModel.taskDescription
+        if viewModel.taskDescription.isEmpty {
+            nameTextField.becomeFirstResponder()
+        }
+
+        notesTextView.delegate = self
+        showPlaceholderIntextInput(viewModel.notes != "" ? false : true)
         
     }
     
@@ -118,7 +150,30 @@ class TodoTaskViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardHides(notification:)), name: Notification.Name.UIKeyboardWillHide, object: nil)
     }
     
+    /// Prep the text view with place holder design or with text input design
+    ///
+    /// - Parameter show: Shows the placeholder or not
+    fileprivate func showPlaceholderIntextInput (_ show: Bool) {
+        if show {
+            viewModel.notes = ""
+            notesTextView.text = Constants.Strings.notesPlaceholderKey.localized
+            notesTextView.textColor = .lightGray
+        } else {
+            viewModel.notes = notesTextView.text
+            notesTextView.text = notesTextView.text == Constants.Strings.notesPlaceholderKey.localized ? "" : notesTextView.text
+            notesTextView.textColor = .black
+        }
+    }
+    
     // MARK: - Actions
+    
+    /// Called when the close button in the navigation bar is pressed
+    @objc private func closeButtonPressed () {
+        if !viewModel.taskDescription.isEmpty {
+            viewModel.updateTaskViewModel()
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
     
     /// Adds the created task to the todo list
     ///
@@ -153,7 +208,7 @@ class TodoTaskViewController: UIViewController {
     private func animateFloat (forKeyboardSize keyboardSize: CGRect) {
         UIView.animate(withDuration: 0.25, animations: {
             self.floatingButtonBottomConstraint.constant = keyboardSize.height + Constants.buttonSize.height
-            self.floatingButtonAspectRatioConstraint.isActive = false
+            self.floatingButtonAspectRatioConstraint.constant = 1
             self.floatingButtonLeadingConstraint.isActive = true
             self.floatingButtonTrailingConstraint.constant = 0
 //            self.floatingButton.applyGradient(colors: Themes.getTheme(self.gradient).gradient, WithCornerRadius: self.floatingButton.layer.cornerRadius)
@@ -177,9 +232,35 @@ class TodoTaskViewController: UIViewController {
 // MARK: Text Field Delegate
 extension TodoTaskViewController: UITextFieldDelegate {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        viewModel.taskDescription = textField.text
         return true
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        viewModel.taskDescription = textField.text
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        viewModel.taskDescription = textField.text
+        textField.resignFirstResponder()
+        return false
+    }
+    
+}
+
+// MARK: - Extension Text View Delegate
+extension TodoTaskViewController: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        showPlaceholderIntextInput(false)
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            showPlaceholderIntextInput(true)
+        } else {
+            viewModel.notes = textView.text
+        }
+    }
 }

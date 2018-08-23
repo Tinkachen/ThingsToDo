@@ -21,7 +21,7 @@ class TodoTaskHeaderCell: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.backgroundColor = .lightGray
+        self.backgroundColor = .white
     }
     
     /// Sets the title for the header view
@@ -29,5 +29,6 @@ class TodoTaskHeaderCell: UIView {
     /// - Parameter title: The title for the header view (date)
     func setTitle (_ title: String) {
         self.dateLabel.text = title
+        self.dateLabel.textColor = .lightGray
     }
 }

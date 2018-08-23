@@ -25,7 +25,7 @@ private enum Constants {
         static let taskIdKey = "taskId"
         
         /// Key for the description
-        static let taskDescriptionKey = "taskDescriptionKey"
+        static let taskDescriptionKey = "taskDescription"
         
         /// Key for the end date
         static let taskEndDateKey = "taskEndDate"
@@ -38,6 +38,9 @@ private enum Constants {
         
         /// Key for the is done indicator
         static let isDoneKey = "isDone"
+        
+        /// Key for the notes
+        static let notesKey = "notes"
     }
 }
 
@@ -62,6 +65,7 @@ struct TodoTaskService: MainService {
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constants.KeyPaths.taskKey)
         
+        
         do {
             taskObjects = try contextUnwrapped.fetch(fetchRequest)
         } catch let error as Error {
@@ -72,13 +76,16 @@ struct TodoTaskService: MainService {
         if taskObjects.count > 0 { taskViewModels.removeAll() }
         
         taskObjects.forEach {
-            taskViewModels.append(TodoTaskViewModel(listId: $0.value(forKey: Constants.KeyPaths.listIdKey) as? String,
-                                                    taskId: $0.value(forKey: Constants.KeyPaths.taskIdKey) as? String,
-                                                    taskDescription: $0.value(forKey: Constants.KeyPaths.taskDescriptionKey) as? String,
-                                                    taskEndDate: $0.value(forKey: Constants.KeyPaths.taskEndDateKey) as? Date,
-                                                    isTimerSet: $0.value(forKey: Constants.KeyPaths.isTimerSetKey) as? Bool ?? false,
-                                                    priority: ($0.value(forKey: Constants.KeyPaths.priorityKey) as? Int).map { PriorityLevel(rawValue: $0) } ?? .none,
-                                                    isDone: $0.value(forKey: Constants.KeyPaths.isDoneKey) as? Bool ?? false))
+            if ($0.value(forKey: Constants.KeyPaths.listIdKey) as? String) == listId {
+                taskViewModels.append(TodoTaskViewModel(listId: $0.value(forKey: Constants.KeyPaths.listIdKey) as? String,
+                                                                taskId: $0.value(forKey: Constants.KeyPaths.taskIdKey) as? String,
+                                                                taskDescription: $0.value(forKey: Constants.KeyPaths.taskDescriptionKey) as? String,
+                                                                taskEndDate: $0.value(forKey: Constants.KeyPaths.taskEndDateKey) as? Date,
+                                                                isTimerSet: $0.value(forKey: Constants.KeyPaths.isTimerSetKey) as? Bool ?? false,
+                                                                priority: ($0.value(forKey: Constants.KeyPaths.priorityKey) as? Int).map { PriorityLevel(rawValue: $0) } ?? .none,
+                                                                isDone: $0.value(forKey: Constants.KeyPaths.isDoneKey) as? Bool ?? false,
+                                                                notes: ""))
+            }
         }
         
         return taskViewModels
@@ -110,6 +117,7 @@ struct TodoTaskService: MainService {
         vm.setValue(viewModel.isTimerSet, forKey: Constants.KeyPaths.isTimerSetKey)
         vm.setValue(viewModel.priority, forKey: Constants.KeyPaths.priorityKey)
         vm.setValue(viewModel.isDone, forKey: Constants.KeyPaths.isDoneKey)
+        vm.setValue(viewModel.notes, forKey: Constants.KeyPaths.notesKey)
         
         do {
             try contextUnwrapped.save()
@@ -129,6 +137,8 @@ struct TodoTaskService: MainService {
     ///   - viewModel: The view model for the update
     static func updateTaskViewModel (_ viewModel: TodoTaskViewModel) {
         
+        var found = false
+        
         taskObjects.forEach {
             if ($0.value(forKey: Constants.KeyPaths.taskIdKey) as? String) == viewModel.taskId &&
                ($0.value(forKey: Constants.KeyPaths.listIdKey) as? String) == viewModel.listId {
@@ -139,11 +149,45 @@ struct TodoTaskService: MainService {
                 $0.setValue(viewModel.isTimerSet, forKey: Constants.KeyPaths.isTimerSetKey)
                 $0.setValue(viewModel.priority, forKey: Constants.KeyPaths.priorityKey)
                 $0.setValue(viewModel.isDone, forKey: Constants.KeyPaths.isDoneKey)
+                $0.setValue(viewModel.notes, forKey: Constants.KeyPaths.notesKey)
+                found = true
             }
+        }
+        
+        if found == false {
+            saveNewTaskViewModel(viewModel) { (error) in
+                if let error = error {
+                    print(error)
+                }
+            }
+            return
         }
         
         for i in 0..<taskViewModels.count {
             taskViewModels[i] = viewModel
+        }
+    }
+    
+    /// Deletes the task view model
+    ///
+    /// - Parameter viewModel: The view model to be deleted
+    static func deleteTaskViewModel (_ viewModel: TodoTaskViewModel) {
+        guard let contextUnwrapped = context else {
+            print(ErrorMessage.noContext)
+            return
+        }
+        
+        taskObjects.forEach {
+            if ($0.value(forKey: Constants.KeyPaths.taskIdKey) as? String) == viewModel.taskId {
+                contextUnwrapped.delete($0)
+                taskViewModels = getTaskViewModels(forList: viewModel.taskId)
+            }
+        }
+        
+        do {
+            try contextUnwrapped.save()
+        } catch let error as Error {
+            print(error)
         }
     }
 }

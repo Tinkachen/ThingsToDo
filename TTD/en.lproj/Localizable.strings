@@ -11,6 +11,8 @@
 
 /* Main View Controller */
 "MVC_welcome_user" = "Hello, %@";
+"MVC_alert_delete" = "Delete";
+"MVC_alert_cancel" = "Cancel";
 
 /* Main View Controller Collection View Cell */
 "MVC_CVC_tasks" = "Tasks";

@@ -55,6 +55,9 @@ struct TodoTaskViewModel {
     /// Indicator if the task has been done
     var isDone: Bool = false
     
+    /// The notes
+    var notes: String = ""
+    
     /// The date formatter
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -68,5 +71,20 @@ struct TodoTaskViewModel {
     /// - Returns: The formatted date
     func formattedDate () -> String {
         return "\(dateFormatter.string(from: taskEndDate)) Uhr"
+    }
+    
+    /// Date for sorting without time
+    ///
+    /// - Returns: The  date without time
+    func dateForSorting () -> Date {
+        guard let date = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: taskEndDate)) else {
+            fatalError("Failed to strip time from Date object")
+        }
+        return date
+    }
+    
+    /// Updates the stored list view model
+    func updateTaskViewModel () {
+        TodoTaskService.updateTaskViewModel(self)
     }
 }

@@ -35,6 +35,8 @@
 "NTTVC_description" = "What tasks are you planning to perform?";
 "NTTVC_name_placeholer" = "What tasks are you planning to perform?";
 "NTTVC_notes_placeholder" = "Would you write some notes to the task?";
+"NTTVC_reminder" = "Reminder";
+"NTTVC_priority" = "Priority";
 
 /* Passcode View Controller */
 "PCVC_new_passcode" = "Enter new passcode";

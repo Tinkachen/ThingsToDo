@@ -58,6 +58,7 @@
 		49540AD7211DB72200280445 /* ChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49540AD6211DB72200280445 /* ChoiceView.swift */; };
 		49540AD9211DB72A00280445 /* ChoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49540AD8211DB72A00280445 /* ChoiceView.xib */; };
 		49BBE63A212D58FA006B9297 /* TodoTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BBE639212D58FA006B9297 /* TodoTaskViewModel.swift */; };
+		49BBE63E212FFDB1006B9297 /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BBE63D212FFDB1006B9297 /* ButtonExtension.swift */; };
 		7B3EBEBD0CA5373C723A9DE2 /* Pods_TTDTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9275B8B8A560F641D4CA9F6F /* Pods_TTDTests.framework */; };
 		A20A9B9EB4256C304F192B40 /* Pods_TTD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AED618AC996A8397C9E96C4 /* Pods_TTD.framework */; };
 /* End PBXBuildFile section */
@@ -133,6 +134,7 @@
 		49540AD6211DB72200280445 /* ChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceView.swift; sourceTree = "<group>"; };
 		49540AD8211DB72A00280445 /* ChoiceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceView.xib; sourceTree = "<group>"; };
 		49BBE639212D58FA006B9297 /* TodoTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTaskViewModel.swift; sourceTree = "<group>"; };
+		49BBE63D212FFDB1006B9297 /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
 		4AED618AC996A8397C9E96C4 /* Pods_TTD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TTD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82307FD9CB751A6B5970615B /* Pods-TTD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TTD/Pods-TTD.debug.xcconfig"; sourceTree = "<group>"; };
 		9275B8B8A560F641D4CA9F6F /* Pods_TTDTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TTDTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +170,7 @@
 				231535CB20CC00BC00883266 /* CollectionViewExtension.swift */,
 				49540AD2211DB63700280445 /* Modal.swift */,
 				235AF2FA212B31F300D15FCE /* StringExtension.swift */,
+				49BBE63D212FFDB1006B9297 /* ButtonExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 				2357807120A8C669001DBFC4 /* TextFieldExtension.swift in Sources */,
 				23F12B8A20CF08DD00D6BA39 /* MainService.swift in Sources */,
 				235AF2FB212B31F300D15FCE /* StringExtension.swift in Sources */,
+				49BBE63E212FFDB1006B9297 /* ButtonExtension.swift in Sources */,
 				23502BD120B2F14600DA00A9 /* CollectionViewCell.swift in Sources */,
 				23F12B7F20CEFA4500D6BA39 /* TodoTaskViewController.swift in Sources */,
 				23D9D29020D6ED360050E8E9 /* ChoiceViewCollectionViewCell.swift in Sources */,

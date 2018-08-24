@@ -52,7 +52,7 @@ struct ViewModelFactory {
                                           taskDescription: Constants.Strings.newTodoTaskKey.localized,
                                           taskEndDate: Date(),
                                           isTimerSet: false,
-                                          priority: .none,
+                                          priority: .no,
                                           isDone: false,
                                           notes: "")
         return viewModel

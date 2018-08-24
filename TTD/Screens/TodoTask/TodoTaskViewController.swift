@@ -16,6 +16,18 @@ private enum Constants {
         
         /// The close icon
         static let closeIcon = #imageLiteral(resourceName: "CloseIcon")
+        
+        /// The reminder icon
+        static let remimderIcon = #imageLiteral(resourceName: "timer")
+        
+        /// The calendar icon
+        static let calendarIcon = #imageLiteral(resourceName: "calendar")
+        
+        /// The priority icon
+        static let priorityIcon = #imageLiteral(resourceName: "exclaration_mark")
+        
+        /// The note icon
+        static let noteIcon = #imageLiteral(resourceName: "note")
     }
     
     /// Strings for the outlets
@@ -32,6 +44,15 @@ private enum Constants {
         
         /// The placeholder for the notes
         static let notesPlaceholderKey = "NTTVC_notes_placeholder"
+        
+        /// The text for the reminder
+        static let reminderTextKey = "NTTVC_reminder"
+        
+        /// The priority localization key
+        static let priorityTextKey = "NTTVC_priority"
+        
+        /// The note localization key
+        static let noteTextKey = "NTTVC_note"
     }
     
     /// The size of the button
@@ -58,20 +79,32 @@ class TodoTaskViewController: UIViewController {
     /// The text field for the name of the todo task
     @IBOutlet fileprivate weak var nameTextField: UITextField!
     
-    /// The topic name button
-    @IBOutlet fileprivate weak var topicNameButton: UIButton!
+    /// Topic
+    @IBOutlet fileprivate weak var topicContainerView: UIView!
+    @IBOutlet fileprivate weak var topicImageView: UIImageView!
+    @IBOutlet fileprivate weak var topicTitleLabel: UILabel!
     
-    /// The schedule button
-    @IBOutlet fileprivate weak var scheduleButton: UIButton!
+    // Schedule
+    @IBOutlet fileprivate weak var scheduleContainerView: UIView!
+    @IBOutlet fileprivate weak var scheduleTitleLabel: UILabel!
+    @IBOutlet fileprivate weak var scheduleImageView: UIImageView!
     
-    /// The reminder button
-    @IBOutlet fileprivate weak var reminderButton: UIButton!
+    // Reminder
+    @IBOutlet fileprivate weak var reminderContainerView: UIView!
+    @IBOutlet fileprivate weak var reminderImageView: UIImageView!
+    @IBOutlet fileprivate weak var reminderTitleLabel: UILabel!
+    @IBOutlet fileprivate weak var reminderSwitch: UISwitch!
     
-    /// The priority button
-    @IBOutlet fileprivate weak var priorityButton: UIButton!
+    // Priority
+    @IBOutlet fileprivate weak var priorityContainerView: UIView!
+    @IBOutlet fileprivate weak var priorityImageView: UIImageView!
+    @IBOutlet fileprivate weak var priorityTitleLabel: UILabel!
+    @IBOutlet fileprivate weak var prioritySegmentedControl: UISegmentedControl!
     
-    /// The text view for notes
+    /// Note
     @IBOutlet fileprivate weak var notesTextView: UITextView!
+    @IBOutlet fileprivate weak var noteTitleLabel: UILabel!
+    @IBOutlet fileprivate weak var noteImageView: UIImageView!
     
     /// The floating button
     @IBOutlet fileprivate weak var floatingButton: UIButton!
@@ -88,7 +121,6 @@ class TodoTaskViewController: UIViewController {
     /// The floating button trailing constraint
     @IBOutlet fileprivate weak var floatingButtonTrailingConstraint: NSLayoutConstraint!
     
-    
     // MARK: - Variables
     
     /// The service
@@ -97,23 +129,27 @@ class TodoTaskViewController: UIViewController {
     /// The view model
     var viewModel: TodoTaskViewModel!
     
-    /// The gradient
-    var gradient: Gradient!
+    /// The view model of the parent todo list
+    var parentViewModel: TodoListViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.isHidden = false
-        let closeItem = UIBarButtonItem(image: Constants.Images.closeIcon, style: .plain, target: self, action: #selector(closeButtonPressed))
-        closeItem.tintColor = .black
-        self.navigationItem.leftBarButtonItem = closeItem
+        setupNavigationBar()
         
         applyLayoutForFloatingButton()
         
         registerNotifications()
         
+        setupTopic()
+        setupPriority()
+        setupReminder()
+        setupSchedule()
+        setupNote()
+        
         nameTextField.delegate = self
         nameTextField.text = viewModel.taskDescription
+        nameTextField.tintColor = parentViewModel.getMainColor()
         if viewModel.taskDescription.isEmpty {
             nameTextField.becomeFirstResponder()
         }
@@ -121,13 +157,27 @@ class TodoTaskViewController: UIViewController {
         notesTextView.delegate = self
         showPlaceholderIntextInput(viewModel.notes != "" ? false : true)
         
+        descriptionLabel.text = Constants.Strings.descriptionTextKey.localized
+        descriptionLabel.textColor = .midGray
+    }
+    
+    private func setupNavigationBar () {
+        self.navigationController?.navigationBar.isHidden = false
+        let closeItem = UIBarButtonItem(image: Constants.Images.closeIcon, style: .plain, target: self, action: #selector(closeButtonPressed))
+        closeItem.tintColor = .midGray
+        self.navigationItem.leftBarButtonItem = closeItem
+        
+        self.title = Constants.Strings.viewTitleKey.localized
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     /// Applies the layout for the floating button
     private func applyLayoutForFloatingButton (_ round: Bool = true) {
         if round {
             floatingButton.layer.cornerRadius = floatingButton.bounds.height / 2
-            floatingButton.applyGradient(colors: Themes.getTheme(gradient).gradient, WithCornerRadius: floatingButton.layer.cornerRadius)
+            floatingButton.applyGradient(colors: parentViewModel.getGradient(), WithCornerRadius: floatingButton.layer.cornerRadius)
             floatingButton.layer.borderWidth = 1.0
             floatingButton.layer.borderColor = UIColor.lightGray.cgColor
             floatingButton.layer.shadowColor = UIColor.black.cgColor
@@ -136,7 +186,7 @@ class TodoTaskViewController: UIViewController {
             floatingButton.layer.shadowRadius = 5
         } else {
             floatingButton.layer.cornerRadius = 0
-            floatingButton.applyGradient(colors: Themes.getTheme(gradient).gradient)
+            floatingButton.applyGradient(colors: parentViewModel.getGradient())
             floatingButton.layer.borderWidth = 0
             floatingButton.layer.borderColor = UIColor.clear.cgColor
             floatingButton.layer.shadowRadius = 0
@@ -157,12 +207,77 @@ class TodoTaskViewController: UIViewController {
         if show {
             viewModel.notes = ""
             notesTextView.text = Constants.Strings.notesPlaceholderKey.localized
-            notesTextView.textColor = .lightGray
+            notesTextView.textColor = .midGray
         } else {
             viewModel.notes = notesTextView.text
             notesTextView.text = notesTextView.text == Constants.Strings.notesPlaceholderKey.localized ? "" : notesTextView.text
             notesTextView.textColor = .black
         }
+    }
+    
+    /// Setup the topic informations
+    private func setupTopic () {
+        topicTitleLabel.text = parentViewModel.title
+        topicTitleLabel.textColor = .midGray
+        topicImageView.image = parentViewModel.image()
+        topicImageView.tintColor = .midGray
+    }
+    
+    /// Setup the schedule informations
+    private func setupSchedule () {
+        scheduleContainerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(schedulePressed)))
+        scheduleTitleLabel.text = "Test"
+        scheduleTitleLabel.textColor = .midGray
+        scheduleImageView.image = Constants.Images.calendarIcon
+        scheduleImageView.tintColor = .midGray
+    }
+    
+    /// Called when the schedule container was touched
+    @objc private func schedulePressed () {
+        
+    }
+    
+    /// Setup the reminder informations
+    private func setupReminder () {
+        reminderTitleLabel.text = Constants.Strings.reminderTextKey.localized
+        reminderTitleLabel.textColor = .midGray
+        reminderImageView.image = Constants.Images.remimderIcon
+        reminderImageView.tintColor = .midGray
+        reminderSwitch.onTintColor = parentViewModel.getMainColor()
+        reminderSwitch.setOn(viewModel.isTimerSet, animated: true)
+    }
+    
+    /// Called when the switch value changed
+    ///
+    /// - Parameter sender: The switch
+    @IBAction fileprivate func reminderSwitchChanged (_ sender: UISwitch) {
+        viewModel.isTimerSet = sender.isOn
+        viewModel.updateTaskViewModel()
+    }
+    
+    /// Setup priority
+    private func setupPriority () {
+        priorityTitleLabel.text = Constants.Strings.priorityTextKey.localized
+        priorityImageView.image = Constants.Images.priorityIcon
+        priorityImageView.tintColor = .midGray
+        prioritySegmentedControl.tintColor = parentViewModel.getMainColor()
+        prioritySegmentedControl.selectedSegmentIndex = viewModel.priority.rawValue
+    }
+    
+    /// Called when the segmented control did change
+    ///
+    /// - Parameter sender: The segmented conrtrol
+    @IBAction fileprivate func segmentedChanged (_ sender: UISegmentedControl) {
+        viewModel.priority = PriorityLevel(rawValue: sender.selectedSegmentIndex)
+        viewModel.updateTaskViewModel()
+    }
+    
+    /// Setup the note
+    private func setupNote () {
+        noteTitleLabel.text = Constants.Strings.noteTextKey.localized
+        noteTitleLabel.textColor = .midGray
+        noteImageView.image = Constants.Images.noteIcon
+        noteImageView.tintColor = .midGray
     }
     
     // MARK: - Actions
@@ -179,15 +294,8 @@ class TodoTaskViewController: UIViewController {
     ///
     /// - Parameter sender: The sender of the event
     @IBAction fileprivate func addNewTaskButtonPressed (_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    /// Opens a picker for selecting a date and time
-    /// when the task should be done
-    ///
-    /// - Parameter sender: The sender of the event
-    @IBAction fileprivate func updateScheduleButtonPressed (_ sender: UIButton) {
-        
+        nameTextField.resignFirstResponder()
+        viewModel.updateTaskViewModel()
     }
     
     // MARK: - Keyboard Notification Actions
@@ -198,7 +306,6 @@ class TodoTaskViewController: UIViewController {
     @objc private func keyboardShows (notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             animateFloat(forKeyboardSize: keyboardSize)
-            print("Ich wurde gezeigt")
         }
     }
     
@@ -206,19 +313,19 @@ class TodoTaskViewController: UIViewController {
     ///
     /// - Parameter keyboardSize: The size of the keyboard
     private func animateFloat (forKeyboardSize keyboardSize: CGRect) {
-        UIView.animate(withDuration: 0.25, animations: {
-            self.floatingButtonBottomConstraint.constant = keyboardSize.height + Constants.buttonSize.height
-            self.floatingButtonAspectRatioConstraint.constant = 1
-            self.floatingButtonLeadingConstraint.isActive = true
-            self.floatingButtonTrailingConstraint.constant = 0
-//            self.floatingButton.applyGradient(colors: Themes.getTheme(self.gradient).gradient, WithCornerRadius: self.floatingButton.layer.cornerRadius)
-            self.floatingButton.setImage(CAGradientLayer(frame: self.floatingButton.frame, colors: Themes.getTheme(self.gradient).gradient).createGradientImage(), for: .normal)
-            self.applyLayoutForFloatingButton(false)
-            
-            self.view.layoutIfNeeded()
-        }) { (complete) in
-            self.floatingButton.applyGradient(colors: Themes.getTheme(self.gradient).gradient)
-        }
+//        UIView.animate(withDuration: 0.25, animations: {
+//            self.floatingButtonBottomConstraint.constant = keyboardSize.height + Constants.buttonSize.height
+//            self.floatingButtonAspectRatioConstraint.constant = 1
+//            self.floatingButtonLeadingConstraint.isActive = true
+//            self.floatingButtonTrailingConstraint.constant = 0
+////            self.floatingButton.applyGradient(colors: Themes.getTheme(self.gradient).gradient, WithCornerRadius: self.floatingButton.layer.cornerRadius)
+//            self.floatingButton.setImage(CAGradientLayer(frame: self.floatingButton.frame, colors: Themes.getTheme(self.gradient).gradient).createGradientImage(), for: .normal)
+//            self.applyLayoutForFloatingButton(false)
+//
+//            self.view.layoutIfNeeded()
+//        }) { (complete) in
+//            self.floatingButton.applyGradient(colors: Themes.getTheme(self.gradient).gradient)
+//        }
     }
     
     /// Observer call when the keybaord will be hidden

@@ -15,7 +15,7 @@ import Foundation
 /// - high: High priority level
 /// - none: No priority level
 enum PriorityLevel: Int {
-    case none = 0
+    case no = 0
     case low
     case middle
     case high

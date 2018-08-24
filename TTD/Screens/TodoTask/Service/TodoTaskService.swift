@@ -82,7 +82,7 @@ struct TodoTaskService: MainService {
                                                                 taskDescription: $0.value(forKey: Constants.KeyPaths.taskDescriptionKey) as? String,
                                                                 taskEndDate: $0.value(forKey: Constants.KeyPaths.taskEndDateKey) as? Date,
                                                                 isTimerSet: $0.value(forKey: Constants.KeyPaths.isTimerSetKey) as? Bool ?? false,
-                                                                priority: ($0.value(forKey: Constants.KeyPaths.priorityKey) as? Int).map { PriorityLevel(rawValue: $0) } ?? .none,
+                                                                priority: ($0.value(forKey: Constants.KeyPaths.priorityKey) as? Int).map { PriorityLevel(rawValue: $0) } ?? .no,
                                                                 isDone: $0.value(forKey: Constants.KeyPaths.isDoneKey) as? Bool ?? false,
                                                                 notes: ""))
             }
@@ -115,7 +115,7 @@ struct TodoTaskService: MainService {
         vm.setValue(viewModel.taskDescription, forKey: Constants.KeyPaths.taskDescriptionKey)
         vm.setValue(viewModel.taskEndDate, forKey: Constants.KeyPaths.taskEndDateKey)
         vm.setValue(viewModel.isTimerSet, forKey: Constants.KeyPaths.isTimerSetKey)
-        vm.setValue(viewModel.priority, forKey: Constants.KeyPaths.priorityKey)
+        vm.setValue(viewModel.priority.rawValue, forKey: Constants.KeyPaths.priorityKey)
         vm.setValue(viewModel.isDone, forKey: Constants.KeyPaths.isDoneKey)
         vm.setValue(viewModel.notes, forKey: Constants.KeyPaths.notesKey)
         
@@ -147,7 +147,7 @@ struct TodoTaskService: MainService {
                 $0.setValue(viewModel.taskDescription, forKey: Constants.KeyPaths.taskDescriptionKey)
                 $0.setValue(viewModel.taskEndDate, forKey: Constants.KeyPaths.taskEndDateKey)
                 $0.setValue(viewModel.isTimerSet, forKey: Constants.KeyPaths.isTimerSetKey)
-                $0.setValue(viewModel.priority, forKey: Constants.KeyPaths.priorityKey)
+                $0.setValue(viewModel.priority.rawValue, forKey: Constants.KeyPaths.priorityKey)
                 $0.setValue(viewModel.isDone, forKey: Constants.KeyPaths.isDoneKey)
                 $0.setValue(viewModel.notes, forKey: Constants.KeyPaths.notesKey)
                 found = true

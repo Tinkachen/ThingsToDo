@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "more_dots.png",
+      "filename" : "exclaration_mark.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "more_dots@2x.png",
+      "filename" : "exclaration_mark@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "more_dots@3x.png",
+      "filename" : "exclaration_mark@3x.png",
       "scale" : "3x"
     }
   ],

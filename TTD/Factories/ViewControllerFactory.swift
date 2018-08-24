@@ -58,11 +58,11 @@ class ViewControllerFactory {
     /// - Parameter list: The todo list view model id
     /// - Parameter gradient: The main gradient of the list
     /// - Returns: The instance
-    static func makeTodoTaskViewController (WithViewModel viewModel: TodoTaskViewModel?, ForList list: String, AndGradient gradient: Gradient) -> UIViewController {
+    static func makeTodoTaskViewController (WithViewModel viewModel: TodoTaskViewModel?, AndParentViewModel parentViewModel: TodoListViewModel) -> UIViewController {
         let todoTaskViewController: TodoTaskViewController = makeViewController()
         todoTaskViewController.service = ServiceFactory.makeTodoTaskService()
-        todoTaskViewController.viewModel = viewModel ?? ViewModelFactory.makeTodoTaskVieModel(forList: list)
-        todoTaskViewController.gradient = gradient
+        todoTaskViewController.parentViewModel = parentViewModel
+        todoTaskViewController.viewModel = viewModel ?? ViewModelFactory.makeTodoTaskVieModel(forList: parentViewModel.id)
         let navigationController = UINavigationController(rootViewController: todoTaskViewController)
         return navigationController
     }

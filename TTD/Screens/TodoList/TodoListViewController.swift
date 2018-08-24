@@ -352,8 +352,8 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.applyData(taskViewModel, deleteCallback: {
             self.viewModel.deleteTaskViewModel(atIndex: indexPath.row)
-            
             tableView.deleteRows(at: [indexPath], with: .fade)
+            self.applyProgressBarLayout()
         }, doneStateCallback: {
             self.viewModel.updateTasks()
             self.applyProgressBarLayout()

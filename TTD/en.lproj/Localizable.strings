@@ -37,6 +37,7 @@
 "NTTVC_notes_placeholder" = "Would you write some notes to the task?";
 "NTTVC_reminder" = "Reminder";
 "NTTVC_priority" = "Priority";
+"NTTVC_note" = "Notes";
 
 /* Passcode View Controller */
 "PCVC_new_passcode" = "Enter new passcode";

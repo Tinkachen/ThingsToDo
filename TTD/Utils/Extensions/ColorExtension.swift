@@ -26,6 +26,8 @@ extension UIColor {
     
     static let lightGray = UIColor(hex: 0xF6F6F6)
     
+    static let midGray = UIColor(hex: 0x6E6F6D)
+    
     // MARK: - Colors
     
     static let goldenDream = UIColor(hex: 0xFDEB71)
@@ -47,4 +49,5 @@ extension UIColor {
     static let waterLeaf = UIColor(hex: 0x90F7EC)
     
     static let dullCyan = UIColor(hex: 0x32CCBC)
+    
 }

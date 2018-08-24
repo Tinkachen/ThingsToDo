@@ -13,6 +13,9 @@ enum Gradient: Int {
     case lightBlue
     case pink
     case purple
+    case turquoise
+    case green
+    case fairy
     
     /// Creates a random gradient
     ///
@@ -36,7 +39,10 @@ struct Themes {
     static let allThemes: [Gradient : Theme] = [.yellow : yellow,
                                                 .lightBlue : lightBlue,
                                                 .pink : pink,
-                                                .purple : purple]
+                                                .purple : purple,
+                                                .turquoise : turquoise,
+                                                .green : green,
+                                                .fairy : fairy]
     
     /// Gives the theme informations
     ///
@@ -52,6 +58,12 @@ struct Themes {
             return pink
         case .purple:
             return purple
+        case .turquoise:
+            return turquoise
+        case .green:
+            return green
+        case .fairy:
+            return fairy
         }
     }
     
@@ -66,4 +78,12 @@ struct Themes {
     
     /// Colors for the purple theme
     static let purple = Theme(main: .brightUbe, gradient: [UIColor.brightUbe.cgColor, UIColor.mediumSlateBlue.cgColor], light: true)
+    
+    static let turquoise = Theme(main: .waterLeaf, gradient: [UIColor.waterLeaf.cgColor, UIColor.dullCyan.cgColor], light: false)
+    
+    /// <#Description#>
+    static let green = Theme(main: .dullLime, gradient: [UIColor.gorse.cgColor, UIColor.dullCyan.cgColor], light: true)
+    
+    /// <#Description#>
+    static let fairy = Theme(main: .magenta, gradient: [UIColor.fadedCyan.cgColor, UIColor.magenta.cgColor], light: true)
 }

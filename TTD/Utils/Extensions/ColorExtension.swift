@@ -30,24 +30,39 @@ extension UIColor {
     
     // MARK: - Colors
     
+    // Yellow
     static let goldenDream = UIColor(hex: 0xFDEB71)
     
     static let witchHaze = UIColor(hex: 0xF8D800)
     
+    // Light blue
     static let sail = UIColor(hex: 0xABDCFF)
     
     static let dodgerBlue = UIColor(hex: 0x0396FF)
     
+    // Pink
     static let mandysPink = UIColor(hex: 0xFEB692)
     
     static let mandy = UIColor(hex: 0xEA5455)
     
+    // Purple
     static let brightUbe = UIColor(hex: 0xCE9FFC)
     
     static let mediumSlateBlue = UIColor(hex: 0x7367F0)
+    
+    // Turquoise
     
     static let waterLeaf = UIColor(hex: 0x90F7EC)
     
     static let dullCyan = UIColor(hex: 0x32CCBC)
     
+    // Green
+    static let gorse = UIColor(hex: 0xFFF720)
+    
+    static let dullLime = UIColor(hex: 0x3CD500)
+    
+    // Fairy
+    static let fadedCyan = UIColor(hex: 0x81FFEF)
+    
+    static let magenta = UIColor(hex: 0xF067B4)
 }

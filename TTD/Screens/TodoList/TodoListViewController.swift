@@ -30,8 +30,11 @@ private enum Constants {
     /// Constant images
     enum Images {
         
-        /// The close icon
-        static let closeIcon = #imageLiteral(resourceName: "CloseIcon")
+        /// The back arrow icon
+        static let backArrowIcon = #imageLiteral(resourceName: "back_arrow")
+        
+        /// The more icon
+        static let moreIcon = #imageLiteral(resourceName: "more_dots")
         
         /// The lcok icon
         static let lockItem = #imageLiteral(resourceName: "Lock")
@@ -135,9 +138,7 @@ class TodoListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let closeItem = UIBarButtonItem(image: Constants.Images.closeIcon, style: .plain, target: self, action: #selector(closeButtonPressed))
-        closeItem.tintColor = .black
-        self.navigationItem.leftBarButtonItem = closeItem
+        setupNavigationBar()
         
         // Setup Table View
         tableView.delegate = self
@@ -163,8 +164,21 @@ class TodoListViewController: UIViewController {
         tableView.reloadData()
     }
     
+    private func setupNavigationBar () {
+        let closeItem = UIBarButtonItem(image: Constants.Images.backArrowIcon, style: .plain, target: self, action: #selector(closeButtonPressed))
+        closeItem.tintColor = .midGray
+        self.navigationItem.leftBarButtonItem = closeItem
+        
+        let moreItem = UIBarButtonItem(image: Constants.Images.moreIcon, style: .plain, target: self, action: #selector(moreButtonPressed))
+        moreItem.tintColor = .midGray
+        self.navigationItem.rightBarButtonItem = moreItem
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
     /// Setup the view with the passed view model
-    func setupViewWithViewModel () {
+    private func setupViewWithViewModel () {
         
         // Title
         self.nameTextField.text = viewModel.title
@@ -264,7 +278,7 @@ class TodoListViewController: UIViewController {
     ///
     /// - Parameter sender: The sender of the event
     @IBAction fileprivate func addTasksButtonPressed (_ sender: UIButton) {
-        let newTodoTaskViewController = ViewControllerFactory.makeTodoTaskViewController(WithViewModel: nil, ForList: viewModel.id, AndGradient: viewModel.gradient)
+        let newTodoTaskViewController = ViewControllerFactory.makeTodoTaskViewController(WithViewModel: nil, AndParentViewModel: viewModel)
         self.navigationController?.present(newTodoTaskViewController, animated: true, completion: nil)
     }
     
@@ -292,6 +306,11 @@ class TodoListViewController: UIViewController {
     @objc private func closeButtonPressed () {
         viewModel.updateListViewModel()
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    /// The more icon has been pressed
+    @objc fileprivate func moreButtonPressed () {
+        
     }
 }
 
@@ -331,7 +350,14 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         let key = Array(sortedTaskViewModel.keys)[indexPath.section]
         let taskViewModel = sortedTaskViewModel[key]![indexPath.row]
         
-        cell.applyData(taskViewModel)
+        cell.applyData(taskViewModel, deleteCallback: {
+            self.viewModel.deleteTaskViewModel(atIndex: indexPath.row)
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }, doneStateCallback: {
+            self.viewModel.updateTasks()
+            self.applyProgressBarLayout()
+        })
         
         return cell
     }
@@ -340,7 +366,7 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         let key = Array(sortedTaskViewModel.keys)[indexPath.section]
         let taskViewModel = sortedTaskViewModel[key]![indexPath.row]
         
-        let todoTaskViewController = ViewControllerFactory.makeTodoTaskViewController(WithViewModel: taskViewModel, ForList: taskViewModel.listId, AndGradient: viewModel.gradient)
+        let todoTaskViewController = ViewControllerFactory.makeTodoTaskViewController(WithViewModel: taskViewModel, AndParentViewModel: viewModel)
         self.navigationController?.present(todoTaskViewController, animated: true, completion: nil)
     }
 }

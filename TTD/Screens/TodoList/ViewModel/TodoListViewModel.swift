@@ -46,8 +46,9 @@ struct TodoListViewModel {
         TodoListService.deleteListViewModel(self)
     }
     
-    func deleteTaskViewModel (atIndex: Int) {
+    mutating func deleteTaskViewModel (atIndex: Int) {
         guard let tasksUnwrapped = tasks else { return }
+        tasks?.remove(at: atIndex)
         TodoTaskService.deleteTaskViewModel(tasksUnwrapped[atIndex])
     }
     
@@ -62,7 +63,7 @@ struct TodoListViewModel {
                 doneItems = doneItems + ($0.isDone ? 1 : 0)
             }
 
-            return tasksUnwrapped.count == 0 ? Float(0) : Float(doneItems/tasksUnwrapped.count)
+            return tasksUnwrapped.count == 0 ? Float(0) : Float(doneItems)/Float(tasksUnwrapped.count)
         }
 
         return Float(doneItems)

@@ -57,6 +57,7 @@
 		49540AD5211DB66C00280445 /* CustomAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49540AD4211DB66C00280445 /* CustomAlertPresenter.swift */; };
 		49540AD7211DB72200280445 /* ChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49540AD6211DB72200280445 /* ChoiceView.swift */; };
 		49540AD9211DB72A00280445 /* ChoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49540AD8211DB72A00280445 /* ChoiceView.xib */; };
+		49B60EE92135655D00B54A3A /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B60EE82135655D00B54A3A /* Animator.swift */; };
 		49BBE63A212D58FA006B9297 /* TodoTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BBE639212D58FA006B9297 /* TodoTaskViewModel.swift */; };
 		49BBE63E212FFDB1006B9297 /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BBE63D212FFDB1006B9297 /* ButtonExtension.swift */; };
 		7B3EBEBD0CA5373C723A9DE2 /* Pods_TTDTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9275B8B8A560F641D4CA9F6F /* Pods_TTDTests.framework */; };
@@ -133,6 +134,7 @@
 		49540AD4211DB66C00280445 /* CustomAlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertPresenter.swift; sourceTree = "<group>"; };
 		49540AD6211DB72200280445 /* ChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceView.swift; sourceTree = "<group>"; };
 		49540AD8211DB72A00280445 /* ChoiceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceView.xib; sourceTree = "<group>"; };
+		49B60EE82135655D00B54A3A /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		49BBE639212D58FA006B9297 /* TodoTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTaskViewModel.swift; sourceTree = "<group>"; };
 		49BBE63D212FFDB1006B9297 /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
 		4AED618AC996A8397C9E96C4 /* Pods_TTD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TTD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -269,6 +271,7 @@
 				2357806B20A89B01001DBFC4 /* SkyFloatingLabelTextFieldWithIcon.swift */,
 				2357805720A213DE001DBFC4 /* PasscodeButton.swift */,
 				49540AD4211DB66C00280445 /* CustomAlertPresenter.swift */,
+				49B60EE82135655D00B54A3A /* Animator.swift */,
 			);
 			path = "Shared Views";
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 				2357805C20A88C3B001DBFC4 /* ViewModelFactory.swift in Sources */,
 				2357806D20A89B01001DBFC4 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
 				2357805520A212B5001DBFC4 /* PasscodeViewController.swift in Sources */,
+				49B60EE92135655D00B54A3A /* Animator.swift in Sources */,
 				231535CE20CC013900883266 /* EmptyCollectionView.swift in Sources */,
 				23F12B8520CEFC5100D6BA39 /* TodoListService.swift in Sources */,
 				2357802920A20663001DBFC4 /* AppDelegate.swift in Sources */,
@@ -805,6 +809,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X7VBHHAN68;
 				INFOPLIST_FILE = TTD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -823,6 +828,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X7VBHHAN68;
 				INFOPLIST_FILE = TTD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

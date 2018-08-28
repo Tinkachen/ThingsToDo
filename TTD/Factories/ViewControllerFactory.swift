@@ -41,10 +41,12 @@ class ViewControllerFactory {
     ///
     /// - Parameter viewModel: The view model
     /// - Returns: The instance
-    static func makeTodoListViewController (WithViewModel viewModel: TodoListViewModel?) -> UIViewController {
+    static func makeTodoListViewController (withTransitioningDelegate delegate: UIViewControllerTransitioningDelegate,
+                                            andViewModel viewModel: TodoListViewModel? = nil) -> UIViewController {
         let todoListViewController: TodoListViewController = makeViewController()
         todoListViewController.service = ServiceFactory.makeTodoListService()
         todoListViewController.viewModel = viewModel ?? ViewModelFactory.makeTodoListViewModel()
+        todoListViewController.transitioningDelegate = delegate
         let navigationController = UINavigationController(rootViewController: todoListViewController)
         navigationController.isNavigationBarHidden = false
         navigationController.navigationBar.isTranslucent = false

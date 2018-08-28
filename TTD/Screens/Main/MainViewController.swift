@@ -48,8 +48,17 @@ class MainViewController: UIViewController {
     // MARK: - Variables
     var todoListViewModels = [TodoListViewModel]()
     
+    /// <#Description#>
+    let transition = Animator()
+    
+    /// <#Description#>
+    var selectedIndexPath: IndexPath!
+    
     /// The collection view cell size
     fileprivate var collectionViewCellSize = CGSize(width: 100, height: 100)
+    
+    /// <#Description#>
+    fileprivate var collectionViewEditingMode = false
     
     // Horizontal Page Collection Setup
     private var _indexOfCellBeforeDragging = 0
@@ -72,8 +81,9 @@ class MainViewController: UIViewController {
         collectionView.register(UINib(nibName: Constants.collectionViewCellId, bundle: nil), forCellWithReuseIdentifier: Constants.collectionViewCellId)
         
         collectionView.backgroundColor = .clear
-        
         collectionView.isPrefetchingEnabled = false
+        
+        collectionView.addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: #selector(handlePanGestureOnCollectionViewCell(_:))))
     
     }
     
@@ -97,25 +107,46 @@ class MainViewController: UIViewController {
         todoListViewModels = TodoListService.getListViewModels()
     }
     
+    // MARK: - Transition animation
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+//        guard let cell = collectionView.cellForItem(at: selectedIndexPath) else {
+//
+//        }
+//
+//        coordinator.animate(alongsideTransition: { (context) in
+//            
+//        }, completion: nil)
+    }
+    
     // MARK: - Buttons Actions
     
     /// Adds a new to do list card
     ///
     /// - Parameter sender: The sender of the event
     @IBAction fileprivate func addNewTodoListButtonPressed (_ sender: UIButton) {
-        let newTodoListViewController = ViewControllerFactory.makeTodoListViewController(WithViewModel: nil)
+        let newTodoListViewController = ViewControllerFactory.makeTodoListViewController(withTransitioningDelegate: self)
         self.navigationController?.present(newTodoListViewController, animated: true)
     }
     
     fileprivate func deleteCell (atIndexPath indexPath: IndexPath) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: Constants.Strings.alertDeleteKey.localized, style: .destructive, handler: { (alertAction) in
-            let vm = self.todoListViewModels[indexPath.row]
-            vm.deleteListViewModel()
-            self.todoListViewModels.remove(at: indexPath.row)
-            self.collectionView.reloadData()
-            let newIndex = ((self.indexOfMajorCell() / self.todoListViewModels.count) < (self.todoListViewModels.count / 2)) ? self.indexOfMajorCell() + 1 : self.indexOfMajorCell() - 1
-            self.view.transitToGradient(from: vm.getGradient(), to: self.todoListViewModels[newIndex].getGradient())
+            
+            
+            self.collectionView.performBatchUpdates({
+                let vm = self.todoListViewModels[indexPath.row]
+                vm.deleteListViewModel()
+                self.todoListViewModels.remove(at: indexPath.row)
+                self.collectionView.deleteItems(at: [indexPath])
+                
+                let newIndex = ((self.indexOfMajorCell() / self.todoListViewModels.count) < (self.todoListViewModels.count / 2)) ? self.indexOfMajorCell() + 1 : self.indexOfMajorCell() - 1
+                if newIndex > 0 && newIndex <= self.todoListViewModels.count {
+                    self.view.transitToGradient(from: vm.getGradient(), to: self.todoListViewModels[newIndex].getGradient())
+                }
+            }, completion: nil)
+            
             alertController.dismiss(animated: true, completion: nil)
         }))
         alertController.addAction(UIAlertAction(title: Constants.Strings.alertCancelKey.localized, style: .cancel, handler: { (alertAction) in
@@ -123,6 +154,16 @@ class MainViewController: UIViewController {
         }))
         
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    // MARK: - Gestures
+    
+    @objc fileprivate func handlePanGestureOnCollectionViewCell (_ gesture: UIPanGestureRecognizer) {
+        let point = gesture.location(in: collectionView)
+        guard let indexPath = collectionView.indexPathForItem(at: point) else {
+            return
+        }
+        
     }
 }
 
@@ -150,8 +191,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let todoListViewController = ViewControllerFactory.makeTodoListViewController(WithViewModel: todoListViewModels[indexPath.row])
-        self.navigationController?.present(todoListViewController, animated: true, completion: nil)
+        let todoListViewController = ViewControllerFactory.makeTodoListViewController(withTransitioningDelegate: self, andViewModel: todoListViewModels[indexPath.row])
+        self.present(todoListViewController, animated: true, completion: nil)
     }
 
     private var collectionViewFlowLayout: UICollectionViewFlowLayout {
@@ -232,5 +273,21 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let from = todoListViewModels[indexOfCellBeforeDragging]
         let to = todoListViewModels[indexOfMajorCell]
         self.view.transitToGradient(from: from.getGradient(), to: to.getGradient())
+    }
+}
+
+// MARK: - View Controller Transitioning Delegate
+extension MainViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        guard let cellFrame = collectionView.cellForItem(at: selectedIndexPath)?.frame else { return nil }
+        transition.originFrame = cellFrame
+        transition.isPresenting = true
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.isPresenting = false
+        return transition
     }
 }

@@ -252,7 +252,6 @@ class TodoTaskViewController: UIViewController {
     /// - Parameter sender: The switch
     @IBAction fileprivate func reminderSwitchChanged (_ sender: UISwitch) {
         viewModel.isTimerSet = sender.isOn
-        viewModel.updateTaskViewModel()
     }
     
     /// Setup priority
@@ -269,7 +268,6 @@ class TodoTaskViewController: UIViewController {
     /// - Parameter sender: The segmented conrtrol
     @IBAction fileprivate func segmentedChanged (_ sender: UISegmentedControl) {
         viewModel.priority = PriorityLevel(rawValue: sender.selectedSegmentIndex)
-        viewModel.updateTaskViewModel()
     }
     
     /// Setup the note
@@ -284,7 +282,9 @@ class TodoTaskViewController: UIViewController {
     
     /// Called when the close button in the navigation bar is pressed
     @objc private func closeButtonPressed () {
-        if !viewModel.taskDescription.isEmpty {
+        viewModel.taskDescription = nameTextField.text ?? ""
+        
+        if !(viewModel.taskDescription.isEmpty) && (viewModel.taskDescription != Constants.Strings.namePlaceholderKey.localized) {
             viewModel.updateTaskViewModel()
         }
         self.dismiss(animated: true, completion: nil)
@@ -339,17 +339,7 @@ class TodoTaskViewController: UIViewController {
 // MARK: Text Field Delegate
 extension TodoTaskViewController: UITextFieldDelegate {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        viewModel.taskDescription = textField.text
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        viewModel.taskDescription = textField.text
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        viewModel.taskDescription = textField.text
         textField.resignFirstResponder()
         return false
     }

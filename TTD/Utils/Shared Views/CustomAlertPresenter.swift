@@ -24,9 +24,9 @@ class CustomAlert: UIView, Modal {
     }
     
     /// Initializes the icon picker
-    convenience init (iconCallback callback: @escaping ((_: Icon)->Void)) {
+    convenience init (color: UIColor, iconCallback callback: @escaping ((_: Icon)->Void)) {
         self.init(frame: UIScreen.main.bounds)
-        initializeIconView(selectionCallback: callback)
+        initializeIconView(color: color, selectionCallback: callback)
     }
     
     override init(frame: CGRect) {
@@ -66,7 +66,7 @@ class CustomAlert: UIView, Modal {
     }
     
     /// Initalizes the view for loading indicator
-    private func initializeIconView (selectionCallback: @escaping ((_ icon: Icon)->Void)) {
+    private func initializeIconView (color: UIColor, selectionCallback: @escaping ((_ icon: Icon)->Void)) {
         dialogView.clipsToBounds = true
         
         backgroundView.frame = frame
@@ -76,6 +76,7 @@ class CustomAlert: UIView, Modal {
         addSubview(backgroundView)
         
         let gradientView: ChoiceView = .fromNib()
+        gradientView.color = color
         gradientView.forGradients = false
         gradientView.iconCallback = selectionCallback
         gradientView.closeCallback = {

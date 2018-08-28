@@ -62,7 +62,7 @@
             <connections>
                 <outlet property="collectionView" destination="Ef0-Vv-Krj" id="OaN-qa-jRC"/>
                 <outlet property="doneButton" destination="8dm-4Z-62D" id="6wV-Ae-Qho"/>
-                <outlet property="titleLabel" destination="o0r-Yg-MDj" id="Oa5-Xq-sgE"/>
+                <outlet property="headerLabel" destination="o0r-Yg-MDj" id="vXB-7L-abW"/>
             </connections>
         </view>
     </objects>

@@ -16,7 +16,7 @@ private enum Constants {
     static let collectionViewCellId = "ChoiceViewCollectionViewCell"
     
     /// The size of the collection view cell
-    static let collectionViewCellSize = CGSize(width: 50, height: 50)
+    static let collectionViewCellSize = CGSize(width: 75, height: 75)
     
     /// The strings
     enum Strings {
@@ -41,13 +41,16 @@ class ChoiceView: UIView {
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     
     /// The label for the title of the view
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
+    @IBOutlet fileprivate weak var headerLabel: UILabel!
     
     /// The finish button for the view
     @IBOutlet fileprivate weak var doneButton: UIButton!
     
     // MARK: - Variables
     var forGradients: Bool = false
+    
+    /// <#Description#>
+    var color: UIColor?
     
     /// The callback for selecting a gradient
     var gradientCallback: ((_ gradient: Gradient)->Void)!
@@ -61,9 +64,6 @@ class ChoiceView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        // Title
-        self.titleLabel.text = forGradients ? Constants.Strings.gradientViewTitleKey.localized : Constants.Strings.iconViewTitleKey.localized
-        
         // Setup collection view
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -72,6 +72,13 @@ class ChoiceView: UIView {
         // Done Button
         doneButton.setTitle(Constants.Strings.doneButtonTextKey.localized, for: .normal)
         doneButton.addTarget(self, action: #selector(closeViewButtonPressed), for: .touchUpInside)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Title
+        self.headerLabel.text = forGradients ? Constants.Strings.gradientViewTitleKey.localized : Constants.Strings.iconViewTitleKey.localized
     }
     
     // MARK: - Actions
@@ -100,7 +107,7 @@ extension ChoiceView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         
         let image = forGradients ? CAGradientLayer(size: Constants.collectionViewCellSize, colors: Array(Themes.allThemes.keys)[indexPath.row]).createGradientImage() : Icons.getIcon(Array(Icons.allIcons.keys)[indexPath.row])
         
-        cell.applyData(image)
+        cell.applyData(image, withTintColor: color)
         
         return cell
     }

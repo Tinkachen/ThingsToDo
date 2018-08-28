@@ -36,7 +36,11 @@ class ChoiceViewCollectionViewCell: UICollectionViewCell {
     /// Applys the passed data to the collection view cell
     ///
     /// - Parameter image: The image for the collection view cell
-    func applyData (_ image: UIImage?) {
+    func applyData (_ image: UIImage?, withTintColor color: UIColor? = nil) {
         self.imageView.image = image
+        self.imageView.layer.masksToBounds = color == nil ? true : false
+        if let tintColor = color {
+            self.imageView.tintColor = tintColor
+        }
     }
 }

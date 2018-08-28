@@ -63,6 +63,20 @@ private enum Constants {
         
         /// The text to secure the todo list with a passcode
         static let secureWithPasscodeKey = "NTLVC_secure_passcode"
+        
+        /// Alert Strings
+        
+        /// The title for the alert
+        static let alertTitleKey = "NTLVC_alert_title"
+        
+        /// The gradient alert action name
+        static let alertChangeGradientKey = "NTLVC_alert_change_gradient"
+        
+        /// The lock alert action name
+        static let alertLockListKey = "NTLVC_alert_lock_list"
+        
+        /// The cancel alert action name
+        static let alertCancelKey = "NTLVC_alert_cancel"
     }
     
     /// The bottom constraint constant for the floating button
@@ -164,6 +178,7 @@ class TodoListViewController: UIViewController {
         tableView.reloadData()
     }
     
+    /// Sets up the navigation bar
     private func setupNavigationBar () {
         let closeItem = UIBarButtonItem(image: Constants.Images.backArrowIcon, style: .plain, target: self, action: #selector(closeButtonPressed))
         closeItem.tintColor = .midGray
@@ -190,10 +205,6 @@ class TodoListViewController: UIViewController {
         self.gradientContainer.layer.cornerRadius = self.gradientContainer.bounds.height / 2
         self.gradientContainer.layer.borderColor = UIColor.lightGray.cgColor
         self.gradientContainer.layer.borderWidth = 1.0
-        self.gradientContainer.layer.shadowColor = UIColor.black.cgColor
-        self.gradientContainer.layer.shadowOpacity = 0.5
-        self.gradientContainer.layer.shadowOffset = CGSize(width: 0, height: 1)
-        self.gradientContainer.layer.shadowRadius = 5
         
         // Icon
         self.iconContainer.layer.cornerRadius = self.iconContainer.frame.width / 2
@@ -248,7 +259,7 @@ class TodoListViewController: UIViewController {
     @objc fileprivate func chooseIconPressed () {
         nameTextField.resignFirstResponder()
         
-        let choiceView = CustomAlert(iconCallback: { (icon) in
+        let choiceView = CustomAlert(color: viewModel.getMainColor(), iconCallback: { (icon) in
             self.iconImageView.image = Icons.getIcon(icon)
             self.viewModel.icon = icon
         })
@@ -310,7 +321,18 @@ class TodoListViewController: UIViewController {
     
     /// The more icon has been pressed
     @objc fileprivate func moreButtonPressed () {
+        let alertController = UIAlertController(title: nil, message: Constants.Strings.alertTitleKey.localized, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: Constants.Strings.alertChangeGradientKey.localized, style: .default, handler: { (alertAction) in
+            alertController.dismiss(animated: true, completion: nil)
+        }))
+        alertController.addAction(UIAlertAction(title: Constants.Strings.alertLockListKey.localized, style: .default, handler: { (alertAction) in
+            alertController.dismiss(animated: true, completion: nil)
+        }))
+        alertController.addAction(UIAlertAction(title: Constants.Strings.alertCancelKey.localized, style: .cancel, handler: { (alertAction) in
+            alertController.dismiss(animated: true, completion: nil)
+        }))
         
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 

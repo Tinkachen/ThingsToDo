@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
     var todoListViewModels = [TodoListViewModel]()
     
     /// The collection view cell size
-    fileprivate var collectionViewCellSize = CGSize(width: 0, height: 0)
+    fileprivate var collectionViewCellSize = CGSize(width: 100, height: 100)
     
     // Horizontal Page Collection Setup
     private var _indexOfCellBeforeDragging = 0
@@ -73,8 +73,14 @@ class MainViewController: UIViewController {
         
         collectionView.backgroundColor = .clear
         
+        collectionView.isPrefetchingEnabled = false
+    
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         collectionViewCellSize = CGSize(width: collectionView.frame.size.width * 0.8, height: collectionView.frame.size.height)
-        
+        collectionView.collectionViewLayout.invalidateLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {

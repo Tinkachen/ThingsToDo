@@ -49,7 +49,7 @@ class ChoiceView: UIView {
     // MARK: - Variables
     var forGradients: Bool = false
     
-    /// <#Description#>
+    /// The optional color for the uiimageview
     var color: UIColor?
     
     /// The callback for selecting a gradient

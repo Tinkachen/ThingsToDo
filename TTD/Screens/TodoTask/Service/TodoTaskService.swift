@@ -124,11 +124,11 @@ struct TodoTaskService: MainService {
             taskObjects.append(vm)
             taskViewModels.append(viewModel)
             completion(nil)
+            return
         } catch let error as Error {
             completion(error)
+            return
         }
-        
-        completion(ErrorMessage.unknown)
     }
     
     /// Updates the passed view model in the local storage

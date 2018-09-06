@@ -161,6 +161,13 @@ class TodoTaskViewController: UIViewController {
         descriptionLabel.textColor = .midGray
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        nameTextField.resignFirstResponder()
+        notesTextView.resignFirstResponder()
+        
+        super.viewWillDisappear(animated)
+    }
+    
     private func setupNavigationBar () {
         self.navigationController?.navigationBar.isHidden = false
         let closeItem = UIBarButtonItem(image: Constants.Images.closeIcon, style: .plain, target: self, action: #selector(closeButtonPressed))
@@ -257,6 +264,7 @@ class TodoTaskViewController: UIViewController {
     /// Setup priority
     private func setupPriority () {
         priorityTitleLabel.text = Constants.Strings.priorityTextKey.localized
+        priorityTitleLabel.textColor = .midGray
         priorityImageView.image = Constants.Images.priorityIcon
         priorityImageView.tintColor = .midGray
         prioritySegmentedControl.tintColor = parentViewModel.getMainColor()

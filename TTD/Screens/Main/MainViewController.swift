@@ -48,16 +48,16 @@ class MainViewController: UIViewController {
     // MARK: - Variables
     var todoListViewModels = [TodoListViewModel]()
     
-    /// <#Description#>
+    /// The transition make
     let transition = Animator()
     
-    /// <#Description#>
+    /// The selected index path
     var selectedIndexPath: IndexPath!
     
     /// The collection view cell size
     fileprivate var collectionViewCellSize = CGSize(width: 100, height: 100)
     
-    /// <#Description#>
+    /// The collection view editing mode indicator
     fileprivate var collectionViewEditingMode = false
     
     // Horizontal Page Collection Setup
@@ -83,7 +83,7 @@ class MainViewController: UIViewController {
         collectionView.backgroundColor = .clear
         collectionView.isPrefetchingEnabled = false
         
-        collectionView.addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: #selector(handlePanGestureOnCollectionViewCell(_:))))
+//        collectionView.addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: #selector(handlePanGestureOnCollectionViewCell(_:))))
     
     }
     

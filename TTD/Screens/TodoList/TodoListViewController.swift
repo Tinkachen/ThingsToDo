@@ -387,9 +387,10 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let key = Array(sortedTaskViewModel.keys)[indexPath.section]
         let taskViewModel = sortedTaskViewModel[key]![indexPath.row]
-        
-        let todoTaskViewController = ViewControllerFactory.makeTodoTaskViewController(WithViewModel: taskViewModel, AndParentViewModel: viewModel)
-        self.navigationController?.present(todoTaskViewController, animated: true, completion: nil)
+        if !taskViewModel.isDone {
+            let todoTaskViewController = ViewControllerFactory.makeTodoTaskViewController(WithViewModel: taskViewModel, AndParentViewModel: viewModel)
+            self.navigationController?.present(todoTaskViewController, animated: true, completion: nil)
+        }
     }
 }
 

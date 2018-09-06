@@ -9,16 +9,27 @@
 import UIKit
 import CoreData
 
+private enum Constants {
+    
+    static let firstStartKey = "ttd_first_start_indicator"
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var firstStart = true
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let mainViewController = ViewControllerFactory.startWithViewController(ForFirstStart: false)
+        // identify if this is the first start of the application
+        let defaults = UserDefaults.standard
+        let firstStartIndicator = defaults.object(forKey: Constants.firstStartKey) as? Bool
+        
+        let mainViewController = ViewControllerFactory.startWithViewController(ForFirstStart: firstStartIndicator ?? true)
+        defaults.set(false, forKey: Constants.firstStartKey)
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = mainViewController
         self.window?.makeKeyAndVisible()

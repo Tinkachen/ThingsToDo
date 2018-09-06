@@ -16,15 +16,23 @@ class ViewControllerFactory {
     /// - Parameter firstStart: Says if it is the very first start of the application
     /// - Returns: The instance
     static func startWithViewController (ForFirstStart firstStart: Bool) -> UIViewController {
-        let navigationController = UINavigationController(rootViewController: firstStart ? makePersonalizeViewController() : makeMainViewController())
+        let navigationController = UINavigationController(rootViewController: firstStart ? makeOnboardingViewController() : makeMainViewController())
         navigationController.isNavigationBarHidden = true
         return navigationController
+    }
+    
+    /// <#Description#>
+    ///
+    /// - Returns: <#return value description#>
+    private static func makeOnboardingViewController () -> UIViewController {
+        let onboardingViewController: OnboardingViewController = makeViewController()
+        return onboardingViewController
     }
     
     /// Makes an instance of the 'PersonalizeViewController'
     ///
     /// - Returns: The instance
-    private static func makePersonalizeViewController () -> UIViewController {
+    static func makePersonalizeViewController () -> UIViewController {
         let personalizeViewController: PersonalizeViewController = makeViewController()
         return personalizeViewController
     }
@@ -32,7 +40,7 @@ class ViewControllerFactory {
     /// Makes an instance of the 'MainViewController'
     ///
     /// - Returns: The instance
-    private static func makeMainViewController () -> UIViewController {
+    static func makeMainViewController () -> UIViewController {
         let mainViewController: MainViewController = makeViewController()
         return mainViewController
     }

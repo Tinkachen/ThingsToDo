@@ -46,6 +46,11 @@ class MainViewController: UIViewController {
     @IBOutlet fileprivate weak var todayLabel: UILabel!
     
     // MARK: - Variables
+    
+    // the main view model
+    let mainViewModel = MainViewModel()
+    
+    /// The todo list view models
     var todoListViewModels = [TodoListViewModel]()
     
     /// The transition make
@@ -84,6 +89,9 @@ class MainViewController: UIViewController {
         collectionView.isPrefetchingEnabled = false
         
 //        collectionView.addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: #selector(handlePanGestureOnCollectionViewCell(_:))))
+        
+        // Setup user informations
+        welcomeLabel.text = "\(Constants.Strings.welcomeUserKey.localized) \(mainViewModel.getUserName())"
     
     }
     
@@ -163,7 +171,6 @@ class MainViewController: UIViewController {
         guard let indexPath = collectionView.indexPathForItem(at: point) else {
             return
         }
-        
     }
 }
 

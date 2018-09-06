@@ -6,13 +6,19 @@
   Copyright © 2018 Catharina Herchert. All rights reserved.
 */
 
+/* Onboarding View Controller */
+"OVC_enable_notification" = "Enable notification";
+"OVC_enable_notification_description" = "Enable notification services";
+
 /* Personalize View Controller */
 "PVC_name_placeholder" = "What should I call you?";
 
 /* Main View Controller */
-"MVC_welcome_user" = "Hello, %@";
+"MVC_welcome_user" = "Hello";
 "MVC_alert_delete" = "Delete";
 "MVC_alert_cancel" = "Cancel";
+
+"MVM_unknown_user_name" = "User";
 
 /* Main View Controller Collection View Cell */
 "MVC_CVC_tasks" = "Tasks";

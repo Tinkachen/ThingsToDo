@@ -53,6 +53,9 @@
 		23F12B8120CEFA5200D6BA39 /* TodoTaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B8020CEFA5200D6BA39 /* TodoTaskService.swift */; };
 		23F12B8520CEFC5100D6BA39 /* TodoListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B8420CEFC5100D6BA39 /* TodoListService.swift */; };
 		23F12B8A20CF08DD00D6BA39 /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F12B8920CF08DD00D6BA39 /* MainService.swift */; };
+		494829CD214165AE00A0B74E /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494829CC214165AE00A0B74E /* OnboardingViewController.swift */; };
+		494829CF214165BB00A0B74E /* OnboardingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494829CE214165BB00A0B74E /* OnboardingViewController.storyboard */; };
+		494829D121416D3800A0B74E /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494829D021416D3800A0B74E /* MainViewModel.swift */; };
 		49540AD3211DB63700280445 /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49540AD2211DB63700280445 /* Modal.swift */; };
 		49540AD5211DB66C00280445 /* CustomAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49540AD4211DB66C00280445 /* CustomAlertPresenter.swift */; };
 		49540AD7211DB72200280445 /* ChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49540AD6211DB72200280445 /* ChoiceView.swift */; };
@@ -130,6 +133,9 @@
 		23F12B8020CEFA5200D6BA39 /* TodoTaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTaskService.swift; sourceTree = "<group>"; };
 		23F12B8420CEFC5100D6BA39 /* TodoListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListService.swift; sourceTree = "<group>"; };
 		23F12B8920CF08DD00D6BA39 /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
+		494829CC214165AE00A0B74E /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		494829CE214165BB00A0B74E /* OnboardingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingViewController.storyboard; sourceTree = "<group>"; };
+		494829D021416D3800A0B74E /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		49540AD2211DB63700280445 /* Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
 		49540AD4211DB66C00280445 /* CustomAlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertPresenter.swift; sourceTree = "<group>"; };
 		49540AD6211DB72200280445 /* ChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceView.swift; sourceTree = "<group>"; };
@@ -206,6 +212,7 @@
 				2357806320A88E07001DBFC4 /* Localizable.strings */,
 				2357804B20A20DFD001DBFC4 /* Factories */,
 				2357804820A2067F001DBFC4 /* Utils */,
+				494829CB2141658E00A0B74E /* Onboarding */,
 				2357805020A21291001DBFC4 /* Screens */,
 				2357803120A20665001DBFC4 /* LaunchScreen.storyboard */,
 			);
@@ -245,7 +252,6 @@
 		2357805020A21291001DBFC4 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				23CC53D720B2E72D004F40E3 /* Personalize */,
 				23CC53D220B2E5F1004F40E3 /* Main */,
 				23F12B7620CEF97B00D6BA39 /* TodoList */,
 				23F12B7720CEF9A800D6BA39 /* TodoTask */,
@@ -298,6 +304,7 @@
 		23CC53D220B2E5F1004F40E3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				494829D021416D3800A0B74E /* MainViewModel.swift */,
 				23F12B8B20CF08E100D6BA39 /* Service */,
 				23CC53DC20B2E845004F40E3 /* Collection View */,
 				23CC53D320B2E600004F40E3 /* MainViewController.swift */,
@@ -403,6 +410,16 @@
 				9275B8B8A560F641D4CA9F6F /* Pods_TTDTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		494829CB2141658E00A0B74E /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				494829CC214165AE00A0B74E /* OnboardingViewController.swift */,
+				494829CE214165BB00A0B74E /* OnboardingViewController.storyboard */,
+				23CC53D720B2E72D004F40E3 /* Personalize */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		49BBE63B212D591D006B9297 /* ViewModel */ = {
@@ -529,6 +546,7 @@
 				2357803320A20665001DBFC4 /* LaunchScreen.storyboard in Resources */,
 				2357803020A20665001DBFC4 /* Assets.xcassets in Resources */,
 				2357805320A212A7001DBFC4 /* PasscodeViewController.storyboard in Resources */,
+				494829CF214165BB00A0B74E /* OnboardingViewController.storyboard in Resources */,
 				23CC53DB20B2E746004F40E3 /* PersonalizeViewController.storyboard in Resources */,
 				23CC53D620B2E61D004F40E3 /* MainViewController.storyboard in Resources */,
 				231535C520CB341300883266 /* CollectionViewCell.xib in Resources */,
@@ -611,6 +629,7 @@
 				23D9D27E20D6B0C90050E8E9 /* TodoListViewModel.swift in Sources */,
 				2357805A20A88C34001DBFC4 /* ServiceFactory.swift in Sources */,
 				2357804A20A2068E001DBFC4 /* ColorExtension.swift in Sources */,
+				494829D121416D3800A0B74E /* MainViewModel.swift in Sources */,
 				23CC53D920B2E73D004F40E3 /* PersonalizeViewController.swift in Sources */,
 				2357807120A8C669001DBFC4 /* TextFieldExtension.swift in Sources */,
 				23F12B8A20CF08DD00D6BA39 /* MainService.swift in Sources */,
@@ -629,6 +648,7 @@
 				23F12B7920CEFA2200D6BA39 /* TodoListViewController.swift in Sources */,
 				2357804F20A20EB0001DBFC4 /* ViewExtension.swift in Sources */,
 				23CC53D420B2E600004F40E3 /* MainViewController.swift in Sources */,
+				494829CD214165AE00A0B74E /* OnboardingViewController.swift in Sources */,
 				23D9D28420D6D39C0050E8E9 /* TodoTaskTableViewCell.swift in Sources */,
 				2357806C20A89B01001DBFC4 /* SkyFloatingLabelTextField.swift in Sources */,
 				2357806F20A8C4A3001DBFC4 /* Themes.swift in Sources */,

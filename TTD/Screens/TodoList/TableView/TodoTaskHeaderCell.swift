@@ -29,6 +29,6 @@ class TodoTaskHeaderCell: UIView {
     /// - Parameter title: The title for the header view (date)
     func setTitle (_ title: String) {
         self.dateLabel.text = title
-        self.dateLabel.textColor = .lightGray
+        self.dateLabel.textColor = .midGray
     }
 }

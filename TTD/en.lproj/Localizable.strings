@@ -31,8 +31,8 @@
 
 /* Choice View */
 "CV_done_button" = "Done";
-"CV_gradient_view_title" = "";
-"CV_icon_view_title" = "";
+"CV_gradient_view_title" = "Theme";
+"CV_icon_view_title" = "Symbol";
 
 /* New Todo Task View Controller */
 "NTTVC_title" = "New Task";

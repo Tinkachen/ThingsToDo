@@ -25,6 +25,19 @@ private enum Constants {
     
     /// The height of the strike through view
     static let strikethroughViewHeight: CGFloat = 2
+    
+    /// The strings for the priority label
+    enum PriorityString {
+        
+        /// The low priority string
+        static let lowString = "!"
+        
+        /// The middle priority string
+        static let middleString = "!!"
+        
+        /// The high priority string
+        static let highString = "!!!"
+    }
 }
 
 /// The table view cell for the todo tasks
@@ -35,6 +48,9 @@ class TodoTaskTableViewCell: UITableViewCell {
     
     /// The alternate info button for timer/delete 
     @IBOutlet fileprivate weak var alternateInfoButton: UIButton!
+    
+    /// The priority label
+    @IBOutlet fileprivate weak var priorityLabel: UILabel!
     
     /// The label for the title
     @IBOutlet fileprivate weak var titleLabel: UILabel!
@@ -68,36 +84,71 @@ class TodoTaskTableViewCell: UITableViewCell {
         self.deleteCallback = deleteCallback
         self.doneStateCallback = doneStateCallback
         titleLabel.text = viewModel.taskDescription
+        applyAlternateInformation()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        applyAlternateInformation()
+        applyPriority()
     }
     
     /// Apply informations to the button from the view model 
     private func applyAlternateInformation () {
         if viewModel.isDone {
             checkBoxButton.setImage(Constants.checkImage, for: .normal)
-            strikethroughView = UIView(frame: CGRect(x: 0,
-                                                     y: (titleLabel.frame.height / 2) - 1.0,
-                                                     width: 0,
-                                                     height: Constants.strikethroughViewHeight))
-            strikethroughView?.layer.cornerRadius = Constants.strikethroughViewHeight / 2
-            strikethroughView?.backgroundColor = .lightGray
-            titleLabel.addSubview(strikethroughView!)
-            UIView.animate(withDuration: 0.3) {
-                self.strikethroughView?.frame.size.width = self.titleLabel.frame.width
+            if strikethroughView == nil {
+                strikethroughView = UIView(frame: CGRect(x: 0,
+                                                         y: (titleLabel.frame.height / 2) - 1.0,
+                                                         width: 0,
+                                                         height: Constants.strikethroughViewHeight))
+                strikethroughView?.layer.cornerRadius = Constants.strikethroughViewHeight / 2
+                strikethroughView?.backgroundColor = .midGray
+                titleLabel.addSubview(strikethroughView!)
+                self.layoutIfNeeded()
+                
+                UIView.animate(withDuration: 0.3) {
+                    self.strikethroughView?.frame.size.width = self.titleLabel.frame.width
+                    self.titleLabel.textColor = .midGray
+                }
             }
+            
             alternateInfoButton.setImage(Constants.trashImage, for: .normal)
+            alternateInfoButton.isUserInteractionEnabled = true
             alternateInfoButton.tintColor = .midGray
+            
         } else {
             checkBoxButton.setImage(Constants.checkEmptyImage, for: .normal)
             strikethroughView?.removeFromSuperview()
             strikethroughView = nil
             alternateInfoButton.setImage(viewModel.isTimerSet ? Constants.timerImage : nil, for: .normal)
+            alternateInfoButton.isUserInteractionEnabled = false
             alternateInfoButton.tintColor = .midGray
+            titleLabel.textColor = .black
+        }
+    }
+    
+    /// Apply priority indicator to button
+    private func applyPriority () {
+        
+        priorityLabel.textColor = .midGray
+        
+        switch viewModel.priority {
+        case .low:
+            priorityLabel.text = Constants.PriorityString.lowString
+            titleLabel.font = UIFont.systemFont(ofSize: titleLabel.font.pointSize, weight: .semibold)
+            break
+        case .middle:
+            priorityLabel.text = Constants.PriorityString.middleString
+            titleLabel.font = UIFont.systemFont(ofSize: titleLabel.font.pointSize, weight: .bold)
+            break
+        case .high:
+            priorityLabel.text = Constants.PriorityString.highString
+            titleLabel.font = UIFont.systemFont(ofSize: titleLabel.font.pointSize, weight: .heavy)
+            break
+        default:
+            priorityLabel.text = ""
+            titleLabel.font = UIFont.systemFont(ofSize: titleLabel.font.pointSize, weight: .regular)
+            break
         }
     }
     

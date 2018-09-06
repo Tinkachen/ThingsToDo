@@ -46,12 +46,22 @@
                             <action selector="didSelectCheckBox" destination="9Nw-3f-JNO" eventType="touchUpInside" id="orT-rt-BcO"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcW-14-Urj">
+                        <rect key="frame" x="315" y="8" width="15" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="9ru-f9-5oH" firstAttribute="leading" secondItem="i0V-fB-ecX" secondAttribute="leading" id="7Sq-Qq-Ek9"/>
                     <constraint firstAttribute="trailing" secondItem="IM6-dp-Abx" secondAttribute="trailing" constant="15" id="CCY-Fm-r8W"/>
                     <constraint firstItem="9ru-f9-5oH" firstAttribute="centerY" secondItem="i0V-fB-ecX" secondAttribute="centerY" id="MgJ-lB-Ano"/>
                     <constraint firstItem="hTT-Vc-Svf" firstAttribute="leading" secondItem="9ru-f9-5oH" secondAttribute="trailing" constant="15" id="NHy-Ve-1JC"/>
+                    <constraint firstItem="IM6-dp-Abx" firstAttribute="width" secondItem="xcW-14-Urj" secondAttribute="width" id="UcC-GM-q8E"/>
+                    <constraint firstItem="IM6-dp-Abx" firstAttribute="leading" secondItem="xcW-14-Urj" secondAttribute="trailing" constant="15" id="XBu-Hz-VB0"/>
+                    <constraint firstItem="IM6-dp-Abx" firstAttribute="height" secondItem="xcW-14-Urj" secondAttribute="height" id="XMb-ue-TdB"/>
+                    <constraint firstItem="xcW-14-Urj" firstAttribute="centerY" secondItem="i0V-fB-ecX" secondAttribute="centerY" id="hV2-oL-tZ0"/>
                     <constraint firstItem="IM6-dp-Abx" firstAttribute="centerY" secondItem="i0V-fB-ecX" secondAttribute="centerY" id="wNp-Wq-VJn"/>
                     <constraint firstItem="hTT-Vc-Svf" firstAttribute="centerY" secondItem="i0V-fB-ecX" secondAttribute="centerY" id="ySN-8Z-bW1"/>
                 </constraints>
@@ -60,6 +70,7 @@
             <connections>
                 <outlet property="alternateInfoButton" destination="IM6-dp-Abx" id="bid-yY-8JA"/>
                 <outlet property="checkBoxButton" destination="9ru-f9-5oH" id="uol-rb-kM0"/>
+                <outlet property="priorityLabel" destination="xcW-14-Urj" id="ojD-bL-jsl"/>
                 <outlet property="titleLabel" destination="hTT-Vc-Svf" id="3gV-bg-uEE"/>
             </connections>
             <point key="canvasLocation" x="-97.5" y="-61"/>

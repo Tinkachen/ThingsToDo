@@ -184,36 +184,25 @@ struct Themes {
         }
     }
     
-    /// Colors for the yellow theme
     static let yellow = Theme(main: .goldenDream, gradient: [UIColor.goldenDream.cgColor, UIColor.witchHaze.cgColor], light: true)
     
-    /// Colors for the light blue theme
     static let lightBlue = Theme(main: .sail, gradient: [UIColor.sail.cgColor, UIColor.dodgerBlue.cgColor], light: true)
     
-    /// Colors for the pink theme
     static let pink = Theme(main: .mandysPink, gradient: [UIColor.mandysPink.cgColor, UIColor.mandy.cgColor], light: true)
     
-    /// Colors for the purple theme
     static let purple = Theme(main: .brightUbe, gradient: [UIColor.brightUbe.cgColor, UIColor.mediumSlateBlue.cgColor], light: true)
     
-    /// <#Description#>
     static let turquoise = Theme(main: .waterLeaf, gradient: [UIColor.waterLeaf.cgColor, UIColor.dullCyan.cgColor], light: false)
     
-    /// <#Description#>
     static let morning = Theme(main: .radicialRed, gradient: [UIColor.blond.cgColor, UIColor.radicialRed.cgColor], light: false)
     
-    /// <#Description#>
     static let green = Theme(main: .ufoGreen, gradient: [UIColor.aquamarine.cgColor, UIColor.ufoGreen.cgColor], light: false)
     
-    /// <#Description#>
     static let lavender = Theme(main: .deepLilac, gradient: [UIColor.mauve.cgColor, UIColor.deepLilac.cgColor], light: false)
     
-    /// <#Description#>
     static let violet = Theme(main: .royalPurple, gradient: [UIColor.pinkSherbet.cgColor, UIColor.royalPurple.cgColor], light: false)
     
-    /// <#Description#>
     static let sunset = Theme(main: .carnation, gradient: [UIColor.kournikova.cgColor, UIColor.carnation.cgColor], light: false)
-    
     
     static let berry = Theme(main: .vividViolet, gradient: [UIColor.magenta2.cgColor, UIColor.vividViolet.cgColor], light: false)
     
@@ -263,9 +252,9 @@ struct Themes {
     
     static let fuchsia = Theme(main: .deepFuchsia2, gradient: [UIColor.frenchLilac.cgColor, UIColor.deepFuchsia2.cgColor], light: false)
     
-    /// <#Description#>
-    static let lightGreen = Theme(main: .dullLime, gradient: [UIColor.gorse.cgColor, UIColor.dullCyan.cgColor], light: true)
     
-    /// <#Description#>
+    
+    static let lightGreen = Theme(main: .dullLime, gradient: [UIColor.gorse.cgColor, UIColor.dullCyan.cgColor], light: true)
+
     static let fairy = Theme(main: .magenta, gradient: [UIColor.fadedCyan.cgColor, UIColor.magenta.cgColor], light: true)
 }

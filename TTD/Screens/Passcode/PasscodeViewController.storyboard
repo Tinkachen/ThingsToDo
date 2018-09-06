@@ -203,6 +203,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="ebx-Sy-qUY"/>
                                                         </constraints>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Cancel"/>
                                                         <connections>
                                                             <action selector="cancelButtonAction:" destination="r4j-pC-VfG" eventType="touchUpInside" id="MiX-Hh-4oi"/>

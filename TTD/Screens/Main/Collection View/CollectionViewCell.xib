@@ -73,7 +73,7 @@
                                         <color key="tintColor" red="0.43137254901960786" green="0.43529411764705883" blue="0.42745098039215684" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" image="more_dots"/>
                                         <connections>
-                                            <action selector="cellActionButtonPressed" destination="a6w-10-0CT" eventType="touchUpInside" id="Q3T-4T-ZV9"/>
+                                            <action selector="showMoreButtonPressed" destination="a6w-10-0CT" eventType="touchUpInside" id="0k8-d4-Rla"/>
                                         </connections>
                                     </button>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Orf-Sh-ztM">
@@ -102,12 +102,56 @@
                                     <constraint firstItem="aA6-FH-fxg" firstAttribute="top" secondItem="Gra-a3-crk" secondAttribute="top" constant="15" id="y78-0m-BOH"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03x-Fw-W63">
+                                <rect key="frame" x="10" y="10" width="230" height="340"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20p-hk-8FJ">
+                                        <rect key="frame" x="195" y="25" width="20" height="20"/>
+                                        <state key="normal" image="CloseIcon"/>
+                                        <connections>
+                                            <action selector="cancelActionButtonPressed" destination="a6w-10-0CT" eventType="touchUpInside" id="V9Q-yr-XN3"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwz-KC-pYp">
+                                        <rect key="frame" x="15" y="161.5" width="200" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v7q-QM-LZp">
+                                        <rect key="frame" x="92" y="250" width="46" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="LPy-B5-Sxe"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="cellActionButtonPressed" destination="a6w-10-0CT" eventType="touchUpInside" id="UH4-eN-R2B"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="hwz-KC-pYp" secondAttribute="trailing" constant="15" id="HfV-PM-wgJ"/>
+                                    <constraint firstItem="hwz-KC-pYp" firstAttribute="leading" secondItem="03x-Fw-W63" secondAttribute="leading" constant="15" id="KHc-0J-SMW"/>
+                                    <constraint firstAttribute="bottom" secondItem="v7q-QM-LZp" secondAttribute="bottom" constant="40" id="KQS-CJ-Ot0"/>
+                                    <constraint firstItem="v7q-QM-LZp" firstAttribute="centerX" secondItem="03x-Fw-W63" secondAttribute="centerX" id="fYM-CX-5T1"/>
+                                    <constraint firstItem="hwz-KC-pYp" firstAttribute="centerY" secondItem="03x-Fw-W63" secondAttribute="centerY" id="ydY-Cg-z20"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="03x-Fw-W63" firstAttribute="top" secondItem="ML1-bO-RhM" secondAttribute="top" constant="10" id="223-g7-oaH"/>
+                            <constraint firstAttribute="bottom" secondItem="03x-Fw-W63" secondAttribute="bottom" constant="10" id="752-GD-F01"/>
+                            <constraint firstItem="20p-hk-8FJ" firstAttribute="trailing" secondItem="QRh-wo-rFi" secondAttribute="trailing" id="Tjq-Be-Brv"/>
+                            <constraint firstItem="03x-Fw-W63" firstAttribute="leading" secondItem="ML1-bO-RhM" secondAttribute="leading" constant="10" id="Twr-yD-X14"/>
+                            <constraint firstItem="20p-hk-8FJ" firstAttribute="height" secondItem="QRh-wo-rFi" secondAttribute="height" id="YQG-gn-0IW"/>
                             <constraint firstItem="Gra-a3-crk" firstAttribute="leading" secondItem="ML1-bO-RhM" secondAttribute="leading" constant="10" id="cRt-RI-qQy"/>
+                            <constraint firstItem="20p-hk-8FJ" firstAttribute="width" secondItem="QRh-wo-rFi" secondAttribute="width" id="fJb-LW-gM5"/>
                             <constraint firstAttribute="bottom" secondItem="Gra-a3-crk" secondAttribute="bottom" constant="10" id="hcG-D8-gCu"/>
                             <constraint firstAttribute="trailing" secondItem="Gra-a3-crk" secondAttribute="trailing" constant="10" id="ktt-R8-h4Y"/>
+                            <constraint firstItem="20p-hk-8FJ" firstAttribute="top" secondItem="QRh-wo-rFi" secondAttribute="top" id="mr0-qB-alq"/>
+                            <constraint firstAttribute="trailing" secondItem="03x-Fw-W63" secondAttribute="trailing" constant="10" id="orH-Mn-nGB"/>
                             <constraint firstItem="Gra-a3-crk" firstAttribute="top" secondItem="ML1-bO-RhM" secondAttribute="top" constant="10" id="u7R-eM-lml"/>
                         </constraints>
                     </view>
@@ -124,7 +168,11 @@
                 <outlet property="backgroundContainer" destination="ML1-bO-RhM" id="T4i-fD-Auz"/>
                 <outlet property="badgeImageContainerView" destination="aA6-FH-fxg" id="4gz-tu-47X"/>
                 <outlet property="badgeImageView" destination="Bfh-3r-VE5" id="heM-r5-uCP"/>
+                <outlet property="cancelButton" destination="20p-hk-8FJ" id="SJr-Yn-By2"/>
                 <outlet property="containerView" destination="Gra-a3-crk" id="gXK-nv-kMo"/>
+                <outlet property="deleteButton" destination="v7q-QM-LZp" id="8of-Tb-k5e"/>
+                <outlet property="deleteContainerView" destination="03x-Fw-W63" id="iFe-L1-u9P"/>
+                <outlet property="deleteInfoLabel" destination="hwz-KC-pYp" id="th9-K5-zCa"/>
                 <outlet property="descriptionLabel" destination="GQb-ge-JB3" id="HEd-g1-BVg"/>
                 <outlet property="progressBar" destination="Orf-Sh-ztM" id="A1P-Yx-a4i"/>
                 <outlet property="progressPercentLabel" destination="u7h-0r-w7B" id="QJS-BL-Y4B"/>
@@ -134,6 +182,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="CloseIcon" width="12" height="13"/>
         <image name="more_dots" width="30" height="30"/>
     </resources>
 </document>

@@ -1,5 +1,5 @@
 //
-//  EmptyCollectionView.swift
+//  EmptyView.swift
 //  TTD
 //
 //  Created by Catharina Herchert on 09.06.18.
@@ -8,13 +8,16 @@
 
 import UIKit
 
-/// The Empty Collection View
-class EmptyCollectionView: UIView {
+/// The Empty View
+class EmptyView: UIView {
     
     // MARK: - Outlets
     
     /// The no cards label
-    @IBOutlet fileprivate weak var noCardsLabel: UILabel!
+    @IBOutlet fileprivate weak var titleLabel: UILabel!
+    
+    /// The button
+    @IBOutlet fileprivate weak var button: UIButton!
     
     // MARK: - Variables
     
@@ -31,22 +34,27 @@ class EmptyCollectionView: UIView {
     /// - Parameters:
     ///   - message: The message
     ///   - callback: The button callback
-    func createWithMessage (_ message: String, AndCallback callback: (() -> Void)?) {
+    func createWithMessage (_ message: String, AndButtonTitle buttonTitle: String, AndCallback callback: (() -> Void)?) {
         self.callback = callback
-        self.noCardsLabel.text = message
+        self.button.setTitle(buttonTitle, for: .normal)
+        self.titleLabel.text = message
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        button.tintColor = .white
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderWidth = 1.0
+        button.layer.cornerRadius = button.frame.height / 2
     }
     
-    // MARK: - Buttons Actions
+    // MARK: - Button Actions
     
     /// The action for the button
     ///
     /// - Parameter sender: The sender of the event
-    @IBAction func addNewCard (_ sender: UIButton) {
+    @IBAction func buttonPressed () {
         callback?()
     }
 }

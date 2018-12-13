@@ -13,6 +13,10 @@ private enum Constants {
 
     enum Strings {
         static let tasksStringKey = "MVC_CVC_tasks"
+        
+        static let deleteInfoStringKey = "MVC_CVC_deleteInfo"
+        
+        static let deleteButtonStringKey = "MVC_CVC_deleteButton"
     }
     
     static let progressBarHeight: CGFloat = 5
@@ -47,6 +51,20 @@ class CollectionViewCell: UICollectionViewCell {
     /// The progress percent label
     @IBOutlet fileprivate weak var progressPercentLabel: UILabel!
     
+    // Delete the cell context
+    
+    /// The container view for deleting the cell
+    @IBOutlet fileprivate weak var deleteContainerView: UIView!
+    
+    /// The delete button
+    @IBOutlet fileprivate weak var deleteButton: UIButton!
+    
+    /// The delete information label
+    @IBOutlet fileprivate weak var deleteInfoLabel: UILabel!
+    
+    /// The cancel delete button
+    @IBOutlet fileprivate weak var cancelButton: UIButton!
+    
     // MARK: - Variables
     
     /// The view model
@@ -62,6 +80,14 @@ class CollectionViewCell: UICollectionViewCell {
         containerView.layer.shadowOpacity = 0.5
         containerView.layer.shadowOffset = CGSize(width: 0, height: 1)
         containerView.layer.shadowRadius = 5
+        
+        // Setup Delete View
+        deleteContainerView.layer.shadowColor = UIColor.black.cgColor
+        deleteContainerView.layer.shadowOpacity = 0.5
+        deleteContainerView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        deleteContainerView.layer.shadowRadius = 5
+        
+        showDeleteOption(false)
     }
     
     /// Sets up the task label
@@ -98,6 +124,11 @@ class CollectionViewCell: UICollectionViewCell {
         progressBar.trackTintColor = .lightGray
         progressBar.progressImage = CAGradientLayer(frame: progressBar.frame, colors: viewModel.getGradient()).createGradientImage()
         
+        // Delete option
+        
+        deleteInfoLabel.text = Constants.Strings.deleteInfoStringKey.localized
+        deleteButton.setTitle(Constants.Strings.deleteButtonStringKey.localized, for: .normal)
+        
     }
     
     override func layoutSubviews() {
@@ -107,6 +138,8 @@ class CollectionViewCell: UICollectionViewCell {
         backgroundContainer.backgroundColor = .clear
         containerView.backgroundColor = .white
         containerView.layer.cornerRadius = 5.0
+        deleteContainerView.backgroundColor = .white
+        deleteContainerView.layer.cornerRadius = 5.0
         
         // Setup Image View
         badgeImageContainerView.backgroundColor = .clear
@@ -117,8 +150,28 @@ class CollectionViewCell: UICollectionViewCell {
     
     // Actions
     
+    /// Shows or hides the delete option container view
+    ///
+    /// - Parameter show: Indicator that shows or hide the delete option container view
+    private func showDeleteOption (_ show: Bool) {
+        
+        deleteContainerView.isHidden = !show
+        containerView.isHidden = show
+        
+    }
+    
+    /// Recognizes if the more button was touched up inside
+    @IBAction fileprivate func showMoreButtonPressed () {
+        showDeleteOption(true)
+    }
+    
     /// Called when the action button of the cell was pressed
     @IBAction fileprivate func cellActionButtonPressed () {
         deleteCallback()
+    }
+    
+    /// Recognizes if the cancel button was touched up inside
+    @IBAction fileprivate func cancelActionButtonPressed () {
+        showDeleteOption(false)
     }
 }

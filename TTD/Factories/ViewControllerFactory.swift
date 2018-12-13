@@ -21,20 +21,57 @@ class ViewControllerFactory {
         return navigationController
     }
     
-    /// <#Description#>
+    /// Makes an instane of the onboarding view controller
     ///
-    /// - Returns: <#return value description#>
+    /// - Returns: The instance
     private static func makeOnboardingViewController () -> UIViewController {
-        let onboardingViewController: OnboardingViewController = makeViewController()
+        let onboardingViewController = OnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        onboardingViewController.pages = [
+            makeOnboardingPersonalizeViewController(),
+            makeOnboardingNotificationViewController()
+        ]
         return onboardingViewController
     }
     
-    /// Makes an instance of the 'PersonalizeViewController'
+    /// Makes an instance of the onboarding view controller with view model for requesting a service
+    ///
+    /// - Parameters:
+    ///   - viewModel: The view model
+    ///   - request: Callback for the request status
+    ///   - next: Callback for the next status
+    /// - Returns: The instance
+    static func makeOnboardingViewControllerWith (_ viewModel: OnboardingViewModel,
+                                                  andRequestCallback request: @escaping (()->Void),
+                                                  andNextCallback next: @escaping (()->Void)) -> UIViewController{
+        let onboardingViewController: OnboardingRequestViewController = makeViewController()
+        onboardingViewController.viewModel = viewModel
+        onboardingViewController.setupCallbacks(request: request, next: next)
+        
+        return onboardingViewController
+    }
+    
+    /// Makes a personalize view controller for onboarding
     ///
     /// - Returns: The instance
     static func makePersonalizeViewController () -> UIViewController {
-        let personalizeViewController: PersonalizeViewController = makeViewController()
-        return personalizeViewController
+        let onboardingPersonalizeViewController: OnboardingPersonalizeViewController = makeViewController()
+        return onboardingPersonalizeViewController
+    }
+    
+    /// Makes an instance of the 'OnboardingPersonalizeViewController'
+    ///
+    /// - Returns: The instance
+    private static func makeOnboardingPersonalizeViewController () -> UIViewController {
+        let onboardingPersonalizeViewController: OnboardingPersonalizeViewController = makeViewController()
+        return onboardingPersonalizeViewController
+    }
+    
+    /// Makes an instance of 'OnboardingNotificationViewController'
+    ///
+    /// - Returns: The instance
+    private static func makeOnboardingNotificationViewController () -> UIViewController {
+        let onboardingNotificationViewController: OnboardingRequestViewController = makeViewController()
+        return onboardingNotificationViewController
     }
     
     /// Makes an instance of the 'MainViewController'

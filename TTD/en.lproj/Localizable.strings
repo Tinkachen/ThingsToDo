@@ -6,22 +6,36 @@
   Copyright © 2018 Catharina Herchert. All rights reserved.
 */
 
+/* Global */
+"BS_authentication_fallback" = "Use passcode";
+
 /* Onboarding View Controller */
+"OVC_enable" = "Enable";
 "OVC_enable_notification" = "Enable notification";
 "OVC_enable_notification_description" = "Enable notification services";
 
 /* Personalize View Controller */
-"PVC_name_placeholder" = "What should I call you?";
+"PVC_title" = "What should I call you?";
+"PVC_name_placeholder" = "Place your name here";
+"PVC_ready_button_title" = "Ready";
+
+/* User Image Button View */
+"UIB_title" = "Add a image";
+
 
 /* Main View Controller */
 "MVC_welcome_user" = "Hello";
 "MVC_alert_delete" = "Delete";
 "MVC_alert_cancel" = "Cancel";
+"MVC_empty_view_message" = "There is no todo list at this time.";
+"MVC_empty_view_button" = "Add a new one";
 
 "MVM_unknown_user_name" = "User";
 
 /* Main View Controller Collection View Cell */
 "MVC_CVC_tasks" = "Tasks";
+"MVC_CVC_deleteInfo" = "Do you really want to delete this list?";
+"MVC_CVC_deleteButton" = "Delete";
 
 /* New Todo List View Controller */
 "NTLVC_title" = "New To-Do List";

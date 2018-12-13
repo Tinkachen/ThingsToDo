@@ -25,6 +25,12 @@ private enum Constants {
         
         /// The localized text to cancel the cell delete
         static let alertCancelKey = "MVC_alert_cancel"
+        
+        /// The message for a empty colleciton view
+        static let emptyMessage = "MVC_empty_view_message".localized
+        
+        /// The title string for a empty collection view
+        static let emptyButtonTitle = "MVC_empty_view_button".localized
     }
 }
 
@@ -104,10 +110,22 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         getListViewModels()
         collectionView.reloadData()
+        checkIfCollectionViewIsEmpty()
         
         self.view.removeGradientLayer()
         
         self.view.applyGradient(colors: todoListViewModels.count > 0 ? todoListViewModels[indexOfMajorCell()].getGradient() : Themes.getTheme(Gradient.rdmGradient()).gradient)
+    }
+    
+    /// Checks if the collection view is empty an displays a empty view or restores it
+    private func checkIfCollectionViewIsEmpty () {
+        if todoListViewModels.count == 0 {
+            collectionView.setEmptyViewWithMessage(Constants.Strings.emptyMessage, AndButtonTitle: Constants.Strings.emptyButtonTitle) {
+                self.addNewTodoListButtonPressed(UIButton())
+            }
+        } else {
+            collectionView.restore()
+        }
     }
     
     /// Requests the list view models from the local storage
@@ -138,6 +156,9 @@ class MainViewController: UIViewController {
         self.navigationController?.present(newTodoListViewController, animated: true)
     }
     
+    /// Deletes the passed cell and connected data
+    ///
+    /// - Parameter indexPath: The index path of the cell
     fileprivate func deleteCell (atIndexPath indexPath: IndexPath) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: Constants.Strings.alertDeleteKey.localized, style: .destructive, handler: { (alertAction) in
@@ -149,10 +170,18 @@ class MainViewController: UIViewController {
                 self.todoListViewModels.remove(at: indexPath.row)
                 self.collectionView.deleteItems(at: [indexPath])
                 
+                if self.todoListViewModels.count == 0 {
+                    self.checkIfCollectionViewIsEmpty()
+                    return
+                }
+                
                 let newIndex = ((self.indexOfMajorCell() / self.todoListViewModels.count) < (self.todoListViewModels.count / 2)) ? self.indexOfMajorCell() + 1 : self.indexOfMajorCell() - 1
                 if newIndex > 0 && newIndex <= self.todoListViewModels.count {
                     self.view.transitToGradient(from: vm.getGradient(), to: self.todoListViewModels[newIndex].getGradient())
                 }
+                
+                self.checkIfCollectionViewIsEmpty()
+                
             }, completion: nil)
             
             alertController.dismiss(animated: true, completion: nil)
@@ -166,6 +195,9 @@ class MainViewController: UIViewController {
     
     // MARK: - Gestures
     
+    /// Handles the pan gesture on a collection view cell
+    ///
+    /// - Parameter gesture: The pan gesture
     @objc fileprivate func handlePanGestureOnCollectionViewCell (_ gesture: UIPanGestureRecognizer) {
         let point = gesture.location(in: collectionView)
         guard let indexPath = collectionView.indexPathForItem(at: point) else {

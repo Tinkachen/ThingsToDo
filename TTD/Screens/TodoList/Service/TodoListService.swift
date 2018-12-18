@@ -57,7 +57,7 @@ struct TodoListService: MainService {
         
         do {
             listObjects = try contextUnwrapped.fetch(fetchRequest)
-        } catch let error as Error {
+        } catch let error {
             print("Could not fetch. \(error), \(String(describing: error._userInfo))")
             return [TodoListViewModel]()
         }
@@ -114,7 +114,7 @@ struct TodoListService: MainService {
             listViewModels.append(viewModel)
             completion(nil)
             return
-        } catch let error as Error {
+        } catch let error {
             completion(error)
         }
         
@@ -147,7 +147,7 @@ struct TodoListService: MainService {
         
         do {
             try contextUnwrapped.save()
-        } catch let error as Error {
+        } catch let error {
             print(error)
         }
     }
@@ -170,7 +170,7 @@ struct TodoListService: MainService {
         
         do {
             try contextUnwrapped.save()
-        } catch let error as Error {
+        } catch let error {
             print(error)
         }
     }

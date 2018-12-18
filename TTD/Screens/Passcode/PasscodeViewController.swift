@@ -146,10 +146,10 @@ class PasscodeViewController: UIViewController {
             
             if passcodeArray.count == 4 {
                 switch viewModel.passcodeType {
-                case .new:
+                case .new?:
                     setNewPasscode(convertArrayToString())
                     break
-                case .verifyNew:
+                case .verifyNew?:
                     verifyPasscode {
                         setNewPasscode(convertArrayToString())
                         self.dismissPasscodeView()

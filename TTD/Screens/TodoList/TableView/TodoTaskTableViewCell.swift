@@ -133,15 +133,15 @@ class TodoTaskTableViewCell: UITableViewCell {
         priorityLabel.textColor = .midGray
         
         switch viewModel.priority {
-        case .low:
+        case .low?:
             priorityLabel.text = Constants.PriorityString.lowString
             titleLabel.font = UIFont.systemFont(ofSize: titleLabel.font.pointSize, weight: .semibold)
             break
-        case .middle:
+        case .middle?:
             priorityLabel.text = Constants.PriorityString.middleString
             titleLabel.font = UIFont.systemFont(ofSize: titleLabel.font.pointSize, weight: .bold)
             break
-        case .high:
+        case .high?:
             priorityLabel.text = Constants.PriorityString.highString
             titleLabel.font = UIFont.systemFont(ofSize: titleLabel.font.pointSize, weight: .heavy)
             break

@@ -18,13 +18,16 @@ private enum Constants {
     enum Strings {
         
         /// The localized text to welcome the user
-        static let welcomeUserKey = "MVC_welcome_user"
+        static let welcomeUserKey = "MVC_welcome_user".localized
+        
+        /// The localized text for the today label
+        static let todayWithInputKey = "MVC_today"
         
         /// The localized text to delete a cell
-        static let alertDeleteKey = "MVC_alert_delete"
+        static let alertDeleteKey = "MVC_alert_delete".localized
         
         /// The localized text to cancel the cell delete
-        static let alertCancelKey = "MVC_alert_cancel"
+        static let alertCancelKey = "MVC_alert_cancel".localized
         
         /// The message for a empty colleciton view
         static let emptyMessage = "MVC_empty_view_message".localized
@@ -97,8 +100,10 @@ class MainViewController: UIViewController {
 //        collectionView.addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: #selector(handlePanGestureOnCollectionViewCell(_:))))
         
         // Setup user informations
-        welcomeLabel.text = "\(Constants.Strings.welcomeUserKey.localized) \(mainViewModel.getUserName())"
+        welcomeLabel.text = "\(Constants.Strings.welcomeUserKey) \(mainViewModel.getUserName())"
     
+        // Setup the current date
+        todayLabel.text = Constants.Strings.todayWithInputKey.localizedWith([mainViewModel.currentFormattedDate])
     }
     
     override func viewWillLayoutSubviews() {
@@ -161,7 +166,7 @@ class MainViewController: UIViewController {
     /// - Parameter indexPath: The index path of the cell
     fileprivate func deleteCell (atIndexPath indexPath: IndexPath) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: Constants.Strings.alertDeleteKey.localized, style: .destructive, handler: { (alertAction) in
+        alertController.addAction(UIAlertAction(title: Constants.Strings.alertDeleteKey, style: .destructive, handler: { (alertAction) in
             
             
             self.collectionView.performBatchUpdates({
@@ -186,7 +191,7 @@ class MainViewController: UIViewController {
             
             alertController.dismiss(animated: true, completion: nil)
         }))
-        alertController.addAction(UIAlertAction(title: Constants.Strings.alertCancelKey.localized, style: .cancel, handler: { (alertAction) in
+        alertController.addAction(UIAlertAction(title: Constants.Strings.alertCancelKey, style: .cancel, handler: { (alertAction) in
             alertController.dismiss(animated: true, completion: nil)
         }))
         

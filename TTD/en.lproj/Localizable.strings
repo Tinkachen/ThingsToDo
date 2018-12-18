@@ -27,6 +27,7 @@
 "MVC_welcome_user" = "Hello";
 "MVC_alert_delete" = "Delete";
 "MVC_alert_cancel" = "Cancel";
+"MVC_today" = "TODAY : %@";
 "MVC_empty_view_message" = "You don't have any todo lists.";
 "MVC_empty_view_button" = "Add a new one";
 

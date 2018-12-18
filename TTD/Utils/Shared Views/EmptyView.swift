@@ -13,7 +13,7 @@ class EmptyView: UIView {
     
     // MARK: - Outlets
     
-    /// The no cards label
+    /// The title label
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     
     /// The button

@@ -224,7 +224,6 @@
 			isa = PBXGroup;
 			children = (
 				23CC53CE20B20C51004F40E3 /* Supporting Files */,
-				2357806320A88E07001DBFC4 /* Localizable.strings */,
 				2357804B20A20DFD001DBFC4 /* Factories */,
 				2357804820A2067F001DBFC4 /* Utils */,
 				494829CB2141658E00A0B74E /* Onboarding */,
@@ -316,6 +315,7 @@
 				235AF2F7212B290F00D15FCE /* TDD.xcdatamodeld */,
 				2357802F20A20665001DBFC4 /* Assets.xcassets */,
 				2357803420A20665001DBFC4 /* Info.plist */,
+				2357806320A88E07001DBFC4 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

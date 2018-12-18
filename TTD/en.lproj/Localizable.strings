@@ -27,7 +27,7 @@
 "MVC_welcome_user" = "Hello";
 "MVC_alert_delete" = "Delete";
 "MVC_alert_cancel" = "Cancel";
-"MVC_empty_view_message" = "There is no todo list at this time.";
+"MVC_empty_view_message" = "You don't have any todo lists.";
 "MVC_empty_view_button" = "Add a new one";
 
 "MVM_unknown_user_name" = "User";

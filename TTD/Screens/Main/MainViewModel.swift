@@ -29,6 +29,9 @@ private enum Constants {
     /// The localized key for the description text (second line)
     static let descriptionTaskKey = "MVC_description_tasks"
     
+    /// The human readable date format
+    static let dateFormat = "MMMM dd, YYYY"
+    
 }
 
 struct MainViewModel {
@@ -77,7 +80,7 @@ struct MainViewModel {
     /// A date formatter (September 20, 2017)
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd, YYYY"
+        formatter.dateFormat = Constants.dateFormat
         return formatter
     }
     

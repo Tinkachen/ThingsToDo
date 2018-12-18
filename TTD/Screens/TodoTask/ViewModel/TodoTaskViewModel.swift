@@ -66,6 +66,15 @@ struct TodoTaskViewModel {
         return formatter
     }
     
+    /// A date formatter without time
+    private var dateFormatterNoTime: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .none
+        formatter.dateStyle = .short
+        
+        return formatter
+    }
+    
     /// Formattes the end date of the task to human readable string
     ///
     /// - Returns: The formatted date
@@ -86,5 +95,12 @@ struct TodoTaskViewModel {
     /// Updates the stored list view model
     func updateTaskViewModel () {
         TodoTaskService.updateTaskViewModel(self)
+    }
+    
+    /// Indicates if the task has to be finshed today
+    ///
+    /// - Returns: The indicator
+    func mustBeFinishedToday () -> Bool {
+        return dateFormatterNoTime.string(from: taskEndDate) == dateFormatterNoTime.string(from: Date());
     }
 }

@@ -128,14 +128,17 @@ class MainViewController: UIViewController {
             collectionView.setEmptyViewWithMessage(Constants.Strings.emptyMessage, AndButtonTitle: Constants.Strings.emptyButtonTitle) {
                 self.addNewTodoListButtonPressed(UIButton())
             }
+            descriptionLabel.text = mainViewModel.getDescriptionStringForTaskCount(0)
         } else {
             collectionView.restore()
+            descriptionLabel.text = mainViewModel.getDescriptionStringForTaskCount(TodoListService.getTotalCountOfTodayTasks())
         }
     }
     
     /// Requests the list view models from the local storage
     private func getListViewModels () {
         todoListViewModels = TodoListService.getListViewModels()
+        descriptionLabel.text = mainViewModel.getDescriptionStringForTaskCount(TodoListService.getTotalCountOfTodayTasks())
     }
     
     // MARK: - Transition animation

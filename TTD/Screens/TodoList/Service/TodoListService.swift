@@ -174,4 +174,18 @@ struct TodoListService: MainService {
             print(error)
         }
     }
+    
+    /// Delivers the total count of tasks that have to be finsched today
+    ///
+    /// - Returns: The total count
+    static func getTotalCountOfTodayTasks () -> Int {
+        var totalTodayTaskCount = 0
+        listViewModels.forEach { (listViewModel) in
+            listViewModel.tasks?.forEach({ (taskViewModel) in
+                totalTodayTaskCount += taskViewModel.mustBeFinishedToday() ? 1 : 0
+            })
+        }
+        
+        return totalTodayTaskCount;
+    }
 }

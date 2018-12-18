@@ -17,6 +17,18 @@ private enum Constants {
     /// The localized key for user
     static let userLocalizedNameKey = "MVM_unknown_user_name".localized
     
+    /// The localized key for the description text - state chill out
+    static let descriptionChillOutKey = "MVC_description_chill_out".localized
+    
+    /// The localized key for the description text - state feels good
+    static let descriptionFeelsGoodKey = "MVC_description_feels_good".localized
+    
+    /// The localized key for the description text - state stressy time
+    static let descriptionStressyTimeKey = "MVC_description_stressy_time".localized
+    
+    /// The localized key for the description text (second line)
+    static let descriptionTaskKey = "MVC_description_tasks"
+    
 }
 
 struct MainViewModel {
@@ -39,6 +51,25 @@ struct MainViewModel {
         }
         
         return userName
+    }
+    
+    /// Delivers the string for the description label
+    ///
+    /// - Parameter count: The number of tasks that have to be finsihed today
+    /// - Returns: The string formatted by the value of task count
+    func getDescriptionStringForTaskCount (_ count: Int) -> String {
+        
+        var descriptionString = ""
+        
+        if count == 0 {
+            descriptionString = Constants.descriptionChillOutKey
+        } else if count < 7 {
+            descriptionString = Constants.descriptionFeelsGoodKey
+        } else {
+            descriptionString = Constants.descriptionStressyTimeKey
+        }
+        
+        return "\(descriptionString)\n\(Constants.descriptionTaskKey.localizedWith([count]))"
     }
     
     // Date

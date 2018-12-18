@@ -23,9 +23,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghr-8m-gr6">
-                    <rect key="frame" x="25" y="367.5" width="325" height="50"/>
+                    <rect key="frame" x="100" y="367.5" width="175" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="z5Y-29-mAN"/>
+                        <constraint firstAttribute="width" secondItem="ghr-8m-gr6" secondAttribute="height" multiplier="7:2" id="zQC-3q-ohZ"/>
                     </constraints>
                     <state key="normal" title="Button"/>
                     <connections>
@@ -37,8 +38,7 @@
                 <constraint firstItem="6pa-Id-C4f" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="1Wh-RE-8Wf"/>
                 <constraint firstItem="ghr-8m-gr6" firstAttribute="top" secondItem="6pa-Id-C4f" secondAttribute="bottom" constant="25" id="R7C-Gr-3Fd"/>
                 <constraint firstItem="6pa-Id-C4f" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="REC-tm-JYZ"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ghr-8m-gr6" secondAttribute="trailing" constant="25" id="gJp-h4-raN"/>
-                <constraint firstItem="ghr-8m-gr6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="25" id="wTb-Vd-rFJ"/>
+                <constraint firstItem="ghr-8m-gr6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="f90-eW-tZi"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>

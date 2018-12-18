@@ -34,26 +34,32 @@ private enum Constants {
     enum Strings {
         
         /// The description text
-        static let descriptionTextKey = "NTTVC_description"
+        static let descriptionTextKey = "NTTVC_description".localized
         
         /// The title for the view
-        static let viewTitleKey = "NTTVC_title"
+        static let viewTitleKey = "NTTVC_title".localized
         
         /// The placeholder for the name
-        static let namePlaceholderKey = "NTTVC_name_placeholer"
+        static let namePlaceholderKey = "NTTVC_name_placeholer".localized
         
         /// The placeholder for the notes
-        static let notesPlaceholderKey = "NTTVC_notes_placeholder"
+        static let notesPlaceholderKey = "NTTVC_notes_placeholder".localized
         
         /// The text for the reminder
-        static let reminderTextKey = "NTTVC_reminder"
+        static let reminderTextKey = "NTTVC_reminder".localized
         
         /// The priority localization key
-        static let priorityTextKey = "NTTVC_priority"
+        static let priorityTextKey = "NTTVC_priority".localized
         
         /// The note localization key
-        static let noteTextKey = "NTTVC_note"
+        static let noteTextKey = "NTTVC_note".localized
+        
+        /// The done localized key
+        static let pickerDoneKey = "NTTVC_picker_done".localized
     }
+    
+    /// The animation duration for showing/hiding the picker
+    static let animationDuration = 0.3
     
     /// The size of the button
     static let buttonSize = CGSize(width: 44, height: 44)
@@ -63,6 +69,9 @@ private enum Constants {
     
     /// The trailing constraint of the floating button
     static let floatingButtonTrailingConstraintConstant: CGFloat = 25
+    
+    /// The default height for the date picker
+    static let scheduleDatePickerDefaultHeightConstraintConstant: CGFloat = 162
 }
 
 /// Interface for creating a new task for a todo list
@@ -88,6 +97,11 @@ class TodoTaskViewController: UIViewController {
     @IBOutlet fileprivate weak var scheduleContainerView: UIView!
     @IBOutlet fileprivate weak var scheduleTitleLabel: UILabel!
     @IBOutlet fileprivate weak var scheduleImageView: UIImageView!
+    
+    // Schedule Picker
+    @IBOutlet fileprivate weak var scheduleDatePickerContainerView: UIView!
+    @IBOutlet fileprivate weak var scheduleDatePicker: UIDatePicker!
+    @IBOutlet fileprivate weak var scheduleDatePickerHeightConstraint: NSLayoutConstraint!
     
     // Reminder
     @IBOutlet fileprivate weak var reminderContainerView: UIView!
@@ -132,6 +146,9 @@ class TodoTaskViewController: UIViewController {
     /// The view model of the parent todo list
     var parentViewModel: TodoListViewModel!
     
+    /// Indicator if the schedule date picker is visibile
+    var isScheduleDatePickerHidden = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -145,6 +162,7 @@ class TodoTaskViewController: UIViewController {
         setupPriority()
         setupReminder()
         setupSchedule()
+        setupScheduleDatePicker()
         setupNote()
         
         nameTextField.delegate = self
@@ -157,8 +175,11 @@ class TodoTaskViewController: UIViewController {
         notesTextView.delegate = self
         showPlaceholderIntextInput(viewModel.notes != "" ? false : true)
         
-        descriptionLabel.text = Constants.Strings.descriptionTextKey.localized
+        descriptionLabel.text = Constants.Strings.descriptionTextKey
         descriptionLabel.textColor = .midGray
+        
+        // Hide schedule date picker for start
+        shouldHideScheduleDatePicker(isScheduleDatePickerHidden)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -174,7 +195,7 @@ class TodoTaskViewController: UIViewController {
         closeItem.tintColor = .midGray
         self.navigationItem.leftBarButtonItem = closeItem
         
-        self.title = Constants.Strings.viewTitleKey.localized
+        self.title = Constants.Strings.viewTitleKey
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -213,11 +234,11 @@ class TodoTaskViewController: UIViewController {
     fileprivate func showPlaceholderIntextInput (_ show: Bool) {
         if show {
             viewModel.notes = ""
-            notesTextView.text = Constants.Strings.notesPlaceholderKey.localized
+            notesTextView.text = Constants.Strings.notesPlaceholderKey
             notesTextView.textColor = .midGray
         } else {
             viewModel.notes = notesTextView.text
-            notesTextView.text = notesTextView.text == Constants.Strings.notesPlaceholderKey.localized ? "" : notesTextView.text
+            notesTextView.text = notesTextView.text == Constants.Strings.notesPlaceholderKey ? "" : notesTextView.text
             notesTextView.textColor = .black
         }
     }
@@ -233,20 +254,45 @@ class TodoTaskViewController: UIViewController {
     /// Setup the schedule informations
     private func setupSchedule () {
         scheduleContainerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(schedulePressed)))
-        scheduleTitleLabel.text = "Test"
+        scheduleTitleLabel.text = viewModel.formattedSavedDate()
         scheduleTitleLabel.textColor = .midGray
         scheduleImageView.image = Constants.Images.calendarIcon
         scheduleImageView.tintColor = .midGray
     }
     
+    /// Setup the schedule date picker informations
+    private func setupScheduleDatePicker () {
+        scheduleDatePicker.addTarget(self, action: #selector(scheduleDatePickerValueChanged(_:)), for: .valueChanged)
+    }
+    
+    /// Called when the value of the schedule date picker did change
+    ///
+    /// - Parameter sender: The sender of the event
+    @objc private func scheduleDatePickerValueChanged (_ sender: UIDatePicker) {
+        viewModel.taskEndDate = sender.date
+        scheduleTitleLabel.text = viewModel.formattedSavedDate()
+    }
+    
     /// Called when the schedule container was touched
     @objc private func schedulePressed () {
-        
+        isScheduleDatePickerHidden = !isScheduleDatePickerHidden
+        shouldHideScheduleDatePicker(isScheduleDatePickerHidden)
+    }
+    
+    /// Hides or shows the date picker
+    ///
+    /// - Parameter hide: Indicator if the picker should hide
+    private func shouldHideScheduleDatePicker (_ hide: Bool) {
+        UIView.animate(withDuration: Constants.animationDuration, animations: {
+            self.scheduleDatePickerHeightConstraint.constant = hide ? 0 : Constants.scheduleDatePickerDefaultHeightConstraintConstant
+            self.scheduleDatePickerContainerView.isHidden = hide
+            self.scheduleDatePicker.isHidden = hide
+        })
     }
     
     /// Setup the reminder informations
     private func setupReminder () {
-        reminderTitleLabel.text = Constants.Strings.reminderTextKey.localized
+        reminderTitleLabel.text = Constants.Strings.reminderTextKey
         reminderTitleLabel.textColor = .midGray
         reminderImageView.image = Constants.Images.remimderIcon
         reminderImageView.tintColor = .midGray
@@ -263,7 +309,7 @@ class TodoTaskViewController: UIViewController {
     
     /// Setup priority
     private func setupPriority () {
-        priorityTitleLabel.text = Constants.Strings.priorityTextKey.localized
+        priorityTitleLabel.text = Constants.Strings.priorityTextKey
         priorityTitleLabel.textColor = .midGray
         priorityImageView.image = Constants.Images.priorityIcon
         priorityImageView.tintColor = .midGray
@@ -280,7 +326,7 @@ class TodoTaskViewController: UIViewController {
     
     /// Setup the note
     private func setupNote () {
-        noteTitleLabel.text = Constants.Strings.noteTextKey.localized
+        noteTitleLabel.text = Constants.Strings.noteTextKey
         noteTitleLabel.textColor = .midGray
         noteImageView.image = Constants.Images.noteIcon
         noteImageView.tintColor = .midGray
@@ -292,7 +338,7 @@ class TodoTaskViewController: UIViewController {
     @objc private func closeButtonPressed () {
         viewModel.taskDescription = nameTextField.text ?? ""
         
-        if !(viewModel.taskDescription.isEmpty) && (viewModel.taskDescription != Constants.Strings.namePlaceholderKey.localized) {
+        if !(viewModel.taskDescription.isEmpty) && (viewModel.taskDescription != Constants.Strings.namePlaceholderKey) {
             viewModel.updateTaskViewModel()
         }
         self.dismiss(animated: true, completion: nil)

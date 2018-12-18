@@ -29,6 +29,8 @@ private enum Constants {
     
     /// The local identifier for the date format
     static let localIdentifer = Locale(identifier: "de")
+    
+    static let formattedDateWithInputKey = "TTVM_formatted_date"
 }
 
 /// The view model for the todo task
@@ -78,8 +80,16 @@ struct TodoTaskViewModel {
     /// Formattes the end date of the task to human readable string
     ///
     /// - Returns: The formatted date
-    func formattedDate () -> String {
-        return "\(dateFormatter.string(from: taskEndDate)) Uhr"
+    func formattedSavedDate () -> String {
+        return formattedDate(taskEndDate)
+    }
+    
+    /// Formattes the date to human readable string
+    ///
+    /// - Parameter date: The date
+    /// - Returns: The formatted date
+    func formattedDate(_ date: Date) -> String {
+        return Constants.formattedDateWithInputKey.localizedWith([dateFormatter.string(from: date)])
     }
     
     /// Date for sorting without time

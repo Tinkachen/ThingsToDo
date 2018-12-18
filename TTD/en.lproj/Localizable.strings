@@ -27,15 +27,15 @@
 "MVC_welcome_user" = "Hello";
 "MVC_alert_delete" = "Delete";
 "MVC_alert_cancel" = "Cancel";
-"MVC_description_chill_out" = "Put your legs up and relax.";
-"MVC_description_feels_good" = "Looks like feel good.";
-"MVC_description_stressy_time" = "Looks like a stressy time. Don't give up!";
-"MVC_description_tasks" = "You have %i tasks to do today.";
 "MVC_today" = "TODAY : %@";
 "MVC_empty_view_message" = "You don't have any todo lists.";
 "MVC_empty_view_button" = "Add a new one";
 
 "MVM_unknown_user_name" = "User";
+"MVM_description_chill_out" = "Put your legs up and relax.";
+"MVM_description_feels_good" = "Looks like feel good.";
+"MVM_description_stressy_time" = "Looks like a stressy time. Don't give up!";
+"MVM_description_tasks" = "You have %i tasks to do today.";
 
 /* Main View Controller Collection View Cell */
 "MVC_CVC_tasks" = "Tasks";
@@ -67,6 +67,9 @@
 "NTTVC_reminder" = "Reminder";
 "NTTVC_priority" = "Priority";
 "NTTVC_note" = "Notes";
+"NTTVC_picker_done" = "Done";
+
+"TTVM_formatted_date" = "%@ Uhr";
 
 /* Passcode View Controller */
 "PCVC_new_passcode" = "Enter new passcode";

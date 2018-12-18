@@ -18,16 +18,16 @@ private enum Constants {
     static let userLocalizedNameKey = "MVM_unknown_user_name".localized
     
     /// The localized key for the description text - state chill out
-    static let descriptionChillOutKey = "MVC_description_chill_out".localized
+    static let descriptionChillOutKey = "MVM_description_chill_out".localized
     
     /// The localized key for the description text - state feels good
-    static let descriptionFeelsGoodKey = "MVC_description_feels_good".localized
+    static let descriptionFeelsGoodKey = "MVM_description_feels_good".localized
     
     /// The localized key for the description text - state stressy time
-    static let descriptionStressyTimeKey = "MVC_description_stressy_time".localized
+    static let descriptionStressyTimeKey = "MVM_description_stressy_time".localized
     
     /// The localized key for the description text (second line)
-    static let descriptionTaskKey = "MVC_description_tasks"
+    static let descriptionTaskKey = "MVM_description_tasks"
     
     /// The human readable date format
     static let dateFormat = "MMMM dd, YYYY"

@@ -69,7 +69,7 @@
 
 /* Todo Task View Controller */
 "TTVC_title" = "Neue Aufgabe";
-"TTVC_description" = "Was planst du??";
+"TTVC_description" = "Was planst du?";
 "TTVC_name_placeholer" = "Neue Aufgabe";
 "TTVC_notes_placeholder" = "Möchtest du noch Anmerkungen zur Aufgabe hinzufügen?";
 "TTVC_reminder" = "Erinnerung";

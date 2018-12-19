@@ -61,6 +61,7 @@
 		4978440421C25AE8001D723A /* BiometricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4978440321C25AE8001D723A /* BiometricService.swift */; };
 		4978440621C26EDA001D723A /* UserImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4978440521C26EDA001D723A /* UserImageButton.swift */; };
 		4978440A21C276B8001D723A /* TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4978440921C276B8001D723A /* TableViewExtension.swift */; };
+		499AEDFE21CA2B2400C4C2C5 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499AEDFD21CA2B2400C4C2C5 /* Environment.swift */; };
 		49B60EE92135655D00B54A3A /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B60EE82135655D00B54A3A /* Animator.swift */; };
 		49BBE63A212D58FA006B9297 /* TodoTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BBE639212D58FA006B9297 /* TodoTaskViewModel.swift */; };
 		49BBE63E212FFDB1006B9297 /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BBE63D212FFDB1006B9297 /* ButtonExtension.swift */; };
@@ -148,6 +149,7 @@
 		4978440321C25AE8001D723A /* BiometricService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricService.swift; sourceTree = "<group>"; };
 		4978440521C26EDA001D723A /* UserImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageButton.swift; sourceTree = "<group>"; };
 		4978440921C276B8001D723A /* TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtension.swift; sourceTree = "<group>"; };
+		499AEDFD21CA2B2400C4C2C5 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		49B60EE82135655D00B54A3A /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		49BBE639212D58FA006B9297 /* TodoTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTaskViewModel.swift; sourceTree = "<group>"; };
 		49BBE63D212FFDB1006B9297 /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				2357802820A20663001DBFC4 /* AppDelegate.swift */,
+				499AEDFD21CA2B2400C4C2C5 /* Environment.swift */,
 				235AF2F7212B290F00D15FCE /* TDD.xcdatamodeld */,
 				2357802F20A20665001DBFC4 /* Assets.xcassets */,
 				2357803420A20665001DBFC4 /* Info.plist */,
@@ -668,6 +671,7 @@
 				49BBE63E212FFDB1006B9297 /* ButtonExtension.swift in Sources */,
 				23502BD120B2F14600DA00A9 /* CollectionViewCell.swift in Sources */,
 				23F12B7F20CEFA4500D6BA39 /* TodoTaskViewController.swift in Sources */,
+				499AEDFE21CA2B2400C4C2C5 /* Environment.swift in Sources */,
 				23D9D29020D6ED360050E8E9 /* ChoiceViewCollectionViewCell.swift in Sources */,
 				2357805820A213DE001DBFC4 /* PasscodeButton.swift in Sources */,
 				49540AD7211DB72200280445 /* ChoiceView.swift in Sources */,

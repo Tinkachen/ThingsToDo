@@ -1,18 +1,86 @@
-/* 
-  Localizable.strings
-  TTD
+/*
+ Localizable.strings
+ TTD
+ 
+ GERMAN
+ 
+ Created by Catharina Herchert on 13.05.18.
+ Copyright © 2018 Catharina Herchert. All rights reserved.
+ */
 
-  Created by Catharina Herchert on 13.05.18.
-  Copyright © 2018 Catharina Herchert. All rights reserved.
-*/
+/* Global */
+"BS_authentication_fallback" = "Pin verwenden";
+
+/* Notification Service */
+"NS_snooze" = "Schlummern";
+"NS_done" = "Fertig";
+"NS_delete" = "Löschen";
+
+/* Onboarding View Controller */
+"OVC_enable" = "Aktivieren";
+"OVC_enable_notification" = "Aktiviere Notfications";
+"OVC_enable_notification_description" = "Aktiviere Notfication Services";
 
 /* Personalize View Controller */
+"PVC_title" = "Wie soll ich dich nennen?";
+"PVC_name_placeholder" = "Gib deinen Namen hier ein";
+"PVC_ready_button_title" = "Fertig";
+
+/* User Image Button View */
+"UIB_title" = "Foto hinzufügen";
+
 
 /* Main View Controller */
+"MVC_welcome_user" = "Hallo";
+"MVC_alert_delete" = "Löschen";
+"MVC_alert_cancel" = "Abbrechen";
+"MVC_today" = "HEUTE : %@";
+"MVC_empty_view_message" = "Zur Zeit hast du keine Todo-Listen.";
+"MVC_empty_view_button" = "Füge eine neue hinzu";
 
-/* New Todo List View Controller */
+/* Main View Model */
+"MVM_unknown_user_name" = "User";
+"MVM_description_chill_out" = "Leg' die Beine hoch und relax einwenig.";
+"MVM_description_feels_good" = "Fühlt sich gut an heute.";
+"MVM_description_stressy_time" = "Sieht wie ein stressiger Tag aus. Gib' nicht auf!";
+"MVM_description_tasks" = "Du hast %i Aufgaben für heute.";
 
-/* New Todo Task View Controller */
+/* Main View Controller Collection View Cell */
+"MVC_CVC_tasks" = "Aufgaben";
+"MVC_CVC_deleteInfo" = "Möchtest du wirklich diese Liste löschen?";
+"MVC_CVC_deleteButton" = "Löschen";
+
+/* Todo List View Controller */
+"TLVC_title" = "Neue Todo List";
+"TLVC_name_placeholer" = "Wie lautet der Name deiner Liste?";
+"TLVC_choose_gradient" = "Wähle einen Farbverlauf für deine Liste!";
+"TLVC_choose_icon" = "Wähle ein Icon für deine Liste!";
+"TLVC_tasks" = "Aufgaben";
+"TLVC_secure_passcode" = "Möchtest du deine Liste mit einem Pin sichern?";
+"TLVC_alert_title" = "Weitere Einstellungen";
+"TLVC_alert_change_gradient" = "Farbverlauf wechseln";
+"TLVC_alert_lock_list" = "Liste schützen";
+"TLVC_alert_cancel" = "Abbrechen";
+
+/* Choice View */
+"CV_done_button" = "Fertig";
+"CV_gradient_view_title" = "Farbverläufe";
+"CV_icon_view_title" = "Icons";
+
+/* Todo Task View Controller */
+"TTVC_title" = "Neue Aufgabe";
+"TTVC_description" = "Was planst du??";
+"TTVC_name_placeholer" = "Neue Aufgabe";
+"TTVC_notes_placeholder" = "Möchtest du noch Anmerkungen zur Aufgabe hinzufügen?";
+"TTVC_reminder" = "Erinnerung";
+"TTVC_priority" = "Priorität";
+"TTVC_note" = "Notizen";
+"TTVC_picker_done" = "Fertig";
+
+"TTVM_formatted_date" = "%@ Uhr";
 
 /* Passcode View Controller */
+"PCVC_new_passcode" = "Gib eine neue Pin ein";
+"PCVC_repeat_new_passcode" = "Wiederhole die Eingabe";
+"PCVC_verify_passcode" = "Gib einen Pin ein";
 "PCVC_cancel_btn" = "Abbrechen";

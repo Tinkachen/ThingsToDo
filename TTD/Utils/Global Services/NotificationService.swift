@@ -143,7 +143,7 @@ struct NotificationService {
         
         notificationCenter.add(request) { (error) in
             if let error = error {
-                print(String(describing: error.localizedDescription), self)
+                print(error.localizedDescription, self)
             }
         }
     }

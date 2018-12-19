@@ -69,7 +69,7 @@ struct TodoTaskService: MainService {
         do {
             taskObjects = try contextUnwrapped.fetch(fetchRequest)
         } catch let error {
-            print("Could not fetch. \(error), \(String(describing: error._userInfo))")
+            print("Could not fetch. \(error), \(String(describing: error._userInfo))", self)
             return [TodoTaskViewModel]()
         }
         
@@ -169,7 +169,7 @@ struct TodoTaskService: MainService {
         if found == false {
             saveNewTaskViewModel(viewModel) { (error) in
                 if let error = error {
-                    print(error)
+                    print(error.localizedDescription, self)
                 }
             }
             return
@@ -185,7 +185,7 @@ struct TodoTaskService: MainService {
     /// - Parameter viewModel: The view model to be deleted
     static func deleteTaskViewModel (_ viewModel: TodoTaskViewModel) {
         guard let contextUnwrapped = context else {
-            print(ErrorMessage.noContext)
+            print(ErrorMessage.noContext, self)
             return
         }
         
@@ -199,7 +199,7 @@ struct TodoTaskService: MainService {
         do {
             try contextUnwrapped.save()
         } catch let error {
-            print(error)
+            print(error.localizedDescription, self)
         }
     }
 }

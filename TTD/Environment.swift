@@ -15,5 +15,5 @@ import UIKit
 ///   - txt: The string that will be printed to console
 ///   - sender: The sender of the call
 public func print (_ txt: String, _ sender: AnyClass) {
-    print("[\(sender)] -> \(txt)]")
+    print("[\(sender.self)] -> \(txt)]")
 }

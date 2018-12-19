@@ -37,7 +37,7 @@ struct ViewModelFactory {
                                             tasks: nil)
         TodoListService.saveNewListViewModel(newTodoList) { (error) in
             if let error = error {
-                print(error)
+                print(error.localizedDescription, self)
             }
         }
         return newTodoList

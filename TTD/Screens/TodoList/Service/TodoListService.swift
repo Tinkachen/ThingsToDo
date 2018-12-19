@@ -58,7 +58,7 @@ struct TodoListService: MainService {
         do {
             listObjects = try contextUnwrapped.fetch(fetchRequest)
         } catch let error {
-            print("Could not fetch. \(error), \(String(describing: error._userInfo))")
+            print("Could not fetch. \(error), \(String(describing: error._userInfo))", self)
             return [TodoListViewModel]()
         }
         
@@ -128,7 +128,7 @@ struct TodoListService: MainService {
     static func updateListViewModel (_ viewModel: TodoListViewModel) {
         
         guard let contextUnwrapped = context else {
-            print(ErrorMessage.noContext)
+            print(ErrorMessage.noContext, self)
             return
         }
         
@@ -148,7 +148,7 @@ struct TodoListService: MainService {
         do {
             try contextUnwrapped.save()
         } catch let error {
-            print(error)
+            print(error.localizedDescription, self)
         }
     }
     
@@ -157,7 +157,7 @@ struct TodoListService: MainService {
     /// - Parameter viewModel: The view model to be deleted
     static func deleteListViewModel (_ viewModel: TodoListViewModel) {
         guard let contextUnwrapped = context else {
-            print(ErrorMessage.noContext)
+            print(ErrorMessage.noContext, self)
             return
         }
         
@@ -171,7 +171,7 @@ struct TodoListService: MainService {
         do {
             try contextUnwrapped.save()
         } catch let error {
-            print(error)
+            print(error.localizedDescription, self)
         }
     }
     

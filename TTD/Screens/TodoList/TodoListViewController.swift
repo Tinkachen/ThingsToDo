@@ -47,36 +47,36 @@ private enum Constants {
     enum Strings {
         
         /// The title for the view
-        static let viewTitleKey = "NTLVC_title"
+        static let viewTitleKey = "TLVC_title"
         
         /// The placeholder for the name of the todo list
-        static let namePlaceholderKey = "NTLVC_name_placeholer"
+        static let namePlaceholderKey = "TLVC_name_placeholer"
         
         /// The text for choosing a gradient
-        static let chooseGradientKey = "NTLVC_choose_gradient"
+        static let chooseGradientKey = "TLVC_choose_gradient"
         
         /// The text for choosing an icon
-        static let chooseIconKey = "NTLVC_choose_icon"
+        static let chooseIconKey = "TLVC_choose_icon"
         
         /// The task text
-        static let tasksKey = "NTLVC_tasks"
+        static let tasksKey = "TLVC_tasks"
         
         /// The text to secure the todo list with a passcode
-        static let secureWithPasscodeKey = "NTLVC_secure_passcode"
+        static let secureWithPasscodeKey = "TLVC_secure_passcode"
         
         /// Alert Strings
         
         /// The title for the alert
-        static let alertTitleKey = "NTLVC_alert_title"
+        static let alertTitleKey = "TLVC_alert_title"
         
         /// The gradient alert action name
-        static let alertChangeGradientKey = "NTLVC_alert_change_gradient"
+        static let alertChangeGradientKey = "TLVC_alert_change_gradient"
         
         /// The lock alert action name
-        static let alertLockListKey = "NTLVC_alert_lock_list"
+        static let alertLockListKey = "TLVC_alert_lock_list"
         
         /// The cancel alert action name
-        static let alertCancelKey = "NTLVC_alert_cancel"
+        static let alertCancelKey = "TLVC_alert_cancel"
     }
     
     /// The bottom constraint constant for the floating button
@@ -386,7 +386,7 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let key = Array(sortedTaskViewModel.keys)[indexPath.section]
-        let taskViewModel = sortedTaskViewModel[key]![indexPath.row]
+        guard let taskViewModel = sortedTaskViewModel[key]?[indexPath.row] else { return }
         if !taskViewModel.isDone {
             let todoTaskViewController = ViewControllerFactory.makeTodoTaskViewController(WithViewModel: taskViewModel, AndParentViewModel: viewModel)
             self.navigationController?.present(todoTaskViewController, animated: true, completion: nil)

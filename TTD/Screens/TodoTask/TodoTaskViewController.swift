@@ -34,28 +34,28 @@ private enum Constants {
     enum Strings {
         
         /// The description text
-        static let descriptionTextKey = "NTTVC_description".localized
+        static let descriptionTextKey = "TTVC_description".localized
         
         /// The title for the view
-        static let viewTitleKey = "NTTVC_title".localized
+        static let viewTitleKey = "TTVC_title".localized
         
         /// The placeholder for the name
-        static let namePlaceholderKey = "NTTVC_name_placeholer".localized
+        static let namePlaceholderKey = "TTVC_name_placeholer".localized
         
         /// The placeholder for the notes
-        static let notesPlaceholderKey = "NTTVC_notes_placeholder".localized
+        static let notesPlaceholderKey = "TTVC_notes_placeholder".localized
         
         /// The text for the reminder
-        static let reminderTextKey = "NTTVC_reminder".localized
+        static let reminderTextKey = "TTVC_reminder".localized
         
         /// The priority localization key
-        static let priorityTextKey = "NTTVC_priority".localized
+        static let priorityTextKey = "TTVC_priority".localized
         
         /// The note localization key
-        static let noteTextKey = "NTTVC_note".localized
+        static let noteTextKey = "TTVC_note".localized
         
         /// The done localized key
-        static let pickerDoneKey = "NTTVC_picker_done".localized
+        static let pickerDoneKey = "TTVC_picker_done".localized
     }
     
     /// The animation duration for showing/hiding the picker
@@ -262,6 +262,7 @@ class TodoTaskViewController: UIViewController {
     
     /// Setup the schedule date picker informations
     private func setupScheduleDatePicker () {
+        scheduleDatePicker.date = viewModel.taskEndDate
         scheduleDatePicker.addTarget(self, action: #selector(scheduleDatePickerValueChanged(_:)), for: .valueChanged)
     }
     
@@ -292,12 +293,20 @@ class TodoTaskViewController: UIViewController {
     
     /// Setup the reminder informations
     private func setupReminder () {
-        reminderTitleLabel.text = Constants.Strings.reminderTextKey
-        reminderTitleLabel.textColor = .midGray
-        reminderImageView.image = Constants.Images.remimderIcon
-        reminderImageView.tintColor = .midGray
-        reminderSwitch.onTintColor = parentViewModel.getMainColor()
-        reminderSwitch.setOn(viewModel.isTimerSet, animated: true)
+        NotificationService.isNotificationGranted { (granted) in
+            DispatchQueue.main.async {
+                if granted {
+                    self.reminderTitleLabel.text = Constants.Strings.reminderTextKey
+                    self.reminderTitleLabel.textColor = .midGray
+                    self.reminderImageView.image = Constants.Images.remimderIcon
+                    self.reminderImageView.tintColor = .midGray
+                    self.reminderSwitch.onTintColor = self.parentViewModel.getMainColor()
+                    self.reminderSwitch.setOn(self.viewModel.isTimerSet, animated: true)
+                } else {
+                    self.reminderContainerView.isHidden = true
+                }
+            }
+        }
     }
     
     /// Called when the switch value changed

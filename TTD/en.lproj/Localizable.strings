@@ -9,6 +9,10 @@
 /* Global */
 "BS_authentication_fallback" = "Use passcode";
 
+/* Notification Service */
+"NS_snooze" = "Snooze";
+"NS_delete" = "Delete";
+
 /* Onboarding View Controller */
 "OVC_enable" = "Enable";
 "OVC_enable_notification" = "Enable notification";
@@ -31,6 +35,7 @@
 "MVC_empty_view_message" = "You don't have any todo lists.";
 "MVC_empty_view_button" = "Add a new one";
 
+/* Main View Model */
 "MVM_unknown_user_name" = "User";
 "MVM_description_chill_out" = "Put your legs up and relax.";
 "MVM_description_feels_good" = "Looks like feel good.";
@@ -42,32 +47,32 @@
 "MVC_CVC_deleteInfo" = "Do you really want to delete this list?";
 "MVC_CVC_deleteButton" = "Delete";
 
-/* New Todo List View Controller */
-"NTLVC_title" = "New To-Do List";
-"NTLVC_name_placeholer" = "What is the name of your list?";
-"NTLVC_choose_gradient" = "Choose the gradient for your list!";
-"NTLVC_choose_icon" = "Choose the icon for your list!";
-"NTLVC_tasks" = "Tasks";
-"NTLVC_secure_passcode" = "Would you secure your list with a passcode?";
-"NTLVC_alert_title" = "More settings";
-"NTLVC_alert_change_gradient" = "Change color";
-"NTLVC_alert_lock_list" = "Lock List";
-"NTLVC_alert_cancel" = "Cancel";
+/* Todo List View Controller */
+"TLVC_title" = "New To-Do List";
+"TLVC_name_placeholer" = "What is the name of your list?";
+"TLVC_choose_gradient" = "Choose the gradient for your list!";
+"TLVC_choose_icon" = "Choose the icon for your list!";
+"TLVC_tasks" = "Tasks";
+"TLVC_secure_passcode" = "Would you secure your list with a passcode?";
+"TLVC_alert_title" = "More settings";
+"TLVC_alert_change_gradient" = "Change color";
+"TLVC_alert_lock_list" = "Lock List";
+"TLVC_alert_cancel" = "Cancel";
 
 /* Choice View */
 "CV_done_button" = "Done";
 "CV_gradient_view_title" = "Theme";
 "CV_icon_view_title" = "Symbol";
 
-/* New Todo Task View Controller */
-"NTTVC_title" = "New Task";
-"NTTVC_description" = "What tasks are you planning to perform?";
-"NTTVC_name_placeholer" = "New Task";
-"NTTVC_notes_placeholder" = "Would you write some notes to the task?";
-"NTTVC_reminder" = "Reminder";
-"NTTVC_priority" = "Priority";
-"NTTVC_note" = "Notes";
-"NTTVC_picker_done" = "Done";
+/* Todo Task View Controller */
+"TTVC_title" = "New Task";
+"TTVC_description" = "What tasks are you planning to perform?";
+"TTVC_name_placeholer" = "New Task";
+"TTVC_notes_placeholder" = "Would you write some notes to the task?";
+"TTVC_reminder" = "Reminder";
+"TTVC_priority" = "Priority";
+"TTVC_note" = "Notes";
+"TTVC_picker_done" = "Done";
 
 "TTVM_formatted_date" = "%@ Uhr";
 

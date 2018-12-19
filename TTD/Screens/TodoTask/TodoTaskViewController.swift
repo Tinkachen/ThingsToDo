@@ -64,12 +64,6 @@ private enum Constants {
     /// The size of the button
     static let buttonSize = CGSize(width: 44, height: 44)
     
-    /// The bottom constraint of the floating button
-    static let floatingButtonBottomConstraintConstant: CGFloat = 100
-    
-    /// The trailing constraint of the floating button
-    static let floatingButtonTrailingConstraintConstant: CGFloat = 25
-    
     /// The default height for the date picker
     static let scheduleDatePickerDefaultHeightConstraintConstant: CGFloat = 162
 }
@@ -116,24 +110,11 @@ class TodoTaskViewController: UIViewController {
     @IBOutlet fileprivate weak var prioritySegmentedControl: UISegmentedControl!
     
     /// Note
+    @IBOutlet fileprivate weak var notesHeaderContainerView: UIView!
     @IBOutlet fileprivate weak var notesTextView: UITextView!
     @IBOutlet fileprivate weak var noteTitleLabel: UILabel!
     @IBOutlet fileprivate weak var noteImageView: UIImageView!
-    
-    /// The floating button
-    @IBOutlet fileprivate weak var floatingButton: UIButton!
-    
-    /// The floating button bottom constraint
-    @IBOutlet fileprivate weak var floatingButtonBottomConstraint: NSLayoutConstraint!
-    
-    /// The floating button aspect ration constraint
-    @IBOutlet fileprivate weak var floatingButtonAspectRatioConstraint: NSLayoutConstraint!
-    
-    /// The floating button leading constraint
-    @IBOutlet fileprivate weak var floatingButtonLeadingConstraint: NSLayoutConstraint!
-    
-    /// The floating button trailing constraint
-    @IBOutlet fileprivate weak var floatingButtonTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var notesContainerView: UIView!
     
     // MARK: - Variables
     
@@ -149,12 +130,13 @@ class TodoTaskViewController: UIViewController {
     /// Indicator if the schedule date picker is visibile
     var isScheduleDatePickerHidden = true
     
+    /// Indicator if the notes section is visible
+    var isNotesHidden = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationBar()
-        
-        applyLayoutForFloatingButton()
         
         registerNotifications()
         
@@ -173,7 +155,7 @@ class TodoTaskViewController: UIViewController {
         }
 
         notesTextView.delegate = self
-        showPlaceholderIntextInput(viewModel.notes != "" ? false : true)
+        showPlaceholderInTextInput(viewModel.notes != "" ? false : true)
         
         descriptionLabel.text = Constants.Strings.descriptionTextKey
         descriptionLabel.textColor = .midGray
@@ -201,27 +183,6 @@ class TodoTaskViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
-    /// Applies the layout for the floating button
-    private func applyLayoutForFloatingButton (_ round: Bool = true) {
-        if round {
-            floatingButton.layer.cornerRadius = floatingButton.bounds.height / 2
-            floatingButton.applyGradient(colors: parentViewModel.getGradient(), WithCornerRadius: floatingButton.layer.cornerRadius)
-            floatingButton.layer.borderWidth = 1.0
-            floatingButton.layer.borderColor = UIColor.lightGray.cgColor
-            floatingButton.layer.shadowColor = UIColor.black.cgColor
-            floatingButton.layer.shadowOpacity = 0.5
-            floatingButton.layer.shadowOffset = CGSize(width: 0, height: 1)
-            floatingButton.layer.shadowRadius = 5
-        } else {
-            floatingButton.layer.cornerRadius = 0
-            floatingButton.applyGradient(colors: parentViewModel.getGradient())
-            floatingButton.layer.borderWidth = 0
-            floatingButton.layer.borderColor = UIColor.clear.cgColor
-            floatingButton.layer.shadowRadius = 0
-        }
-    }
-    
-    
     /// Registers the notification services
     private func registerNotifications () {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardShows(notification:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
@@ -231,14 +192,13 @@ class TodoTaskViewController: UIViewController {
     /// Prep the text view with place holder design or with text input design
     ///
     /// - Parameter show: Shows the placeholder or not
-    fileprivate func showPlaceholderIntextInput (_ show: Bool) {
+    fileprivate func showPlaceholderInTextInput (_ show: Bool) {
         if show {
             viewModel.notes = ""
             notesTextView.text = Constants.Strings.notesPlaceholderKey
             notesTextView.textColor = .midGray
         } else {
-            viewModel.notes = notesTextView.text
-            notesTextView.text = notesTextView.text == Constants.Strings.notesPlaceholderKey ? "" : notesTextView.text
+            notesTextView.text = notesTextView.text == Constants.Strings.notesPlaceholderKey ? "" : viewModel.notes
             notesTextView.textColor = .black
         }
     }
@@ -339,6 +299,8 @@ class TodoTaskViewController: UIViewController {
         noteTitleLabel.textColor = .midGray
         noteImageView.image = Constants.Images.noteIcon
         noteImageView.tintColor = .midGray
+    
+        notesTextView.tintColor = parentViewModel.getMainColor()
     }
     
     // MARK: - Actions
@@ -353,14 +315,6 @@ class TodoTaskViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    /// Adds the created task to the todo list
-    ///
-    /// - Parameter sender: The sender of the event
-    @IBAction fileprivate func addNewTaskButtonPressed (_ sender: UIButton) {
-        nameTextField.resignFirstResponder()
-        viewModel.updateTaskViewModel()
-    }
-    
     // MARK: - Keyboard Notification Actions
     
     /// Observer call when the keyboard will be shown
@@ -368,27 +322,8 @@ class TodoTaskViewController: UIViewController {
     /// - Parameter notification: The notification
     @objc private func keyboardShows (notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            animateFloat(forKeyboardSize: keyboardSize)
+//            scrollView.setContentOffset(CGPoint(x: 0, y: <#T##Double#>), animated: true)
         }
-    }
-    
-    /// Animates the floating button to the new position
-    ///
-    /// - Parameter keyboardSize: The size of the keyboard
-    private func animateFloat (forKeyboardSize keyboardSize: CGRect) {
-//        UIView.animate(withDuration: 0.25, animations: {
-//            self.floatingButtonBottomConstraint.constant = keyboardSize.height + Constants.buttonSize.height
-//            self.floatingButtonAspectRatioConstraint.constant = 1
-//            self.floatingButtonLeadingConstraint.isActive = true
-//            self.floatingButtonTrailingConstraint.constant = 0
-////            self.floatingButton.applyGradient(colors: Themes.getTheme(self.gradient).gradient, WithCornerRadius: self.floatingButton.layer.cornerRadius)
-//            self.floatingButton.setImage(CAGradientLayer(frame: self.floatingButton.frame, colors: Themes.getTheme(self.gradient).gradient).createGradientImage(), for: .normal)
-//            self.applyLayoutForFloatingButton(false)
-//
-//            self.view.layoutIfNeeded()
-//        }) { (complete) in
-//            self.floatingButton.applyGradient(colors: Themes.getTheme(self.gradient).gradient)
-//        }
     }
     
     /// Observer call when the keybaord will be hidden
@@ -413,14 +348,16 @@ extension TodoTaskViewController: UITextFieldDelegate {
 extension TodoTaskViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        showPlaceholderIntextInput(false)
+        showPlaceholderInTextInput(false)
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        viewModel.notes = textView.text
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            showPlaceholderIntextInput(true)
-        } else {
-            viewModel.notes = textView.text
+            showPlaceholderInTextInput(true)
         }
     }
 }

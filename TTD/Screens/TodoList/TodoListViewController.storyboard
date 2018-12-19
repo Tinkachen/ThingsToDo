@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rm0-1I-Pj5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rm0-1I-Pj5">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -55,21 +54,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yks-1i-oCC">
-                                <rect key="frame" x="25" y="247" width="325" height="420"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yks-1i-oCC">
+                                <rect key="frame" x="25" y="247" width="325" height="370"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrn-jM-O0j">
-                                <rect key="frame" x="306" y="523" width="44" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="vrn-jM-O0j" secondAttribute="height" multiplier="1:1" id="7ga-EP-4hI"/>
-                                    <constraint firstAttribute="width" constant="44" id="ECX-J9-fZV"/>
-                                </constraints>
-                                <state key="normal" title="+"/>
-                                <connections>
-                                    <action selector="addTasksButtonPressed:" destination="Rm0-1I-Pj5" eventType="touchUpInside" id="6jH-Ev-kx4"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Work" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IT8-2D-Reg">
                                 <rect key="frame" x="25" y="146" width="325" height="41"/>
                                 <nil key="textColor"/>
@@ -93,39 +81,50 @@
                                     <constraint firstAttribute="height" constant="5" id="sdI-nj-buu"/>
                                 </constraints>
                             </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGv-3B-shd">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="1l0-Rb-Tlx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="+"/>
+                                <connections>
+                                    <action selector="addTasksButtonPressed:" destination="Rm0-1I-Pj5" eventType="touchUpInside" id="EEd-m7-aqh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Yks-1i-oCC" firstAttribute="top" secondItem="d9v-bR-hIV" secondAttribute="bottom" constant="30" id="7et-Tt-ZnA"/>
+                            <constraint firstItem="OGv-3B-shd" firstAttribute="top" secondItem="Yks-1i-oCC" secondAttribute="bottom" id="8Lr-hw-6Hy"/>
                             <constraint firstItem="Tby-RN-dVU" firstAttribute="leading" secondItem="uUH-0M-SuF" secondAttribute="leading" constant="25" id="Ee4-2e-SWN"/>
                             <constraint firstItem="d9v-bR-hIV" firstAttribute="leading" secondItem="IT8-2D-Reg" secondAttribute="leading" id="FK1-Fq-gnj"/>
                             <constraint firstItem="IT8-2D-Reg" firstAttribute="top" secondItem="1D3-zp-VWJ" secondAttribute="bottom" constant="10" id="GbQ-sB-uHx"/>
                             <constraint firstItem="1D3-zp-VWJ" firstAttribute="top" secondItem="Tby-RN-dVU" secondAttribute="bottom" constant="25" id="HvB-RK-6lm"/>
                             <constraint firstItem="Tby-RN-dVU" firstAttribute="top" secondItem="uUH-0M-SuF" secondAttribute="top" constant="45" id="KCg-0p-YIJ"/>
-                            <constraint firstItem="UtX-AE-Y08" firstAttribute="bottom" secondItem="vrn-jM-O0j" secondAttribute="bottom" constant="100" id="NU1-9b-IVd"/>
                             <constraint firstItem="HB4-nL-Lcl" firstAttribute="width" secondItem="Tby-RN-dVU" secondAttribute="width" id="RZ8-IR-DE2"/>
                             <constraint firstItem="k6t-cj-khr" firstAttribute="centerY" secondItem="d9v-bR-hIV" secondAttribute="centerY" id="SU5-Rf-8QJ"/>
                             <constraint firstItem="HB4-nL-Lcl" firstAttribute="leading" secondItem="Tby-RN-dVU" secondAttribute="trailing" constant="20" id="TYK-Bb-hVu"/>
                             <constraint firstItem="1D3-zp-VWJ" firstAttribute="leading" secondItem="Tby-RN-dVU" secondAttribute="leading" id="Vo7-Hq-2mD"/>
+                            <constraint firstItem="UtX-AE-Y08" firstAttribute="trailing" secondItem="OGv-3B-shd" secondAttribute="trailing" id="XF8-Oc-OQb"/>
                             <constraint firstItem="d9v-bR-hIV" firstAttribute="top" secondItem="IT8-2D-Reg" secondAttribute="bottom" constant="25" id="Z3Z-Gr-3v6"/>
                             <constraint firstItem="k6t-cj-khr" firstAttribute="leading" secondItem="d9v-bR-hIV" secondAttribute="trailing" constant="10" id="deW-Id-oGH"/>
                             <constraint firstItem="UtX-AE-Y08" firstAttribute="trailing" secondItem="k6t-cj-khr" secondAttribute="trailing" constant="25" id="fCg-fD-0pz"/>
+                            <constraint firstItem="UtX-AE-Y08" firstAttribute="bottom" secondItem="OGv-3B-shd" secondAttribute="bottom" id="gx3-h9-tO6"/>
                             <constraint firstItem="yMr-01-gGy" firstAttribute="centerY" secondItem="Tby-RN-dVU" secondAttribute="centerY" id="hph-YF-XwQ"/>
                             <constraint firstItem="UtX-AE-Y08" firstAttribute="trailing" secondItem="IT8-2D-Reg" secondAttribute="trailing" constant="25" id="iDE-0n-KRi"/>
                             <constraint firstItem="HB4-nL-Lcl" firstAttribute="top" secondItem="Tby-RN-dVU" secondAttribute="top" id="jW5-Gm-mYq"/>
-                            <constraint firstItem="UtX-AE-Y08" firstAttribute="bottom" secondItem="Yks-1i-oCC" secondAttribute="bottom" id="kcB-ve-ciZ"/>
+                            <constraint firstItem="OGv-3B-shd" firstAttribute="leading" secondItem="UtX-AE-Y08" secondAttribute="leading" id="lQR-7T-1kC"/>
                             <constraint firstItem="Yks-1i-oCC" firstAttribute="leading" secondItem="d9v-bR-hIV" secondAttribute="leading" id="nwG-Yd-JCe"/>
                             <constraint firstItem="HB4-nL-Lcl" firstAttribute="height" secondItem="Tby-RN-dVU" secondAttribute="height" id="p6w-AY-sZw"/>
                             <constraint firstItem="UtX-AE-Y08" firstAttribute="trailing" secondItem="yMr-01-gGy" secondAttribute="trailing" constant="25" id="sC8-iu-gHY"/>
                             <constraint firstItem="k6t-cj-khr" firstAttribute="trailing" secondItem="Yks-1i-oCC" secondAttribute="trailing" id="v68-Yr-P0Q"/>
-                            <constraint firstItem="vrn-jM-O0j" firstAttribute="trailing" secondItem="Yks-1i-oCC" secondAttribute="trailing" id="wXN-ms-1ai"/>
                             <constraint firstItem="IT8-2D-Reg" firstAttribute="leading" secondItem="1D3-zp-VWJ" secondAttribute="leading" id="x0L-oG-ftv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UtX-AE-Y08"/>
                     </view>
                     <connections>
-                        <outlet property="addTodoTaskFloatingButton" destination="vrn-jM-O0j" id="Z5k-e2-zfi"/>
-                        <outlet property="addTodoTaskFloatingButtonBottomConstraint" destination="NU1-9b-IVd" id="u2I-JO-4lJ"/>
+                        <outlet property="addTodoTaskButton" destination="OGv-3B-shd" id="BoP-l2-9gJ"/>
                         <outlet property="gradientContainer" destination="HB4-nL-Lcl" id="QgL-Wg-dh6"/>
                         <outlet property="iconContainer" destination="Tby-RN-dVU" id="M7G-jU-1uK"/>
                         <outlet property="iconImageView" destination="pEk-Rw-RtC" id="GZ4-sN-HD8"/>

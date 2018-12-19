@@ -54,7 +54,7 @@ struct ViewModelFactory {
                                           isTimerSet: false,
                                           priority: .no,
                                           isDone: false,
-                                          notes: "")
+                                          notes: nil)
         return viewModel
     }
     

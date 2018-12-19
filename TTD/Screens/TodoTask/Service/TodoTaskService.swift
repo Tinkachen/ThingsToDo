@@ -84,7 +84,7 @@ struct TodoTaskService: MainService {
                                                                 isTimerSet: $0.value(forKey: Constants.KeyPaths.isTimerSetKey) as? Bool ?? false,
                                                                 priority: ($0.value(forKey: Constants.KeyPaths.priorityKey) as? Int).map { PriorityLevel(rawValue: $0) } ?? .no,
                                                                 isDone: $0.value(forKey: Constants.KeyPaths.isDoneKey) as? Bool ?? false,
-                                                                notes: ""))
+                                                                notes: $0.value(forKey: Constants.KeyPaths.notesKey) as? String))
             }
         }
         

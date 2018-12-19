@@ -79,8 +79,7 @@ private enum Constants {
         static let alertCancelKey = "TLVC_alert_cancel"
     }
     
-    /// The bottom constraint constant for the floating button
-    static let foatingButtonBottomConstraint: CGFloat = 100
+    
     
     /// The height of the progress bar
     static let progressBarHeight: CGFloat = 5
@@ -119,10 +118,7 @@ class TodoListViewController: UIViewController {
     @IBOutlet fileprivate weak var tableView: UITableView!
     
     /// The button to add a new todo task
-    @IBOutlet fileprivate weak var addTodoTaskFloatingButton: UIButton!
-    
-    /// The bottom constraint of the floating button
-    @IBOutlet fileprivate weak var addTodoTaskFloatingButtonBottomConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var addTodoTaskButton: UIButton!
     
     // MARK: - Variables
     
@@ -165,7 +161,7 @@ class TodoListViewController: UIViewController {
         gradientContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(chooseGradientPressed)))
         
         // Apply layout to floating button
-        applyLayoutForFloatingButton()
+       applyLayoutForAddTaskButton()
         
         // Setup view with view model
         setupViewWithViewModel()
@@ -221,16 +217,9 @@ class TodoListViewController: UIViewController {
     }
     
     /// Applies the layout for the floating button
-    private func applyLayoutForFloatingButton () {
-        addTodoTaskFloatingButton.layer.cornerRadius = addTodoTaskFloatingButton.bounds.height / 2
-        addTodoTaskFloatingButton.removeGradientLayer()
-        addTodoTaskFloatingButton.applyGradient(colors: Themes.getTheme(viewModel.gradient).gradient, WithCornerRadius: addTodoTaskFloatingButton.layer.cornerRadius)
-        addTodoTaskFloatingButton.layer.borderWidth = 1.0
-        addTodoTaskFloatingButton.layer.borderColor = UIColor.lightGray.cgColor
-        addTodoTaskFloatingButton.layer.shadowColor = UIColor.black.cgColor
-        addTodoTaskFloatingButton.layer.shadowOpacity = 0.5
-        addTodoTaskFloatingButton.layer.shadowOffset = CGSize(width: 0, height: 1)
-        addTodoTaskFloatingButton.layer.shadowRadius = 5
+    private func applyLayoutForAddTaskButton () {
+        addTodoTaskButton.tintColor = .white
+        addTodoTaskButton.backgroundColor = viewModel.getMainColor()
     }
     
     /// Applys the layout to the progress bar
@@ -280,7 +269,7 @@ class TodoListViewController: UIViewController {
             
             
             self.applyProgressBarLayout()
-            self.applyLayoutForFloatingButton()
+            self.applyLayoutForAddTaskButton()
         })
         choiceView.show(animated: true)
     }

@@ -68,7 +68,7 @@ struct TodoTaskViewModel {
     var isDone: Bool = false
     
     /// The notes
-    var notes: String = ""
+    var notes: String?
     
     /// The date formatter
     private var dateFormatter: DateFormatter {

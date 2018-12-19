@@ -91,6 +91,18 @@ struct TodoTaskService: MainService {
         return taskViewModels
     }
     
+    /// Returns the task with the passed id
+    ///
+    /// - Parameters:
+    ///   - listId: The list id
+    ///   - taskId: The task id
+    /// - Returns: The task view model
+    static func getTaskViewModel(forList listId: String, andTask taskId: String) -> TodoTaskViewModel? {
+        let taskViewModels = getTaskViewModels(forList: listId)
+        
+        return taskViewModels.filter({ $0.taskId == taskId }).first
+    }
+    
     /// Saves the passed new todo task view model to the local storage
     ///
     /// - Parameters:

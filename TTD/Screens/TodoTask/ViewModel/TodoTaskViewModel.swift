@@ -46,10 +46,20 @@ struct TodoTaskViewModel {
     var taskDescription: String!
     
     /// The end date
-    var taskEndDate: Date!
+    var taskEndDate: Date! {
+        didSet {
+            if isTimerSet == true {
+                NotificationService.updateNotificationFromTask(self)
+            }
+        }
+    }
     
     /// Indicator if a time has been set
-    var isTimerSet: Bool = false
+    var isTimerSet: Bool = false {
+        didSet {
+            isTimerSet == true ? NotificationService.addNotificationForTask(self) : NotificationService.removeNotificationFromTask(self)
+        }
+    }
     
     /// The priority level
     var priority: PriorityLevel!

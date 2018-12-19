@@ -34,6 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = mainViewController
         self.window?.makeKeyAndVisible()
         
+        // retain notification delegate
+        NotificationService.setDelegate()
+        
         return true
     }
 

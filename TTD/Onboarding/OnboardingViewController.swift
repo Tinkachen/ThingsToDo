@@ -61,10 +61,6 @@ class OnboardingViewController: UIPageViewController {
         
         let notificationViewController = ViewControllerFactory.makeOnboardingViewControllerWith(notificationInformation, andRequestCallback: {
             NotificationService.askForPermissions()
-            if NotificationService.isNotificationGranted() {
-                // Perform Checkmark transfusion (TODO)
-            }
-            
         }) {
             self.showPersonalizeController()
         }

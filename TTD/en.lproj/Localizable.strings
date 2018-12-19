@@ -11,6 +11,7 @@
 
 /* Notification Service */
 "NS_snooze" = "Snooze";
+"NS_done" = "Done";
 "NS_delete" = "Delete";
 
 /* Onboarding View Controller */

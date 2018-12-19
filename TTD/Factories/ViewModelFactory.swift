@@ -15,10 +15,10 @@ private enum Constants {
     enum Strings {
         
         /// Title for a new todo list
-        static let newTodoListKey = "NTLVC_title"
+        static let newTodoListKey = "TLVC_title"
         
         /// Title for a new todo task
-        static let newTodoTaskKey = "NTTVC_title"
+        static let newTodoTaskKey = "TTVC_title"
     }
 }
 

@@ -71,7 +71,6 @@ struct NotificationService {
     
     /// Asks the user for sending / reciving notification
     static func askForPermissions () {
-        let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.requestAuthorization(options: [.alert, .sound], completionHandler: { (granted, error) in
             // Enable or disable features based on authorization
         })

@@ -22,13 +22,13 @@ private enum Constants {
     enum Strings {
         
         /// The title for the icon view
-        static let iconViewTitleKey = "CV_icon_view_title"
+        static let iconViewTitleKey = "CV_icon_view_title".localized
         
         /// The title for the gradient view
-        static let gradientViewTitleKey = "CV_gradient_view_title"
+        static let gradientViewTitleKey = "CV_gradient_view_title".localized
         
         /// The title for the done button
-        static let doneButtonTextKey = "CV_done_button"
+        static let doneButtonTextKey = "CV_done_button".localized
     }
 }
 
@@ -40,8 +40,8 @@ class ChoiceView: UIView {
     /// The collection view
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     
-    /// The label for the title of the view
-    @IBOutlet fileprivate weak var headerLabel: UILabel!
+    /// The segmented controll
+    @IBOutlet fileprivate weak var segmentedControl: UISegmentedControl!
     
     /// The finish button for the view
     @IBOutlet fileprivate weak var doneButton: UIButton!
@@ -50,13 +50,16 @@ class ChoiceView: UIView {
     var forGradients: Bool = false
     
     /// The optional color for the uiimageview
-    var color: UIColor?
+    var color: UIColor!
     
-    /// The callback for selecting a gradient
-    var gradientCallback: ((_ gradient: Gradient)->Void)!
+    /// The customized callback for gradient and icon that had been selected
+    var customizeCallback: ((_ gradient: Gradient?, _ icon: Icon?) -> Void)!
     
-    /// The callback for selecting an icon
-    var iconCallback: ((_ icon: Icon)->Void)!
+    /// The selected icon
+    private var selectedIcon: Icon?
+    
+    /// The selected gradient
+    private var selectedgradient: Gradient?
     
     /// The callback for closing the view
     var closeCallback: (()->Void)!
@@ -70,22 +73,33 @@ class ChoiceView: UIView {
         collectionView.register(UINib(nibName: Constants.collectionViewCellId, bundle: nil), forCellWithReuseIdentifier: Constants.collectionViewCellId)
         
         // Done Button
-        doneButton.setTitle(Constants.Strings.doneButtonTextKey.localized, for: .normal)
+        doneButton.setTitle(Constants.Strings.doneButtonTextKey, for: .normal)
         doneButton.addTarget(self, action: #selector(closeViewButtonPressed), for: .touchUpInside)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        // Title
-        self.headerLabel.text = forGradients ? Constants.Strings.gradientViewTitleKey.localized : Constants.Strings.iconViewTitleKey.localized
+        self.segmentedControl.setTitle(Constants.Strings.iconViewTitleKey, forSegmentAt: 0)
+        self.segmentedControl.setTitle(Constants.Strings.gradientViewTitleKey, forSegmentAt: 1)
+        
+        self.segmentedControl.tintColor = .midGray
     }
     
     // MARK: - Actions
     
     /// Closes the view
     @objc fileprivate func closeViewButtonPressed () {
+        customizeCallback(selectedgradient, selectedIcon)
         closeCallback()
+    }
+    
+    /// Called when the segmented changed
+    ///
+    /// - Parameter sender: The sender of the event
+    @IBAction fileprivate func segmentDidChange (_ sender: UISegmentedControl) {
+        forGradients = !forGradients
+        collectionView.reloadData()
     }
 }
 
@@ -107,12 +121,19 @@ extension ChoiceView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         
         let image = forGradients ? CAGradientLayer(size: Constants.collectionViewCellSize, colors: Array(Themes.allThemes.keys)[indexPath.row]).createGradientImage() : Icons.getIcon(Array(Icons.allIcons.keys)[indexPath.row])
         
-        cell.applyData(image, withTintColor: color)
+        cell.applyData(image, withTintColor: forGradients ? nil : color)
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        forGradients ? gradientCallback(Array(Themes.allThemes.keys)[indexPath.row]) : iconCallback(Array(Icons.allIcons.keys)[indexPath.row])
+        if forGradients {
+            selectedgradient = Array(Themes.allThemes.keys)[indexPath.row]
+            if let selectedColor = selectedgradient {
+                color = Themes.getTheme(selectedColor).main
+            }
+        } else {
+            selectedIcon = Array(Icons.allIcons.keys)[indexPath.row]
+        }
     }
 }

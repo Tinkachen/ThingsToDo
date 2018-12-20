@@ -133,6 +133,9 @@ class TodoTaskViewController: UIViewController {
     /// Indicator if the notes section is visible
     var isNotesHidden = true
     
+    /// Indicator if the text view is in editing mode
+    var textViewIsEditing = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -146,6 +149,8 @@ class TodoTaskViewController: UIViewController {
         setupSchedule()
         setupScheduleDatePicker()
         setupNote()
+        
+        scrollView.delegate = self
         
         nameTextField.delegate = self
         nameTextField.text = viewModel.taskDescription
@@ -321,8 +326,8 @@ class TodoTaskViewController: UIViewController {
     ///
     /// - Parameter notification: The notification
     @objc private func keyboardShows (notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-//            scrollView.setContentOffset(CGPoint(x: 0, y: <#T##Double#>), animated: true)
+        if textViewIsEditing {
+            scrollView.setContentOffset(CGPoint(x: 0, y: notesTextView.frame.origin.y + notesTextView.frame.size.height), animated: true)
         }
     }
     
@@ -330,7 +335,16 @@ class TodoTaskViewController: UIViewController {
     ///
     /// - Parameter notification: The notification
     @objc private func keyboardHides (notification: Notification) {
-        
+//        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+}
+
+// MARK: - The scroll view delegate
+extension TodoTaskViewController: UIScrollViewDelegate {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        nameTextField.resignFirstResponder()
+        notesTextView.resignFirstResponder()
     }
 }
 
@@ -341,11 +355,16 @@ extension TodoTaskViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return false
     }
-    
 }
 
 // MARK: - Extension Text View Delegate
 extension TodoTaskViewController: UITextViewDelegate {
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        textViewIsEditing = true
+        
+        return true
+    }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         showPlaceholderInTextInput(false)
@@ -359,5 +378,7 @@ extension TodoTaskViewController: UITextViewDelegate {
         if textView.text.isEmpty {
             showPlaceholderInTextInput(true)
         }
+        
+        textViewIsEditing = false
     }
 }

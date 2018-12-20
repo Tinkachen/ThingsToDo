@@ -58,7 +58,7 @@
 "TLVC_tasks" = "Aufgaben";
 "TLVC_secure_passcode" = "Möchtest du deine Liste mit einem Pin sichern?";
 "TLVC_alert_title" = "Weitere Einstellungen";
-"TLVC_alert_change_gradient" = "Farbverlauf wechseln";
+"TLVC_alert_change_gradient_and_icon" = "Farbverlauf und Icon wechseln";
 "TLVC_alert_lock_list" = "Liste schützen";
 "TLVC_alert_cancel" = "Abbrechen";
 

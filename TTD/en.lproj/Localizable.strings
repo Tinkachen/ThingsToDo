@@ -58,14 +58,14 @@
 "TLVC_tasks" = "Tasks";
 "TLVC_secure_passcode" = "Would you secure your list with a passcode?";
 "TLVC_alert_title" = "More settings";
-"TLVC_alert_change_gradient" = "Change color";
+"TLVC_alert_change_gradient_and_icon" = "Change color and icon";
 "TLVC_alert_lock_list" = "Lock List";
 "TLVC_alert_cancel" = "Cancel";
 
 /* Choice View */
 "CV_done_button" = "Done";
 "CV_gradient_view_title" = "Theme";
-"CV_icon_view_title" = "Symbol";
+"CV_icon_view_title" = "Icon";
 
 /* Todo Task View Controller */
 "TTVC_title" = "New Task";

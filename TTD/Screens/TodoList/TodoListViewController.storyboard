@@ -35,10 +35,6 @@
                                     <constraint firstAttribute="trailing" secondItem="pEk-Rw-RtC" secondAttribute="trailing" constant="10" id="Utt-wl-94B"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HB4-nL-Lcl">
-                                <rect key="frame" x="94" y="45" width="49" height="49"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99 Tasks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1D3-zp-VWJ">
                                 <rect key="frame" x="25" y="119" width="57" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
@@ -64,17 +60,6 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yMr-01-gGy">
-                                <rect key="frame" x="330" y="59.5" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="25T-ig-xVm"/>
-                                    <constraint firstAttribute="width" secondItem="yMr-01-gGy" secondAttribute="height" multiplier="1:1" id="dUU-1b-8VN"/>
-                                </constraints>
-                                <state key="normal" image="Lock"/>
-                                <connections>
-                                    <action selector="saveWithPasscodeButtonPressed:" destination="Rm0-1I-Pj5" eventType="touchUpInside" id="KQn-0P-fIO"/>
-                                </connections>
-                            </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="d9v-bR-hIV">
                                 <rect key="frame" x="25" y="212" width="280.5" height="5"/>
                                 <constraints>
@@ -102,22 +87,16 @@
                             <constraint firstItem="IT8-2D-Reg" firstAttribute="top" secondItem="1D3-zp-VWJ" secondAttribute="bottom" constant="10" id="GbQ-sB-uHx"/>
                             <constraint firstItem="1D3-zp-VWJ" firstAttribute="top" secondItem="Tby-RN-dVU" secondAttribute="bottom" constant="25" id="HvB-RK-6lm"/>
                             <constraint firstItem="Tby-RN-dVU" firstAttribute="top" secondItem="uUH-0M-SuF" secondAttribute="top" constant="45" id="KCg-0p-YIJ"/>
-                            <constraint firstItem="HB4-nL-Lcl" firstAttribute="width" secondItem="Tby-RN-dVU" secondAttribute="width" id="RZ8-IR-DE2"/>
                             <constraint firstItem="k6t-cj-khr" firstAttribute="centerY" secondItem="d9v-bR-hIV" secondAttribute="centerY" id="SU5-Rf-8QJ"/>
-                            <constraint firstItem="HB4-nL-Lcl" firstAttribute="leading" secondItem="Tby-RN-dVU" secondAttribute="trailing" constant="20" id="TYK-Bb-hVu"/>
                             <constraint firstItem="1D3-zp-VWJ" firstAttribute="leading" secondItem="Tby-RN-dVU" secondAttribute="leading" id="Vo7-Hq-2mD"/>
                             <constraint firstItem="UtX-AE-Y08" firstAttribute="trailing" secondItem="OGv-3B-shd" secondAttribute="trailing" id="XF8-Oc-OQb"/>
                             <constraint firstItem="d9v-bR-hIV" firstAttribute="top" secondItem="IT8-2D-Reg" secondAttribute="bottom" constant="25" id="Z3Z-Gr-3v6"/>
                             <constraint firstItem="k6t-cj-khr" firstAttribute="leading" secondItem="d9v-bR-hIV" secondAttribute="trailing" constant="10" id="deW-Id-oGH"/>
                             <constraint firstItem="UtX-AE-Y08" firstAttribute="trailing" secondItem="k6t-cj-khr" secondAttribute="trailing" constant="25" id="fCg-fD-0pz"/>
                             <constraint firstItem="UtX-AE-Y08" firstAttribute="bottom" secondItem="OGv-3B-shd" secondAttribute="bottom" id="gx3-h9-tO6"/>
-                            <constraint firstItem="yMr-01-gGy" firstAttribute="centerY" secondItem="Tby-RN-dVU" secondAttribute="centerY" id="hph-YF-XwQ"/>
                             <constraint firstItem="UtX-AE-Y08" firstAttribute="trailing" secondItem="IT8-2D-Reg" secondAttribute="trailing" constant="25" id="iDE-0n-KRi"/>
-                            <constraint firstItem="HB4-nL-Lcl" firstAttribute="top" secondItem="Tby-RN-dVU" secondAttribute="top" id="jW5-Gm-mYq"/>
                             <constraint firstItem="OGv-3B-shd" firstAttribute="leading" secondItem="UtX-AE-Y08" secondAttribute="leading" id="lQR-7T-1kC"/>
                             <constraint firstItem="Yks-1i-oCC" firstAttribute="leading" secondItem="d9v-bR-hIV" secondAttribute="leading" id="nwG-Yd-JCe"/>
-                            <constraint firstItem="HB4-nL-Lcl" firstAttribute="height" secondItem="Tby-RN-dVU" secondAttribute="height" id="p6w-AY-sZw"/>
-                            <constraint firstItem="UtX-AE-Y08" firstAttribute="trailing" secondItem="yMr-01-gGy" secondAttribute="trailing" constant="25" id="sC8-iu-gHY"/>
                             <constraint firstItem="k6t-cj-khr" firstAttribute="trailing" secondItem="Yks-1i-oCC" secondAttribute="trailing" id="v68-Yr-P0Q"/>
                             <constraint firstItem="IT8-2D-Reg" firstAttribute="leading" secondItem="1D3-zp-VWJ" secondAttribute="leading" id="x0L-oG-ftv"/>
                         </constraints>
@@ -125,11 +104,9 @@
                     </view>
                     <connections>
                         <outlet property="addTodoTaskButton" destination="OGv-3B-shd" id="BoP-l2-9gJ"/>
-                        <outlet property="gradientContainer" destination="HB4-nL-Lcl" id="QgL-Wg-dh6"/>
                         <outlet property="iconContainer" destination="Tby-RN-dVU" id="M7G-jU-1uK"/>
                         <outlet property="iconImageView" destination="pEk-Rw-RtC" id="GZ4-sN-HD8"/>
                         <outlet property="nameTextField" destination="IT8-2D-Reg" id="13G-Y3-1Iz"/>
-                        <outlet property="passcodeButton" destination="yMr-01-gGy" id="QXP-0R-8GF"/>
                         <outlet property="progressBar" destination="d9v-bR-hIV" id="RnN-dd-9Gb"/>
                         <outlet property="progressPercentLabel" destination="k6t-cj-khr" id="WML-d1-0Qc"/>
                         <outlet property="tableView" destination="Yks-1i-oCC" id="t59-vn-Ciu"/>
@@ -141,7 +118,4 @@
             <point key="canvasLocation" x="220" y="177.66116941529236"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Lock" width="48" height="64"/>
-    </resources>
 </document>

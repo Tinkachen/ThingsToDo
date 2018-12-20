@@ -70,7 +70,7 @@ private enum Constants {
         static let alertTitleKey = "TLVC_alert_title"
         
         /// The gradient alert action name
-        static let alertChangeGradientKey = "TLVC_alert_change_gradient"
+        static let alertChangeGradientAndIconKey = "TLVC_alert_change_gradient_and_icon"
         
         /// The lock alert action name
         static let alertLockListKey = "TLVC_alert_lock_list"
@@ -96,17 +96,11 @@ class TodoListViewController: UIViewController {
     /// The image view for the icon
     @IBOutlet fileprivate weak var iconImageView: UIImageView!
     
-    /// The container for the gradient
-    @IBOutlet fileprivate weak var gradientContainer: UIView!
-    
     /// The label for the task description
     @IBOutlet fileprivate weak var taskLabel: UILabel!
     
     /// The text field for the todo list name
     @IBOutlet fileprivate weak var nameTextField: UITextField!
-    
-    /// The button for enable or disable passcode security
-    @IBOutlet fileprivate weak var passcodeButton: UIButton!
     
     /// The progress view
     @IBOutlet fileprivate weak var progressBar: UIProgressView!
@@ -158,7 +152,6 @@ class TodoListViewController: UIViewController {
         
         // Add gesture recognizer to views
         iconContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(chooseIconPressed)))
-        gradientContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(chooseGradientPressed)))
         
         // Apply layout to floating button
        applyLayoutForAddTaskButton()
@@ -196,12 +189,6 @@ class TodoListViewController: UIViewController {
         self.nameTextField.delegate = self
         self.nameTextField.tintColor = viewModel.getMainColor()
         
-        // Gradient
-        self.gradientContainer.applyGradient(colors: Themes.getTheme(viewModel.gradient).gradient, WithCornerRadius: self.gradientContainer.bounds.height / 2)
-        self.gradientContainer.layer.cornerRadius = self.gradientContainer.bounds.height / 2
-        self.gradientContainer.layer.borderColor = UIColor.lightGray.cgColor
-        self.gradientContainer.layer.borderWidth = 1.0
-        
         // Icon
         self.iconContainer.layer.cornerRadius = self.iconContainer.frame.width / 2
         self.iconContainer.layer.borderColor = UIColor.lightGray.cgColor
@@ -213,7 +200,6 @@ class TodoListViewController: UIViewController {
         self.taskLabel.text = "\(viewModel.tasks?.count ?? 0) \(Constants.Strings.tasksKey.localized)"
         
         applyProgressBarLayout()
-        applyPasscodeButtonLayout()
     }
     
     /// Applies the layout for the floating button
@@ -236,41 +222,27 @@ class TodoListViewController: UIViewController {
         progressBar.progressImage = CAGradientLayer(frame: progressBar.frame, colors: viewModel.getGradient()).createGradientImage()
     }
     
-    /// Applys the layout to the passcode button
-    private func applyPasscodeButtonLayout () {
-        self.passcodeButton.tintColor = viewModel.getMainColor()
-        passcodeButton.setImage(viewModel.passcode != nil ? Constants.Images.lockItem : Constants.Images.unlockItem, for: .normal)
-    }
-    
     // MARK: - Actions
     
-    /// Presents a view for selecting a icon for the todo list
+    /// Presents a view for selecting a icon/gradient for the todo list
     @objc fileprivate func chooseIconPressed () {
         nameTextField.resignFirstResponder()
-        
-        let choiceView = CustomAlert(color: viewModel.getMainColor(), iconCallback: { (icon) in
-            self.iconImageView.image = Icons.getIcon(icon)
-            self.viewModel.icon = icon
-        })
-        choiceView.show(animated: true)
-    }
-    
-    /// Presents a view for selecting a gradient for the todo list
-    @objc fileprivate func chooseGradientPressed () {
-        nameTextField.resignFirstResponder()
-        
-        let choiceView = CustomAlert(gradientCallback: { (gradient) in
-            self.gradientContainer.removeGradientLayer()
-            self.gradientContainer.applyGradient(colors: Themes.getTheme(gradient).gradient, WithCornerRadius: self.gradientContainer.layer.cornerRadius)
-            self.viewModel.gradient = gradient
-            self.iconImageView.tintColor = self.viewModel.getMainColor()
-            self.passcodeButton.tintColor = self.viewModel.getMainColor()
-            self.nameTextField.tintColor = self.viewModel.getMainColor()
+        let choiceView = CustomAlert(WithColor: viewModel.getMainColor()) { (gradient, icon) in
+            if let gradient = gradient {
+                self.viewModel.gradient = gradient
+                self.iconImageView.tintColor = self.viewModel.getMainColor()
+                self.nameTextField.tintColor = self.viewModel.getMainColor()
+                
+                self.applyProgressBarLayout()
+                self.applyLayoutForAddTaskButton()
+            }
             
-            
-            self.applyProgressBarLayout()
-            self.applyLayoutForAddTaskButton()
-        })
+            if let icon = icon {
+                self.iconImageView.image = Icons.getIcon(icon)
+                self.viewModel.icon = icon
+            }
+        }
+        
         choiceView.show(animated: true)
     }
     
@@ -285,11 +257,10 @@ class TodoListViewController: UIViewController {
     /// Secures the todo list with a passcode
     ///
     /// - Parameter sender: The sender of the event
-    @IBAction fileprivate func saveWithPasscodeButtonPressed (_ sender: UIButton) {
+    @objc fileprivate func saveWithPasscode () {
         if viewModel.passcode != nil {
             viewModel.passcode = nil
         } else {
-            passcodeButton.setImage(Constants.Images.lockItem, for: .normal)
             let passcodeViewConroller = ViewControllerFactory.makePasscodeViewController(withGradient: viewModel.gradient) { (passcode) in
                 guard let passcodeUnwrapped = passcode else {
                     self.viewModel.passcode = nil
@@ -299,7 +270,6 @@ class TodoListViewController: UIViewController {
             }
             self.navigationController?.pushViewController(passcodeViewConroller, animated: true)
         }
-        self.applyPasscodeButtonLayout()
     }
     
     /// Called when the close button in the navigation bar is pressed
@@ -311,10 +281,12 @@ class TodoListViewController: UIViewController {
     /// The more icon has been pressed
     @objc fileprivate func moreButtonPressed () {
         let alertController = UIAlertController(title: nil, message: Constants.Strings.alertTitleKey.localized, preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: Constants.Strings.alertChangeGradientKey.localized, style: .default, handler: { (alertAction) in
+        alertController.addAction(UIAlertAction(title: Constants.Strings.alertChangeGradientAndIconKey.localized, style: .default, handler: { (alertAction) in
+            self.chooseIconPressed()
             alertController.dismiss(animated: true, completion: nil)
         }))
         alertController.addAction(UIAlertAction(title: Constants.Strings.alertLockListKey.localized, style: .default, handler: { (alertAction) in
+            self.saveWithPasscode()
             alertController.dismiss(animated: true, completion: nil)
         }))
         alertController.addAction(UIAlertAction(title: Constants.Strings.alertCancelKey.localized, style: .cancel, handler: { (alertAction) in

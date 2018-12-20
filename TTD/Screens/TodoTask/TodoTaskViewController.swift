@@ -155,7 +155,7 @@ class TodoTaskViewController: UIViewController {
         nameTextField.delegate = self
         nameTextField.text = viewModel.taskDescription
         nameTextField.tintColor = parentViewModel.getMainColor()
-        if viewModel.taskDescription.isEmpty {
+        if viewModel.taskDescription.isEmpty || viewModel.taskDescription == Constants.Strings.namePlaceholderKey {
             nameTextField.becomeFirstResponder()
         }
 

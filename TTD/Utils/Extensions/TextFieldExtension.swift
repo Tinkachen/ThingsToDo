@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK: - UITextField Extension
 extension UITextField {
     
     /// Moves the caret to the correct position by removing the trailing whitespace - needed for SkyFloatingTextFields

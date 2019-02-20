@@ -24,6 +24,9 @@ class EmptyView: UIView {
     /// The button callback
     private var callback: (() -> Void)?
     
+    /// The (optional) color for elements in the empty view
+    private var color: UIColor?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -40,11 +43,19 @@ class EmptyView: UIView {
         self.titleLabel.text = message
     }
     
+    /// Sets up the view elements with the passed color
+    public func setUpForColor (_ color: UIColor?) {
+        self.color = color
+        self.backgroundColor = .white
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        button.tintColor = .white
-        button.layer.borderColor = UIColor.white.cgColor
+        self.titleLabel.textColor = color ?? .white
+        
+        button.tintColor = color ?? .white
+        button.layer.borderColor = (color ?? UIColor.white).cgColor
         button.layer.borderWidth = 1.0
         button.layer.cornerRadius = button.frame.height / 2
     }

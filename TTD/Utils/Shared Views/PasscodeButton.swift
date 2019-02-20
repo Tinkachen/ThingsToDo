@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// The pass code button
 class PasscodeButton: UIButton {
     
     override func layoutSubviews() {

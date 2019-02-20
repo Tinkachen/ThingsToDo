@@ -34,8 +34,10 @@ private enum Constants {
     
 }
 
+/// The main view model
 struct MainViewModel {
     
+    /// The user defaults
     private let defaults = UserDefaults.standard
     
     /// Saves the user name to user defaults

@@ -13,11 +13,14 @@ import LocalAuthentication
 private enum Constants {
     
     /// String for using the fallback
-    static let useFallbackString = "BS_authentication_fallback".localized
+    static let useFallbackLocalizedString = "BS_authentication_fallback".localized
 }
 
+// #TODO
+/// The biometric service
 struct BiometricService {
     
+    /// The local authentication context
     private static let localAuthenticationContext = LAContext()
     
     

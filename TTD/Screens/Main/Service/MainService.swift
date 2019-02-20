@@ -10,19 +10,26 @@ import Foundation
 import UIKit
 import CoreData
 
+/// The error messages
 enum ErrorMessage {
     
+    /// No context error message
     static let noContext = "No context found."
     
+    /// No entity error message
     static let noEntity = "No entity found with the name."
     
+    /// Unknown error message
     static let unknown = "An unknown Error occured."
     
+    /// No save error message
     static let noSave = "There was no save of the data possible."
 }
 
+/// The main service protocol
 protocol MainService {
     
+    /// The moc context
     static var context: NSManagedObjectContext? { get }
 }
 
@@ -31,6 +38,7 @@ extension MainService {
     
     // Core Data
     
+    /// The moc context
     static var context: NSManagedObjectContext? {
         guard let appDel = UIApplication.shared.delegate as? AppDelegate else {
             return nil

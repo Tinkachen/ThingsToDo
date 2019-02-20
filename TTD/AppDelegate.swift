@@ -9,8 +9,10 @@
 import UIKit
 import CoreData
 
+/// Private constants
 private enum Constants {
     
+    /// The first start key
     static let firstStartKey = "ttd_first_start_indicator"
 }
 

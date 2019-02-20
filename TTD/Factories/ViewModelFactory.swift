@@ -30,7 +30,7 @@ struct ViewModelFactory {
     /// - Returns: The instance
     static func makeTodoListViewModel () -> TodoListViewModel {
         let newTodoList = TodoListViewModel(id: UUID().uuidString,
-                                            gradient: Gradient.rdmGradient(),
+                                            gradient: Theme.rdmGradient,
                                             icon: Icon.rdmIcon(),
                                             title: Constants.Strings.newTodoListKey.localized,
                                             passcode: nil,

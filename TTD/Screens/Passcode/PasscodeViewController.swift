@@ -81,7 +81,7 @@ class PasscodeViewController: UIViewController {
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        self.view.applyGradient(colors: Themes.getTheme(gradient).gradient)
+        self.view.applyGradient(colors: gradient.gradient)
         
         indicatorView.forEach {
             $0.layer.cornerRadius = $0.bounds.height / 2

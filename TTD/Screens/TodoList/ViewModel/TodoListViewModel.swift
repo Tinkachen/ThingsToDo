@@ -36,6 +36,11 @@ struct TodoListViewModel {
         tasks = TodoTaskService.getTaskViewModels(forList: id)
     }
     
+    /// Reloads the view model
+    mutating func reloadViewModel () {
+        self = TodoListService.reloadListViewModel(self)
+    }
+    
     /// Updates the stored list view model
     func updateListViewModel () {
         TodoListService.updateListViewModel(self)
@@ -46,10 +51,15 @@ struct TodoListViewModel {
         TodoListService.deleteListViewModel(self)
     }
     
+    /// Deletes the task view model with the passed index
+    ///
+    /// - Parameter atIndex: The index of the task view model that should be deleted
     mutating func deleteTaskViewModel (atIndex: Int) {
         guard let tasksUnwrapped = tasks else { return }
-        tasks?.remove(at: atIndex)
-        TodoTaskService.deleteTaskViewModel(tasksUnwrapped[atIndex])
+        if tasksUnwrapped.count > atIndex {
+            tasks?.remove(at: atIndex)
+            TodoTaskService.deleteTaskViewModel(tasksUnwrapped[atIndex])
+        }
     }
     
     /// Calculates the percentage of the done state
@@ -80,13 +90,13 @@ struct TodoListViewModel {
     ///
     /// - Returns: The color
     func getMainColor () -> UIColor {
-        return Themes.getTheme(gradient).main
+        return gradient.main
     }
     
     /// Requests the gradient informations
     ///
     /// - Returns: The gradient
     func getGradient () -> [CGColor] {
-        return Themes.getTheme(gradient).gradient
+        return gradient.gradient
     }
 }

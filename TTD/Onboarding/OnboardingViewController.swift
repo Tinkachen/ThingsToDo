@@ -54,7 +54,7 @@ class OnboardingViewController: UIPageViewController {
     ///
     /// - Returns: The instance
     private func notificationRequestController () -> UIViewController {
-        let gradientImage = CAGradientLayer(size: CGSize(width: 100, height: 100), colors: Gradient.apple).createGradientImage()
+        let gradientImage = CAGradientLayer(size: CGSize(width: 100, height: 100), colors: Theme.apple).createGradientImage()
         let notificationInformation = OnboardingViewModel(image: gradientImage,
                                                           title: Constants.NotificationRequest.enableNotificationTitleString,
                                                           description: Constants.NotificationRequest.enableNotificationDescriptionString)

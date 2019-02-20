@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dbW-KD-4vs">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Card Content Detail View Controller-->
+        <scene sceneID="j4V-vQ-38j">
+            <objects>
+                <viewController id="dbW-KD-4vs" customClass="CardContentDetailViewController" customModule="TTD" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cGd-7Z-pi6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xiv-yg-hbt">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rOK-LJ-OaD">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ARA-5z-RS9" customClass="CardInformationView" customModule="TTD" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jvX-6E-78a">
+                                                <rect key="frame" x="25" y="236" width="325" height="431"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </tableView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAe-g1-PGl">
+                                                <rect key="frame" x="314" y="200" width="36" height="36"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal" image="AddIcon"/>
+                                                <connections>
+                                                    <action selector="addTaskButtonPressed:" destination="dbW-KD-4vs" eventType="touchUpInside" id="f5Q-u9-xNl"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="oAe-g1-PGl" secondAttribute="trailing" constant="25" id="JT4-cI-Hsw"/>
+                                            <constraint firstItem="oAe-g1-PGl" firstAttribute="top" secondItem="ARA-5z-RS9" secondAttribute="bottom" id="KRU-pc-IQs"/>
+                                            <constraint firstItem="ARA-5z-RS9" firstAttribute="top" secondItem="rOK-LJ-OaD" secondAttribute="top" id="LZF-li-ITX"/>
+                                            <constraint firstAttribute="bottom" secondItem="jvX-6E-78a" secondAttribute="bottom" id="QA4-zG-zCV"/>
+                                            <constraint firstItem="jvX-6E-78a" firstAttribute="top" secondItem="oAe-g1-PGl" secondAttribute="bottom" id="UVl-gy-ivy"/>
+                                            <constraint firstItem="jvX-6E-78a" firstAttribute="leading" secondItem="rOK-LJ-OaD" secondAttribute="leading" constant="25" id="XGf-xx-Dax"/>
+                                            <constraint firstAttribute="trailing" secondItem="ARA-5z-RS9" secondAttribute="trailing" id="h6m-2q-gC6"/>
+                                            <constraint firstAttribute="trailing" secondItem="jvX-6E-78a" secondAttribute="trailing" constant="25" id="s5f-Cr-DQJ"/>
+                                            <constraint firstItem="ARA-5z-RS9" firstAttribute="leading" secondItem="rOK-LJ-OaD" secondAttribute="leading" id="xQS-hb-doT"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="rOK-LJ-OaD" secondAttribute="bottom" id="3Ic-hp-pGq"/>
+                                    <constraint firstItem="rOK-LJ-OaD" firstAttribute="top" secondItem="Xiv-yg-hbt" secondAttribute="top" id="aR4-fo-YyJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="rOK-LJ-OaD" secondAttribute="trailing" id="ikx-Qd-ILC"/>
+                                    <constraint firstItem="rOK-LJ-OaD" firstAttribute="leading" secondItem="Xiv-yg-hbt" secondAttribute="leading" id="zi5-uL-Q6W"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ejb-UX-J2y" firstAttribute="trailing" secondItem="Xiv-yg-hbt" secondAttribute="trailing" id="3Qv-A4-wd3"/>
+                            <constraint firstItem="ejb-UX-J2y" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ARA-5z-RS9" secondAttribute="bottom" id="EyG-q2-63e"/>
+                            <constraint firstItem="rOK-LJ-OaD" firstAttribute="height" secondItem="cGd-7Z-pi6" secondAttribute="height" priority="250" id="IHU-6R-Khr"/>
+                            <constraint firstItem="rOK-LJ-OaD" firstAttribute="width" secondItem="cGd-7Z-pi6" secondAttribute="width" id="e9Z-hG-bOs"/>
+                            <constraint firstItem="Xiv-yg-hbt" firstAttribute="top" secondItem="ejb-UX-J2y" secondAttribute="top" constant="-20" id="fxL-OE-xPF"/>
+                            <constraint firstItem="Xiv-yg-hbt" firstAttribute="leading" secondItem="ejb-UX-J2y" secondAttribute="leading" id="jVd-ar-exX"/>
+                            <constraint firstItem="ejb-UX-J2y" firstAttribute="bottom" secondItem="Xiv-yg-hbt" secondAttribute="bottom" id="lkX-3Y-mnR"/>
+                            <constraint firstItem="ARA-5z-RS9" firstAttribute="height" secondItem="cGd-7Z-pi6" secondAttribute="height" multiplier="0.3" priority="999" id="pzD-fy-B3u"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ejb-UX-J2y"/>
+                    </view>
+                    <connections>
+                        <outlet property="addTodoTaskButton" destination="oAe-g1-PGl" id="YeO-X1-vY5"/>
+                        <outlet property="bottomConstraint" destination="EyG-q2-63e" id="iqa-Bo-484"/>
+                        <outlet property="cardContentView" destination="ARA-5z-RS9" id="0Dn-9g-qg1"/>
+                        <outlet property="scrollView" destination="Xiv-yg-hbt" id="aQp-eZ-8tv"/>
+                        <outlet property="tableView" destination="jvX-6E-78a" id="v3T-tJ-Z43"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1ui-k1-d2P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2293" y="99"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="AddIcon" width="36" height="36"/>
+    </resources>
+</document>

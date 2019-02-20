@@ -8,9 +8,13 @@
 
 import UIKit
 
+// MARK: - UIButton Extension
 extension UIButton {
     
+    /// Privagte properties
     private struct Properties {
+        
+        /// The space
         static var _space: CGFloat = 10.0
     }
     
@@ -19,7 +23,6 @@ extension UIButton {
         set (newValue) {
             Properties._space = newValue
         }
-        
         get {
             return Properties._space
         }

@@ -14,9 +14,6 @@ private enum Constants {
     /// Constant images
     enum Images {
         
-        /// The close icon
-        static let closeIcon = #imageLiteral(resourceName: "CloseIcon")
-        
         /// The reminder icon
         static let remimderIcon = #imageLiteral(resourceName: "timer")
         
@@ -34,28 +31,28 @@ private enum Constants {
     enum Strings {
         
         /// The description text
-        static let descriptionTextKey = "TTVC_description".localized
+        static let descriptionTextLocalized = "TTVC_description".localized
         
         /// The title for the view
-        static let viewTitleKey = "TTVC_title".localized
+        static let viewTitleLocalized = "TTVC_title".localized
         
         /// The placeholder for the name
-        static let namePlaceholderKey = "TTVC_name_placeholer".localized
+        static let namePlaceholderLocalized = "TTVC_name_placeholer".localized
         
         /// The placeholder for the notes
-        static let notesPlaceholderKey = "TTVC_notes_placeholder".localized
+        static let notesPlaceholderLocalized = "TTVC_notes_placeholder".localized
         
         /// The text for the reminder
-        static let reminderTextKey = "TTVC_reminder".localized
+        static let reminderTextLocalized = "TTVC_reminder".localized
         
         /// The priority localization key
-        static let priorityTextKey = "TTVC_priority".localized
+        static let priorityTextLocalized = "TTVC_priority".localized
         
         /// The note localization key
-        static let noteTextKey = "TTVC_note".localized
+        static let noteTextLocalized = "TTVC_note".localized
         
         /// The done localized key
-        static let pickerDoneKey = "TTVC_picker_done".localized
+        static let pickerDoneLocalized = "TTVC_picker_done".localized
     }
     
     /// The animation duration for showing/hiding the picker
@@ -155,14 +152,14 @@ class TodoTaskViewController: UIViewController {
         nameTextField.delegate = self
         nameTextField.text = viewModel.taskDescription
         nameTextField.tintColor = parentViewModel.getMainColor()
-        if viewModel.taskDescription.isEmpty || viewModel.taskDescription == Constants.Strings.namePlaceholderKey {
+        if viewModel.taskDescription.isEmpty || viewModel.taskDescription == Constants.Strings.namePlaceholderLocalized {
             nameTextField.becomeFirstResponder()
         }
 
         notesTextView.delegate = self
         showPlaceholderInTextInput(viewModel.notes != "" ? false : true)
         
-        descriptionLabel.text = Constants.Strings.descriptionTextKey
+        descriptionLabel.text = Constants.Strings.descriptionTextLocalized
         descriptionLabel.textColor = .midGray
         
         // Hide schedule date picker for start
@@ -173,16 +170,17 @@ class TodoTaskViewController: UIViewController {
         nameTextField.resignFirstResponder()
         notesTextView.resignFirstResponder()
         
+        if nameTextField.text != Constants.Strings.namePlaceholderLocalized && nameTextField.text != "" {
+            viewModel.updateTaskViewModel()
+        }
+        
         super.viewWillDisappear(animated)
     }
     
+    /// Sets up the navigation bar
     private func setupNavigationBar () {
-        self.navigationController?.navigationBar.isHidden = false
-        let closeItem = UIBarButtonItem(image: Constants.Images.closeIcon, style: .plain, target: self, action: #selector(closeButtonPressed))
-        closeItem.tintColor = .midGray
-        self.navigationItem.leftBarButtonItem = closeItem
         
-        self.title = Constants.Strings.viewTitleKey
+        self.title = Constants.Strings.viewTitleLocalized
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -200,10 +198,10 @@ class TodoTaskViewController: UIViewController {
     fileprivate func showPlaceholderInTextInput (_ show: Bool) {
         if show {
             viewModel.notes = ""
-            notesTextView.text = Constants.Strings.notesPlaceholderKey
+            notesTextView.text = Constants.Strings.notesPlaceholderLocalized
             notesTextView.textColor = .midGray
         } else {
-            notesTextView.text = notesTextView.text == Constants.Strings.notesPlaceholderKey ? "" : viewModel.notes
+            notesTextView.text = notesTextView.text == Constants.Strings.notesPlaceholderLocalized ? "" : viewModel.notes
             notesTextView.textColor = .black
         }
     }
@@ -261,7 +259,7 @@ class TodoTaskViewController: UIViewController {
         NotificationService.isNotificationGranted { (granted) in
             DispatchQueue.main.async {
                 if granted {
-                    self.reminderTitleLabel.text = Constants.Strings.reminderTextKey
+                    self.reminderTitleLabel.text = Constants.Strings.reminderTextLocalized
                     self.reminderTitleLabel.textColor = .midGray
                     self.reminderImageView.image = Constants.Images.remimderIcon
                     self.reminderImageView.tintColor = .midGray
@@ -283,7 +281,7 @@ class TodoTaskViewController: UIViewController {
     
     /// Setup priority
     private func setupPriority () {
-        priorityTitleLabel.text = Constants.Strings.priorityTextKey
+        priorityTitleLabel.text = Constants.Strings.priorityTextLocalized
         priorityTitleLabel.textColor = .midGray
         priorityImageView.image = Constants.Images.priorityIcon
         priorityImageView.tintColor = .midGray
@@ -300,7 +298,7 @@ class TodoTaskViewController: UIViewController {
     
     /// Setup the note
     private func setupNote () {
-        noteTitleLabel.text = Constants.Strings.noteTextKey
+        noteTitleLabel.text = Constants.Strings.noteTextLocalized
         noteTitleLabel.textColor = .midGray
         noteImageView.image = Constants.Images.noteIcon
         noteImageView.tintColor = .midGray
@@ -309,16 +307,6 @@ class TodoTaskViewController: UIViewController {
     }
     
     // MARK: - Actions
-    
-    /// Called when the close button in the navigation bar is pressed
-    @objc private func closeButtonPressed () {
-        viewModel.taskDescription = nameTextField.text ?? ""
-        
-        if !(viewModel.taskDescription.isEmpty) && (viewModel.taskDescription != Constants.Strings.namePlaceholderKey) {
-            viewModel.updateTaskViewModel()
-        }
-        self.dismiss(animated: true, completion: nil)
-    }
     
     // MARK: - Keyboard Notification Actions
     
@@ -351,13 +339,18 @@ extension TodoTaskViewController: UIScrollViewDelegate {
 // MARK: Text Field Delegate
 extension TodoTaskViewController: UITextFieldDelegate {
     
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        viewModel.taskDescription = textField.text ?? Constants.Strings.namePlaceholderLocalized
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
     }
 }
 
-// MARK: - Extension Text View Delegate
+// MARK: - Text View Delegate
 extension TodoTaskViewController: UITextViewDelegate {
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {

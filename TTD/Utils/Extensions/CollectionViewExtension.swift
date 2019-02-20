@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK: - UICollectionView Extension
 extension UICollectionView {
     
     /// Sets an empty view with a passed message and button callback

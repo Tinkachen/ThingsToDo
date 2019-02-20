@@ -25,7 +25,7 @@ enum Icon: Int {
     /// - Returns: The icon
     static func rdmIcon () -> Icon {
         // TODO: Swift 4.2 .randomElement()
-        return Array(Icons.allIcons.keys)[Int(arc4random_uniform(UInt32(Themes.allThemes.count)))]
+        return Array(Icons.allIcons.keys).randomElement() ?? Icon.audio
     }
 }
 

@@ -12,7 +12,7 @@ import UIKit
 private enum Constants {
     
     /// The collection view cell id
-    static let collectionViewCellId = "CollectionViewCell"
+    static let collectionViewCellId = "CardCollectionViewCell"
     
     /// Strings for the outlets
     enum Strings {
@@ -56,23 +56,20 @@ class MainViewController: UIViewController {
     
     // MARK: - Variables
     
+    /// The transition
+    private var transition: CardTransition?
+    
     // the main view model
     let mainViewModel = MainViewModel()
     
     /// The todo list view models
     var todoListViewModels = [TodoListViewModel]()
     
-    /// The transition make
-    let transition = Animator()
-    
     /// The selected index path
     var selectedIndexPath: IndexPath!
     
     /// The collection view cell size
     fileprivate var collectionViewCellSize = CGSize(width: 100, height: 100)
-    
-    /// The collection view editing mode indicator
-    fileprivate var collectionViewEditingMode = false
     
     // Horizontal Page Collection Setup
     private var _indexOfCellBeforeDragging = 0
@@ -97,8 +94,6 @@ class MainViewController: UIViewController {
         collectionView.backgroundColor = .clear
         collectionView.isPrefetchingEnabled = false
         
-//        collectionView.addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: #selector(handlePanGestureOnCollectionViewCell(_:))))
-        
         // Setup user informations
         welcomeLabel.text = "\(Constants.Strings.welcomeUserKey) \(mainViewModel.getUserName())"
     
@@ -119,7 +114,7 @@ class MainViewController: UIViewController {
         
         self.view.removeGradientLayer()
         
-        self.view.applyGradient(colors: todoListViewModels.count > 0 ? todoListViewModels[indexOfMajorCell()].getGradient() : Themes.getTheme(Gradient.rdmGradient()).gradient)
+        self.view.applyGradient(colors: todoListViewModels.count > 0 ? todoListViewModels[indexOfMajorCell()].getGradient() : Theme.rdmGradient.gradient)
     }
     
     /// Checks if the collection view is empty an displays a empty view or restores it
@@ -141,27 +136,16 @@ class MainViewController: UIViewController {
         descriptionLabel.text = mainViewModel.getDescriptionStringForTaskCount(TodoListService.getTotalCountOfTodayTasks())
     }
     
-    // MARK: - Transition animation
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        
-//        guard let cell = collectionView.cellForItem(at: selectedIndexPath) else {
-//
-//        }
-//
-//        coordinator.animate(alongsideTransition: { (context) in
-//            
-//        }, completion: nil)
-    }
-    
     // MARK: - Buttons Actions
     
     /// Adds a new to do list card
     ///
     /// - Parameter sender: The sender of the event
     @IBAction fileprivate func addNewTodoListButtonPressed (_ sender: UIButton) {
-        let newTodoListViewController = ViewControllerFactory.makeTodoListViewController(withTransitioningDelegate: self)
-        self.navigationController?.present(newTodoListViewController, animated: true)
+// TODO
+        
+        let newTodoListViewController = ViewControllerFactory.makeNewTodoListViewController()
+        self.navigationController?.present(newTodoListViewController, animated: true, completion: nil)
     }
     
     /// Deletes the passed cell and connected data
@@ -200,18 +184,6 @@ class MainViewController: UIViewController {
         
         self.present(alertController, animated: true, completion: nil)
     }
-    
-    // MARK: - Gestures
-    
-    /// Handles the pan gesture on a collection view cell
-    ///
-    /// - Parameter gesture: The pan gesture
-    @objc fileprivate func handlePanGestureOnCollectionViewCell (_ gesture: UIPanGestureRecognizer) {
-        let point = gesture.location(in: collectionView)
-        guard let indexPath = collectionView.indexPathForItem(at: point) else {
-            return
-        }
-    }
 }
 
 // MARK: - Collection View Data Source, Collection View Delegate, Collection View Delegate Flow Layout, Scroll View Delegate
@@ -227,10 +199,10 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let collectionViewCell: CollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.collectionViewCellId, for: indexPath) as? CollectionViewCell else {
+        guard let collectionViewCell: CardCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.collectionViewCellId, for: indexPath) as? CardCollectionViewCell else {
             return UICollectionViewCell()
         }
-        collectionViewCell.setupView(todoListViewModels[indexPath.row]) {
+        collectionViewCell.fillWithInformations(todoListViewModels[indexPath.row]) {
             self.deleteCell(atIndexPath: indexPath)
         }
         
@@ -238,8 +210,39 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let todoListViewController = ViewControllerFactory.makeTodoListViewController(withTransitioningDelegate: self, andViewModel: todoListViewModels[indexPath.row])
-        self.present(todoListViewController, animated: true, completion: nil)
+        let detailViewController = ViewControllerFactory.makeCardDetailViewController(WithViewModel: todoListViewModels[indexPath.row])
+//        self.present(detailViewController, animated: true, completion: nil)
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell,
+              let superView = cell.superview,
+              let cellFrame = cell.layer.presentation()?.frame else { return }
+
+        // Get card frame without transform in screen's coordinates  (for the dismissing back later to original location)
+        let cardFrameWithoutTransform = { () -> CGRect in
+            let center = cell.center
+            let size = cell.bounds.size
+            let r = CGRect(
+                x: center.x - size.width / 2,
+                y: center.y - size.height / 2,
+                width: size.width,
+                height: size.height
+            )
+            return superView.convert(r, to: nil)
+        }()
+
+        let params = CardTransition.Params(fromCardFrame: superView.convert(cellFrame, to: nil),
+                                           fromCardFrameWithoutTransform: cardFrameWithoutTransform,
+                                           fromCell: cell)
+        transition = CardTransition(params: params)
+
+        detailViewController.transitioningDelegate = transition
+
+        detailViewController.modalPresentationCapturesStatusBarAppearance = true
+        detailViewController.modalPresentationStyle = .custom
+
+        present(detailViewController, animated: true) { [unowned cell] in
+            cell.unfreezeAnimations()
+        }
     }
 
     private var collectionViewFlowLayout: UICollectionViewFlowLayout {
@@ -254,10 +257,14 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         configureCollectionViewLayoutItemSize()
     }
     
+    /// Calculates the section inset
+    ///
+    /// - Returns: The section inset value
     func calculateSectionInset() -> CGFloat {
         return (self.view.bounds.width - collectionViewCellSize.width) / 2
     }
     
+    /// Configures the collection view layout item size
     private func configureCollectionViewLayoutItemSize() {
         let inset: CGFloat = calculateSectionInset()
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
@@ -265,6 +272,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         collectionViewFlowLayout.itemSize = CGSize(width: collectionView.collectionViewLayout.collectionView!.frame.size.width - inset * 2, height: collectionView.collectionViewLayout.collectionView!.frame.size.height)
     }
     
+    /// Gets the index of the major cell
+    ///
+    /// - Returns: The index
     private func indexOfMajorCell() -> Int {
         let itemWidth = collectionViewFlowLayout.itemSize.width
         var proportionalOffset = collectionView.collectionViewLayout.collectionView!.contentOffset.x / itemWidth
@@ -320,21 +330,5 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let from = todoListViewModels[indexOfCellBeforeDragging]
         let to = todoListViewModels[indexOfMajorCell]
         self.view.transitToGradient(from: from.getGradient(), to: to.getGradient())
-    }
-}
-
-// MARK: - View Controller Transitioning Delegate
-extension MainViewController: UIViewControllerTransitioningDelegate {
-    
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        guard let cellFrame = collectionView.cellForItem(at: selectedIndexPath)?.frame else { return nil }
-        transition.originFrame = cellFrame
-        transition.isPresenting = true
-        return transition
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.isPresenting = false
-        return transition
     }
 }

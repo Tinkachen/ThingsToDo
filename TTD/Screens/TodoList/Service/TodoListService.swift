@@ -66,7 +66,7 @@ struct TodoListService: MainService {
         
         listObjects.forEach {
             
-            guard let gradient = (($0.value(forKey: Constants.KeyPaths.gradientKey) as? Int).map { Gradient(rawValue: $0)}) as? Gradient,
+            guard let gradient = (($0.value(forKey: Constants.KeyPaths.gradientKey) as? Int).map { Theme.gradientForId($0)}),
                   let icon = (($0.value(forKey: Constants.KeyPaths.iconKey) as? Int).map { Icon(rawValue: $0) }) as? Icon,
                   let id = $0.value(forKey: Constants.KeyPaths.idKey) as? String else  {
                 return
@@ -81,6 +81,15 @@ struct TodoListService: MainService {
         }
         
         return listViewModels
+    }
+    
+    /// Reloads the passed view model
+    ///
+    /// - Parameter viewModel: The view model that need to be reloaded
+    /// - Returns: The reloaded todo list view model
+    static func reloadListViewModel (_ viewModel: TodoListViewModel) -> TodoListViewModel {
+        let newViewModel = getListViewModels().filter { $0.id == viewModel.id }.first
+        return newViewModel!
     }
     
     /// Saves the passed new view model to the local storage
@@ -103,7 +112,7 @@ struct TodoListService: MainService {
         let vm = NSManagedObject(entity: entity, insertInto: contextUnwrapped)
         
         vm.setValue(viewModel.id, forKey: Constants.KeyPaths.idKey)
-        vm.setValue(viewModel.gradient.rawValue, forKey: Constants.KeyPaths.gradientKey)
+        vm.setValue(viewModel.gradient.id, forKey: Constants.KeyPaths.gradientKey)
         vm.setValue(viewModel.icon.rawValue, forKey: Constants.KeyPaths.iconKey)
         vm.setValue(viewModel.title, forKey: Constants.KeyPaths.titleKey)
         vm.setValue(viewModel.passcode, forKey: Constants.KeyPaths.passcodeKey)
@@ -134,7 +143,7 @@ struct TodoListService: MainService {
         
         listObjects.forEach {
             if ($0.value(forKey: Constants.KeyPaths.idKey) as? String) == viewModel.id {
-                $0.setValue(viewModel.gradient.rawValue, forKey: Constants.KeyPaths.gradientKey)
+                $0.setValue(viewModel.gradient.id, forKey: Constants.KeyPaths.gradientKey)
                 $0.setValue(viewModel.icon.rawValue, forKey: Constants.KeyPaths.iconKey)
                 $0.setValue(viewModel.title, forKey: Constants.KeyPaths.titleKey)
                 $0.setValue(viewModel.passcode, forKey: Constants.KeyPaths.passcodeKey)

@@ -63,6 +63,7 @@ class TodoTaskTableViewCell: UITableViewCell {
     /// The call back for deleting the task
     private var deleteCallback: (()->Void)!
     
+    /// The call back for the done state
     private var doneStateCallback: (()->Void)!
     
     /// The strikethrough view for the label
@@ -164,6 +165,7 @@ class TodoTaskTableViewCell: UITableViewCell {
         doneStateCallback()
     }
     
+    /// Called when the task should be deleted
     @IBAction private func deleteTask () {
         if alternateInfoButton.imageView?.image == Constants.trashImage {
             deleteCallback()

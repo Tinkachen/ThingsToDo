@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 // MARK: - Extension of CA Gradient Layer
 extension CAGradientLayer {
     
@@ -36,10 +35,10 @@ extension CAGradientLayer {
     /// - Parameters:
     ///   - size: The size of the gradient
     ///   - colors: The colors for the gradient
-    convenience init (size: CGSize, colors: Gradient) {
+    convenience init (size: CGSize, colors: Theme) {
         self.init()
         self.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-        self.colors = Themes.getTheme(colors).gradient
+        self.colors = colors.rawValue.gradient
         startPoint = Properties.start
         endPoint = Properties.end
     }

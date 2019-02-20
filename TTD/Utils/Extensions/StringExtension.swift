@@ -8,10 +8,11 @@
 
 import Foundation
 
+// MARK: - String extension
 extension String {
     
     /// To call localized strings easier
-    var localized: String {
+    public var localized: String {
         return NSLocalizedString(self, comment: "")
     }
     
@@ -19,11 +20,12 @@ extension String {
     ///
     /// - Parameter elements: The elements for the localized string
     /// - Returns: The localized string
-    func localizedWith (_ elements: [CVarArg]) -> String {
+    public func localizedWith (_ elements: [CVarArg]) -> String {
         return String(format: self.localized, arguments: elements)
     }
 }
 
+// MARK: - String with Error extension
 extension String: Error {
     
 }

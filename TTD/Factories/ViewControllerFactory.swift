@@ -82,21 +82,33 @@ class ViewControllerFactory {
         return mainViewController
     }
     
-    /// Makes an instance of the 'NewTodoListViewController'
+    /// Makes an instance of 'TodoListViewController' with empty view model
+    ///
+    /// - Returns: The instance
+    static func makeNewTodoListViewController () -> UIViewController {
+        let newViewModel = ViewModelFactory.makeTodoListViewModel()
+        let todoListViewController = makeCardDetailViewController(WithViewModel: newViewModel)
+        return todoListViewController
+    }
+    
+    /// Makes an instance of 'CardContentDetailViewController'
+    ///
+    /// - Returns: The instance
+    static func makeCardDetailViewController (WithViewModel viewModel: TodoListViewModel) -> UIViewController {
+        let cardDetailViewController: CardContentDetailViewController = makeViewController()
+        cardDetailViewController.viewModel = viewModel
+        let navigationController = UINavigationController(rootViewController: cardDetailViewController)
+        return navigationController
+    }
+    
+    /// Makes an instance of 'SymbolsViewController' with passed view model information
     ///
     /// - Parameter viewModel: The view model
     /// - Returns: The instance
-    static func makeTodoListViewController (withTransitioningDelegate delegate: UIViewControllerTransitioningDelegate,
-                                            andViewModel viewModel: TodoListViewModel? = nil) -> UIViewController {
-        let todoListViewController: TodoListViewController = makeViewController()
-        todoListViewController.service = ServiceFactory.makeTodoListService()
-        todoListViewController.viewModel = viewModel ?? ViewModelFactory.makeTodoListViewModel()
-        todoListViewController.transitioningDelegate = delegate
-        let navigationController = UINavigationController(rootViewController: todoListViewController)
-        navigationController.isNavigationBarHidden = false
-        navigationController.navigationBar.isTranslucent = false
-        navigationController.navigationBar.backgroundColor = .white
-        return navigationController
+    static func makeSymbolsViewController (WithViewModel viewModel: TodoListViewModel) -> UIViewController {
+        let symbolsViewController: ChangeIdentifierSymbolsViewController = makeViewController()
+        symbolsViewController.viewModel = viewModel
+        return symbolsViewController
     }
     
     /// Makes an instance of the 'NewTodoTaskViewController'
@@ -110,8 +122,7 @@ class ViewControllerFactory {
         todoTaskViewController.service = ServiceFactory.makeTodoTaskService()
         todoTaskViewController.parentViewModel = parentViewModel
         todoTaskViewController.viewModel = viewModel ?? ViewModelFactory.makeTodoTaskVieModel(forList: parentViewModel.id)
-        let navigationController = UINavigationController(rootViewController: todoTaskViewController)
-        return navigationController
+        return todoTaskViewController
     }
     
     /// Makes an instance of the 'PasscodeViewController'
